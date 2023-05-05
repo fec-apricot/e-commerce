@@ -1,13 +1,9 @@
 import React from 'react';
 
-
-function Overview () {
-
-
+function Overview() {
   return (
     <div>HEllo!!</div>
   );
-};
-
+}
 
 export default Overview;

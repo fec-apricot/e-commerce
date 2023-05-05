@@ -1,8 +1,8 @@
-require("dotenv").config();
-const express = require("express");
-const path = require("path");
+require('dotenv').config();
+const express = require('express');
+const path = require('path');
 // const cors = require('cors');
-const api = require('./apiHelper.js');
+const api = require('./apiHelper');
 
 const app = express();
 // app.use(cors());
@@ -16,9 +16,7 @@ const app = express();
 
 app.use(express.json());
 
-
-app.use(express.static(path.join(__dirname, "../client/dist")));
-
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // routes
 // poducts routes
@@ -64,7 +62,6 @@ app.get('/products/:product_id/related', (req, res) => {
     });
 });
 
-
 // review routes
 
 app.get('/reviews/', (req, res) => {
@@ -96,7 +93,6 @@ app.get('/reviews/meta', (req, res) => {
 });
 
 app.post('/reviews', (req, res) => {
-
   api.post(req.url, req.body)
     .then((result) => {
       console.log('post /reviews result', result.data);
@@ -105,11 +101,10 @@ app.post('/reviews', (req, res) => {
     .catch((err) => {
       console.log('post /reviews err', err);
       res.sendStatus(404);
-    })
+    });
 });
 
 app.put('/reviews/:review_id/helpful', (req, res) => {
-
   api.put(req.url, req.body)
     .then((result) => {
       console.log('put /reviews/:review_id/helpful result', result.data);
@@ -118,11 +113,10 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
     .catch((err) => {
       console.log('put /reviews/:review_id/helpful err', err);
       res.sendStatus(404);
-    })
+    });
 });
 
 app.put('/reviews/:review_id/report', (req, res) => {
-
   api.put(req.url, req.body)
     .then((result) => {
       console.log('put /reviews/:review_id/report result', result.data);
@@ -131,9 +125,8 @@ app.put('/reviews/:review_id/report', (req, res) => {
     .catch((err) => {
       console.log('put /reviews/:review_id/report err', err);
       res.sendStatus(404);
-    })
+    });
 });
-
 
 // questions routes
 
@@ -166,7 +159,6 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 });
 
 app.post('/qa/questions', (req, res) => {
-
   api.post(req.url, req.body)
     .then((result) => {
       console.log('post /qa/questions result', result.data);
@@ -175,11 +167,10 @@ app.post('/qa/questions', (req, res) => {
     .catch((err) => {
       console.log('post /qa/questions err', err);
       res.sendStatus(404);
-    })
+    });
 });
 
 app.post('/qa/questions/:question_id/answers', (req, res) => {
-
   api.post(req.url, req.body)
     .then((result) => {
       console.log('post /qa/questions/:question_id/answers result', result.data);
@@ -188,11 +179,10 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
     .catch((err) => {
       console.log('post /qa/questions/:question_id/answers err', err);
       res.sendStatus(404);
-    })
+    });
 });
 
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
-
   api.put(req.url, req.body)
     .then((result) => {
       console.log('put /qa/questions/:question_id/helpful result', result.data);
@@ -201,11 +191,10 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
     .catch((err) => {
       console.log('put /qa/questions/:question_id/helpful err', err);
       res.sendStatus(404);
-    })
+    });
 });
 
 app.put('/qa/questions/:question_id/report', (req, res) => {
-
   api.put(req.url, req.body)
     .then((result) => {
       console.log('put /qa/questions/:question_id/report result', result.data);
@@ -214,11 +203,10 @@ app.put('/qa/questions/:question_id/report', (req, res) => {
     .catch((err) => {
       console.log('put /qa/questions/:question_id/report err', err);
       res.sendStatus(404);
-    })
+    });
 });
 
 app.put('/qa/answers/:answer_id/helpful', (req, res) => {
-
   api.put(req.url, req.body)
     .then((result) => {
       console.log('put /qa/answers/:answer_id/helpful result', result.data);
@@ -227,11 +215,10 @@ app.put('/qa/answers/:answer_id/helpful', (req, res) => {
     .catch((err) => {
       console.log(' put /qa/answers/:answer_id/helpful err', err);
       res.sendStatus(404);
-    })
+    });
 });
 
 app.put('/qa/answers/:answer_id/report', (req, res) => {
-
   api.put(req.url, req.body)
     .then((result) => {
       console.log('put /qa/answers/:answer_id/report result', result.data);
@@ -240,15 +227,12 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
     .catch((err) => {
       console.log('put /qa/answers/:answer_id/report err', err);
       res.sendStatus(404);
-    })
+    });
 });
-
 
 // cart routes
 
 app.get('/cart', (req, res) => {
-
-
   api.get(req.url)
     .then((result) => {
       console.log('get /cart res', result.data);
@@ -261,7 +245,6 @@ app.get('/cart', (req, res) => {
 });
 
 app.post('/cart', (req, res) => {
-
   api.post(req.url, req.body)
     .then((result) => {
       console.log('post /cart result', result.data);
@@ -270,11 +253,10 @@ app.post('/cart', (req, res) => {
     .catch((err) => {
       console.log('post /cart err', err);
       res.sendStatus(404);
-    })
+    });
 });
 
 app.post('/interactions', (req, res) => {
-
   api.post(req.url, req.body)
     .then((result) => {
       console.log('post /interactions result', result.data);
@@ -283,11 +265,8 @@ app.post('/interactions', (req, res) => {
     .catch((err) => {
       console.log('post /interactions err', err);
       res.sendStatus(404);
-    })
+    });
 });
-
-
-
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
