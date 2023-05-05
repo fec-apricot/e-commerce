@@ -1,13 +1,9 @@
 import React from 'react';
 
-
-function Reviews () {
-
-
+function Reviews() {
   return (
     <div>HEllo!!</div>
-    );
-};
-
+  );
+}
 
 export default Reviews;
