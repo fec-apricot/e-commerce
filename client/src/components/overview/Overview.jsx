@@ -39,14 +39,22 @@ function Overview({ productID }) {
   const TopContainer = styled.div`
     display: flex;
   `;
+
   const WidgetPanel = styled.div`
     display: flex;
     flex-direction: column;
   `;
 
-  const Category = styled.div``;
-  const Name = styled.div``;
-  const Price = styled.div``;
+  const Category = styled.div`
+    font-size: 20px;
+  `;
+  const Name = styled.div`
+    font-weight: bold;
+    font-size: 40px;
+  `;
+  const Price = styled.div`
+    font-size: 20px;
+  `;
 
   return (
     <ProductContext.Provider value={{ product, currentStyle, styles }}>
