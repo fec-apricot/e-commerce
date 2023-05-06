@@ -6,7 +6,7 @@ import Description from './Description.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
-const StyleContext = createContext();
+export const ProductContext = createContext();
 
 function Overview({ productID }) {
   const [product, setProduct] = useState({});
@@ -49,7 +49,7 @@ function Overview({ productID }) {
   const Price = styled.div``;
 
   return (
-    <StyleContext.Provider value={(currentStyle, styles)}>
+    <ProductContext.Provider value={{ product, currentStyle, styles }}>
       <Host>
         <TopContainer>
           <ImageGallery></ImageGallery>
@@ -64,7 +64,7 @@ function Overview({ productID }) {
         </TopContainer>
         <Description></Description>
       </Host>
-    </StyleContext.Provider>
+    </ProductContext.Provider>
   );
 }
 
