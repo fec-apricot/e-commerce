@@ -11,7 +11,7 @@ export const ProductContext = createContext();
 function Overview({ productID }) {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
-  const [currentStyle, setCurrentStyle] = useState({});
+  const [selectedStyle, setSelectedStyle] = useState({});
 
   useEffect(() => {
     parse
@@ -24,7 +24,7 @@ function Overview({ productID }) {
       )
       .then((data) => {
         setStyles(data.results);
-        setCurrentStyle(data.results[0]);
+        setSelectedStyle(data.results[0]);
       })
       .catch((err) => {
         console.error(err.message);
@@ -57,7 +57,9 @@ function Overview({ productID }) {
   `;
 
   return (
-    <ProductContext.Provider value={{ product, currentStyle, styles }}>
+    <ProductContext.Provider
+      value={{ product, selectedStyle, setSelectedStyle, styles }}
+    >
       <Host>
         <TopContainer>
           <ImageGallery></ImageGallery>
