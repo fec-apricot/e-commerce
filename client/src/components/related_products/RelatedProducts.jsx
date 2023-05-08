@@ -1,11 +1,13 @@
 import React from 'react';
-import Stars from './stars_module/Stars.jsx';
-import './Related.css';
+import RowOne from './row1/RowOne.jsx';
+import RowTwo from './row2/RowTwo.jsx';
+// import styles from './Related.css';
 
 function RelatedProducts() {
   return (
     <div>
-      <Stars />
+      <RowOne className="row1" />
+      <RowTwo />
     </div>
   );
 }
