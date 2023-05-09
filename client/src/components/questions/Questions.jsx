@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import styled from 'styled-components';
 import parse from '../../parse';
 import { ProductIDContext } from '../App.jsx';
 import Search from './Search.jsx';
@@ -15,19 +16,25 @@ function Questions() {
   },[]);
   console.log('I AM THE QUESTIONS', questions);
 
+  const ContainerMain = styled.div`
+    width: 700px;
+    padding-left: 20%;
+    `;
+
   return (
-    <div>
-      <div>HEllo Questions & Answers!!</div>
-      <br></br>
+    <ContainerMain>
+      <div title="My Header">QUESTIONS AND ANSWERS</div>
+      <br />
       <Search />
-      <br></br>
+      <br />
       <QuestionList questions={questions} />
       <div>
-        <button type="button">More Answered Questions</button>
+        <button id="moreQuestions" type="button">More Answered Questions</button>
+        &emsp;
         <button type="button">Add Questions +</button>
       </div>
 
-    </div>
+    </ContainerMain>
 
   );
 }

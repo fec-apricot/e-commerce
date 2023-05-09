@@ -1,10 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
 
 function Search() {
   return (
     <div>
       <input></input>
-      <button>SEARCH Questions</button>
+      <button>SEARCH</button>
     </div>
   );
 }

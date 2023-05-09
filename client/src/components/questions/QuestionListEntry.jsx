@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import parse from '../../parse';
 import AnswerListEntry from './AnswerListEntry.jsx';
 
@@ -15,21 +16,34 @@ function QuestionListEntry({question}) {
   // setAnswers(question.answers)
   console.log('I AM ANSWERS', answers);
 
+  // const ContainerDiv = styled.div`
+  //   width: 500px
+  //   `;
+
+  const ContainerQ = styled.span`
+    display: flex;
+    justify-content: flex-end;
+    `;
+
   return (
     <div>
       <section>
-        helpful?&ensp;
-        <button type="button">Yes</button>
-        &nbsp;
-        {question.question_helpfulness}
-        &emsp;|&emsp;
-        <button type="button">Add Answer</button>
-        <div>
+        <span>
           Q:&ensp;
           {question.question_body}
+        </span>
+        <ContainerQ>
+          helpful?&ensp;
+          <button type="button">Yes</button>
+          &nbsp;
+          {question.question_helpfulness}
+          &emsp;|&emsp;
+          <button type="button">Add Answer</button>
+        </ContainerQ>
+        <div>
           {answers.map((answer, i) => <AnswerListEntry key={i} answer={answer} />)}
         </div>
-        <br></br>
+        <br />
       </section>
     </div>
   );
