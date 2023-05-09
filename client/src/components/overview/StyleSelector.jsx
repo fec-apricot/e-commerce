@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { OverviewContext } from './OverviewContext.jsx';

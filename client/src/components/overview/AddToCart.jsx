@@ -1,3 +1,6 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable comma-dangle */
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import _ from 'underscore';

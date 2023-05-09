@@ -1,3 +1,5 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable comma-dangle */
 import React, { useState, useEffect, createContext, useMemo } from 'react';
 import parse from '../parse';
 
