@@ -1,8 +1,11 @@
 {
-  "extends": ["airbnb", "airbnb/hooks", "prettier"],
+  "extends": ["airbnb", "airbnb/hooks"],
   "env": {
     "browser": true,
     "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020
   },
   "rules": {
     "no-console": "off",
