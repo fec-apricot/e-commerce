@@ -4,6 +4,7 @@ import RelatedProducts from './related_products/RelatedProducts.jsx';
 import Questions from './questions/Questions.jsx';
 import Reviews from './reviews/Reviews.jsx';
 import parse from '../parse';
+import '../../dist/styles.css';
 
 export const ProductIDContext = createContext();
 
