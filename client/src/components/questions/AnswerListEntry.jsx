@@ -8,13 +8,13 @@ function AnswerListEntry({ answer }) {
       <br />
       A:&ensp;
       {answer.body}
-      <div>
+      <div className="navA">
         by&nbsp;
         {answer.answerer_name}
         ,
         &nbsp;
         {new Date(answer.date).toString().slice(4, 15)}
-        &emsp;|&emsp; helpful?&ensp;
+        &emsp;|&emsp; Helpful?&ensp;
         <button type="button">Yes</button>
         &nbsp;
         {answer.helpfulness}

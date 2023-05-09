@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import parse from '../../parse';
 import AnswerListEntry from './AnswerListEntry.jsx';
+import './questions.css';
 
 function QuestionListEntry({question}) {
   const [answers, setAnswers] = useState([]);
@@ -20,10 +21,10 @@ function QuestionListEntry({question}) {
   //   width: 500px
   //   `;
 
-  const ContainerQ = styled.span`
-    display: flex;
-    justify-content: flex-end;
-    `;
+  // const ContainerQ = styled.span`
+  //   display: flex;
+  //   justify-content: flex-end;
+  //   `;
 
   return (
     <div>
@@ -32,14 +33,14 @@ function QuestionListEntry({question}) {
           Q:&ensp;
           {question.question_body}
         </span>
-        <ContainerQ>
-          helpful?&ensp;
+        <span className="navQ">
+          Helpful?&ensp;
           <button type="button">Yes</button>
           &nbsp;
           {question.question_helpfulness}
           &emsp;|&emsp;
           <button type="button">Add Answer</button>
-        </ContainerQ>
+        </span>
         <div>
           {answers.map((answer, i) => <AnswerListEntry key={i} answer={answer} />)}
         </div>

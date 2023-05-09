@@ -4,6 +4,7 @@ import parse from '../../parse';
 import { ProductIDContext } from '../App.jsx';
 import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
+import './questions.css';
 
 function Questions() {
   const { productID } = useContext(ProductIDContext);
@@ -16,14 +17,14 @@ function Questions() {
   },[]);
   console.log('I AM THE QUESTIONS', questions);
 
-  const ContainerMain = styled.div`
-    width: 700px;
-    padding-left: 20%;
-    `;
+  // const ContainerMain = styled.div`
+  //   width: 700px;
+  //   padding-left: 20%;
+  //   `;
 
   return (
-    <ContainerMain>
-      <div title="My Header">QUESTIONS AND ANSWERS</div>
+    <div className="body">
+      <div title="My Header">QUESTIONS & ANSWERS</div>
       <br />
       <Search />
       <br />
@@ -33,8 +34,7 @@ function Questions() {
         &emsp;
         <button type="button">Add Questions +</button>
       </div>
-
-    </ContainerMain>
+    </div>
 
   );
 }
