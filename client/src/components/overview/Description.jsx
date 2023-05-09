@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { ProductContext } from "./Overview.jsx";
-import styled from "styled-components";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { OverviewContext } from './OverviewContext.jsx';
 
 function Description() {
-  const { product } = useContext(ProductContext);
+  const { product } = useContext(OverviewContext);
   const Host = styled.div`
     display: flex;
     margin: 20px 60px 20px 60px;
@@ -40,11 +40,11 @@ function Description() {
         <Slogan>{product.slogan}</Slogan>
         <DescriptionContent>{product.description}</DescriptionContent>
       </SloganAndDescriptionContainer>
-      <VerticalLine></VerticalLine>
+      <VerticalLine />
       <FeatureContainer>
         {product.features &&
-          product.features.map((feature, index) => (
-            <div key={index}>
+          product.features.map((feature) => (
+            <div key={feature.feature}>
               {feature.feature}: {feature.value}
             </div>
           ))}

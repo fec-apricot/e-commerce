@@ -1,35 +1,16 @@
-import React, { useState, useEffect, createContext } from 'react';
-import parse from '../../parse.js';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import {
+  OverviewContext,
+  OverviewContextProvider,
+} from './OverviewContext.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import Description from './Description.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
-export const ProductContext = createContext();
-
-function Overview({ productID }) {
-  const [product, setProduct] = useState({});
-  const [styles, setStyles] = useState([]);
-  const [selectedStyle, setSelectedStyle] = useState({});
-
-  useEffect(() => {
-    parse
-      .get(`http://localhost:3000/products/${productID}`)
-      .then((data) => {
-        setProduct(data);
-      })
-      .then(() =>
-        parse.get(`http://localhost:3000/products/${productID}/styles`)
-      )
-      .then((data) => {
-        setStyles(data.results);
-        setSelectedStyle(data.results[0]);
-      })
-      .catch((err) => {
-        console.error(err.message);
-      });
-  }, []);
+function Overview() {
+  const { product } = useContext(OverviewContext);
 
   const Host = styled.div`
     display: flex;
@@ -57,24 +38,22 @@ function Overview({ productID }) {
   `;
 
   return (
-    <ProductContext.Provider
-      value={{ product, selectedStyle, setSelectedStyle, styles }}
-    >
+    <OverviewContextProvider>
       <Host>
         <TopContainer>
-          <ImageGallery></ImageGallery>
+          <ImageGallery />
           <WidgetPanel>
             {/* <RatingContainer></RatingContainer> */}
             <Category>{product.category}</Category>
             <Name>{product.name}</Name>
             <Price>${product.default_price}</Price>
-            <StyleSelector></StyleSelector>
-            <AddToCart></AddToCart>
+            <StyleSelector />
+            <AddToCart />
           </WidgetPanel>
         </TopContainer>
-        <Description></Description>
+        <Description />
       </Host>
-    </ProductContext.Provider>
+    </OverviewContextProvider>
   );
 }
 

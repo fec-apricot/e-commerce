@@ -1,30 +1,23 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React from 'react';
+import { GlobalContextProvider } from './GlobalContext.jsx';
+import { OverviewContextProvider } from './overview/OverviewContext.jsx';
 import Overview from './overview/Overview.jsx';
 import RelatedProducts from './related_products/RelatedProducts.jsx';
 import Questions from './questions/Questions.jsx';
 import Reviews from './reviews/Reviews.jsx';
-import parse from '../parse';
 import '../../dist/styles.css';
 
-export const ProductIDContext = createContext();
-
 function App() {
-  const [productID, setProductID] = useState(40344);
-
-  useEffect(() => {
-    parse.get(`/products/${productID}`);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <ProductIDContext.Provider value={{ productID, setProductID }}>
+    <GlobalContextProvider>
       <div>HEllo!!</div>
-      <Overview />
+      <OverviewContextProvider>
+        <Overview />
+      </OverviewContextProvider>
       <RelatedProducts />
       <Questions />
       <Reviews />
-    </ProductIDContext.Provider>
+    </GlobalContextProvider>
   );
 }
 

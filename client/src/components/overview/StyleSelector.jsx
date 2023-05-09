@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import { ProductContext } from "./Overview.jsx";
-import styled from "styled-components";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { OverviewContext } from './OverviewContext.jsx';
 
 function StyleSelector() {
   const { selectedStyle, setSelectedStyle, styles } =
-    useContext(ProductContext);
+    useContext(OverviewContext);
   const Host = styled.div`
     display: flex;
     flex-direction: column;
@@ -69,14 +69,14 @@ function StyleSelector() {
       </StyleTitle>
       <StyleList>
         {styles &&
-          styles.map((style, index) => (
-            <StyleThumbnailContainer key={index}>
+          styles.map((style) => (
+            <StyleThumbnailContainer key={style.style_id}>
               <StyleThumbnail
                 src={style.photos[0].thumbnail_url}
                 onClick={() => {
                   setSelectedStyle(style);
                 }}
-              ></StyleThumbnail>
+              />
               {style.style_id === selectedStyle.style_id && (
                 <Checkmark>✓</Checkmark>
               )}
