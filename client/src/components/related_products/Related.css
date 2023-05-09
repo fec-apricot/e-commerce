@@ -1,3 +1,58 @@
-.starIcon {
-  display: inline;
+.row {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  justify-content: center;
+  background-color: grey;
+}
+
+.card {
+  background-color: rgb(232, 232, 232);
+  width: 24%;
+  max-width: 250px;
+  min-width: 200px;
+  border: solid;
+  border-width: 3px;
+  border-color: rgb(152, 152, 152);
+  margin: 2px;
+}
+
+.imgDiv{
+  height: 75%;
+  width: 95%;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: blue;
+}
+
+.relatedIMG {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+}
+
+.compareButton {
+
+}
+
+.btnDiv {
+  transform: translate(-40%, -900%);
+}
+
+.category {
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
+.productName {
+  font-weight: bold;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
+.price {
+  margin-top: 4px;
+  margin-left: 4px;
 }

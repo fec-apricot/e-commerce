@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import parse from '../../../parse';
 import Stars from '../stars_module/Stars.jsx';
+import '../Related.css';
 
 function RelatedCard({ relatedID }) {
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
+  const [rating, setRating] = useState({});
   const [imageURL, setImageURL] = useState('');
 
   const updateImageURL = () => {
@@ -30,32 +32,52 @@ function RelatedCard({ relatedID }) {
   });
 
   useEffect(() => {
-    parse.get(`/products/${relatedID}`)
+    const endpoints = [
+      `/products/${relatedID}`,
+      `/products/${relatedID}/styles`,
+      `/reviews/meta?product_id=${relatedID}`,
+    ];
+
+    Promise.all(endpoints.map((endpoint) => parse.get(endpoint)))
       .then((res) => {
-        console.log('GET related product info res', res);
-        setProductInfo(res);
+        console.log('this is all the data', res);
+        setProductInfo(res[0]);
+        setProductStyles(res[1]);
+        setRating(res[2].ratings);
       })
       .catch((err) => {
-        console.log('GET related product info err', err);
+        console.log('promise.all err', err);
       });
-    parse.get(`/products/${relatedID}/styles`)
-      .then((res) => {
-        console.log('GET related product styles res', res);
-        setProductStyles(res);
-      })
-      .catch((err) => {
-        console.log('GET related product styles err', err);
-      });
+    // parse.get(`/products/${relatedID}`)
+    //   .then((res) => {
+    //     console.log('GET related product info res', res);
+    //     setProductInfo(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log('GET related product info err', err);
+    //   });
+    // parse.get(`/products/${relatedID}/styles`)
+    //   .then((res) => {
+    //     console.log('GET related product styles res', res);
+    //     setProductStyles(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log('GET related product styles err', err);
+    //   });
   }, []);
 
   return (
-    <div>
-      <img src={imageURL} alt="Coming soon!" />
-      <button type="button">ActionButton</button>
-      <div>{productInfo ? productInfo.category : ''}</div>
-      <div>{productInfo ? productInfo.name : ''}</div>
-      <div>{productInfo ? productInfo.default_price : ''}</div>
-      <Stars />
+    <div className="card">
+      <div className="imgDiv">
+        <img className="relatedIMG" src={imageURL} alt="Coming soon!" />
+        <div className="btnDiv">
+          <button className="compareButton" type="button">Compare</button>
+        </div>
+      </div>
+      <div className="category">{productInfo ? productInfo.category : ''}</div>
+      <div className="productName">{productInfo ? `${productInfo.name} - ${productInfo.slogan ? productInfo.slogan : ''}` : ''}</div>
+      <div className="price">{productInfo ? `$${productInfo.default_price}` : ''}</div>
+      <Stars rating={rating} />
     </div>
   );
 }

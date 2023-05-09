@@ -1,0 +1,14 @@
+.liStar {
+  display: inline;
+}
+
+.star {
+  fill: gold;
+  height: 100%;
+}
+
+.starsDiv {
+  height: 5%;
+  background-color: rgb(79, 79, 79);
+  margin: 4px;
+}
