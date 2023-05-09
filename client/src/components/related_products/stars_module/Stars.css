@@ -1,14 +1,31 @@
-.liStar {
+.spanStar {
+  display: inline;
+  z-index: 0;
+}
+
+.spanGoldStar {
+  display: inline-block;
+  z-index: 1;
+  width: 50%;
+  overflow: hidden;
+}
+
+.goldStarsDiv {
   display: inline;
 }
 
 .star {
-  fill: gold;
+  fill: rgb(109, 109, 109);
   height: 100%;
+}
+
+.gold {
+  fill: gold;
 }
 
 .starsDiv {
   height: 5%;
+  width: fit-content;
   background-color: rgb(79, 79, 79);
   margin: 4px;
 }

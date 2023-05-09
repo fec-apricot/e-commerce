@@ -48,22 +48,6 @@ function RelatedCard({ relatedID }) {
       .catch((err) => {
         console.log('promise.all err', err);
       });
-    // parse.get(`/products/${relatedID}`)
-    //   .then((res) => {
-    //     console.log('GET related product info res', res);
-    //     setProductInfo(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log('GET related product info err', err);
-    //   });
-    // parse.get(`/products/${relatedID}/styles`)
-    //   .then((res) => {
-    //     console.log('GET related product styles res', res);
-    //     setProductStyles(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log('GET related product styles err', err);
-    //   });
   }, []);
 
   return (
@@ -77,7 +61,7 @@ function RelatedCard({ relatedID }) {
       <div className="category">{productInfo ? productInfo.category : ''}</div>
       <div className="productName">{productInfo ? `${productInfo.name} - ${productInfo.slogan ? productInfo.slogan : ''}` : ''}</div>
       <div className="price">{productInfo ? `$${productInfo.default_price}` : ''}</div>
-      <Stars rating={rating} />
+      <Stars rating={rating} interactive={true} />
     </div>
   );
 }
