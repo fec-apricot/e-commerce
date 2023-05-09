@@ -1,31 +1,33 @@
+:root {
+  --star-size: 24px;
+  --star-color: gold;
+  --star-background: grey;
+}
+
+
 .spanStar {
-  display: inline;
-  z-index: 0;
-}
-
-.spanGoldStar {
   display: inline-block;
-  z-index: 1;
-  width: 50%;
-  overflow: hidden;
-}
-
-.goldStarsDiv {
-  display: inline;
-}
-
-.star {
-  fill: rgb(109, 109, 109);
-  height: 100%;
-}
-
-.gold {
-  fill: gold;
+  height: fit-content;
 }
 
 .starsDiv {
-  height: 5%;
+
   width: fit-content;
-  background-color: rgb(79, 79, 79);
-  margin: 4px;
+  margin: 0;
+  position: absolute;
+  height: fit-content;
+  background: linear-gradient(90deg, var(--star-color) var(--ratings), var(--star-background) var(--ratings));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+.star {
+  fill: var(--star-background);
+
+}
+
+.gold {
+  fill: var(--star-color);
+}
+

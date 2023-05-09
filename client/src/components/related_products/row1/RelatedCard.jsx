@@ -6,7 +6,7 @@ import '../Related.css';
 function RelatedCard({ relatedID }) {
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
-  const [rating, setRating] = useState({});
+  const [ratings, setRatings] = useState({});
   const [imageURL, setImageURL] = useState('');
 
   const updateImageURL = () => {
@@ -43,7 +43,7 @@ function RelatedCard({ relatedID }) {
         console.log('this is all the data', res);
         setProductInfo(res[0]);
         setProductStyles(res[1]);
-        setRating(res[2].ratings);
+        setRatings(res[2].ratings);
       })
       .catch((err) => {
         console.log('promise.all err', err);
@@ -61,7 +61,7 @@ function RelatedCard({ relatedID }) {
       <div className="category">{productInfo ? productInfo.category : ''}</div>
       <div className="productName">{productInfo ? `${productInfo.name} - ${productInfo.slogan ? productInfo.slogan : ''}` : ''}</div>
       <div className="price">{productInfo ? `$${productInfo.default_price}` : ''}</div>
-      <Stars rating={rating} interactive={true} />
+      <Stars ratings={ratings} size="20" interactive={false} />
     </div>
   );
 }
