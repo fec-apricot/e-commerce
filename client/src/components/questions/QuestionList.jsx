@@ -1,16 +1,17 @@
 import React from 'react';
 import QuestionListEntry from './QuestionListEntry.jsx';
+// import PropTypes from 'prop-types';
 
 function QuestionList({questions}) {
   return (
     <div>
-      <div>Q.</div>
-      <div>Q.</div>
-      <div>Q.</div>
-      <div>Q.</div>
       {questions.map((question, i) => <QuestionListEntry key={i} question={question} />)}
     </div>
   );
 }
+
+// QuestionList.proptype = {
+//   questions: PropTypes.Array
+// }
 
 export default QuestionList;
