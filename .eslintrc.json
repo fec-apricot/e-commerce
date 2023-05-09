@@ -4,6 +4,9 @@
     "browser": true,
     "node": true
   },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
   "rules": {
     "no-console": "off",
     "import/extensions": ["error", "never", { "jsx": "always" }]

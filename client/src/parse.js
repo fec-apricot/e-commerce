@@ -20,6 +20,7 @@ const parse = {
       .post(url, data)
       .then((res) => {
         console.log('axios post res', res);
+        return res;
       })
       .then((err) => {
         console.log('axios post err', err);
@@ -32,6 +33,7 @@ const parse = {
       .put(url, data)
       .then((res) => {
         console.log('axios put res', res);
+        return res;
       })
       .catch((err) => {
         console.log('axios put err', err);
