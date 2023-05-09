@@ -12,14 +12,14 @@ function Reviews() {
 
   const getReviews = () => (
     parse.get(`reviews/?page=${pageParam}&count=${countLimit}&sort=${sortParam}&product_id=${productID}`)
-      .then((data) => { console.log(data.results); })
+      .then((data) => { setReviewList(reviewList.concat(data.results)); })
       .catch((err) => { console.log('CLIENT GET REVIEW ERROR: ', err); }));
 
   const getMoreReviews = () => {
     setPageParam(pageParam + 1);
   };
 
-  React.useEffect(() => { getReviews(); });
+  React.useEffect(() => { getReviews(); }, [pageParam]);
 
   return (
     <>
