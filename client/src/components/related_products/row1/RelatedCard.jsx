@@ -62,9 +62,9 @@ function RelatedCard({ relatedID, changeProduct }) {
     <div className="card" role="button" tabIndex="0" onKeyDown={() => {}} onClick={() => changeProduct(relatedID)}>
       <div className="imgDiv">
         <img className="relatedIMG" src={imageURL} alt="Coming soon!" />
-        <div className="btnDiv">
-          <button className="compareButton" type="button">Compare</button>
-        </div>
+
+        <button className="compareButton" type="button">Compare</button>
+
       </div>
       <div className="category">{productInfo ? productInfo.category : ''}</div>
       <div className="productName">{title}</div>
