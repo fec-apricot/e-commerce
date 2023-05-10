@@ -5,11 +5,13 @@ import parse from '../../parse';
 import { GlobalContext } from '../GlobalContext.jsx';
 import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
+import AnswerForm from './AnswerForm.jsx';
 import './questions.css';
 
 function Questions() {
   const { productID } = useContext(GlobalContext);
   const [questions, setQuestions] = React.useState([]);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   useEffect(() => {
     parse.get(`/qa/questions/?product_id=${productID}&page=30&count=4`)
@@ -25,7 +27,7 @@ function Questions() {
 
   return (
     <div className="body">
-      <div className="head" title="My Header">QUESTIONS & ANSWERS</div>
+      <div className="head" title="My Header" data-testid="title">QUESTIONS & ANSWERS</div>
       <br />
       <Search />
       <br />

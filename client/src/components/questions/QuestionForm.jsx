@@ -1,11 +1,11 @@
 import React from 'react';
 
-function QuestionFrom() {
+function QuestionFrom({ isOpen }) {
   return (
     <div>
       <form>
-        <label>Have a Question about the prdocut?</label>
-        <input type="text" placeholder="ADD IT HERE"></input>
+        <label>Post your question</label>
+        <input type="text" placeholder="WHAT CAN WE HELP YOU WITH?"></input>
         <buttton>submit</buttton>
       </form>
     </div>

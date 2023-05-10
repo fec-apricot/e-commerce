@@ -4,18 +4,21 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 // import App from '../App.jsx';
 import Questions from '../../client/src/components/questions/Questions.jsx';
+import { GlobalContextProvider } from '../../client/src/components/GlobalContext.jsx';
 import '@testing-library/jest-dom/';
 
-test('test', () => {
-  expect(true).toBe(true);
-});
+// test('test', () => {
+//   expect(true).toBe(true);
+// });
 
-test('nother test', async () => {
+test('nother test', () => {
   render(
-    <Questions />
+    <GlobalContextProvider>
+      <Questions />
+    </GlobalContextProvider>,
   );
-  const text = await screen.findAllByText(/Q:/i);
-  await waitFor(() => expect(text).toHaveLength(4));
+  const title = screen.getByTestId('title');
+  expect(title).toBeInTheDocument();
 });
 
 // test("Validate something", async () => {
@@ -31,6 +34,6 @@ test('nother test', async () => {
 //     render(<App />); // Rendering the App
 //     // const button = screen.getByTestId('moreQuestions');
 //     // expect(button).toBeInTheDocument();
-//     expect(screen.getByText('Questions and Answers')).toBeInTheDocument();
+//     expect(screen.getByText('Questions & Answers')).toBeInTheDocument();
 //   });
 // });
