@@ -1,27 +1,33 @@
-.row {
+.productTrack {
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: center;
   background-color: grey;
-  margin: 0;
+  margin: 0 auto;
+  list-style-type: none;
 }
 
 .card {
   background-color: rgb(232, 232, 232);
+  height: 100%;
   min-width: 220px;
   max-width: 220px;
   border: solid;
-  border-width: 3px;
+  border-width: 0px;
   border-color: rgb(152, 152, 152);
-  margin: 2px;
+  margin: 0 auto;
+}
+
+.productCard-li {
+  margin-left: 4px;
 }
 
 .imgDiv{
   height: 72%;
-  width: 95%;
+  width: 100%;
   margin: auto;
-  margin-top: 5px;
+
   margin-bottom: 5px;
   background-color: blue;
 }
@@ -34,7 +40,7 @@
 }
 
 .compareButton {
-
+  right: -500px;
 }
 
 .btnDiv {

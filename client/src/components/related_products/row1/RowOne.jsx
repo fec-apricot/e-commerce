@@ -25,14 +25,18 @@ function RowOne() {
   }, [productID]);
 
   return (
-    <div className="row">
+    <ul className="row productTrack">
       {
         related
           .map(
-            (id) => <RelatedCard key={id} relatedID={id} changeProduct={changeProduct} />,
+            (id) => (
+              <li key={id} className="productCard-li">
+                <RelatedCard relatedID={id} changeProduct={changeProduct} />
+              </li>
+            ),
           )
       }
-    </div>
+    </ul>
   );
 }
 
