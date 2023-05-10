@@ -5,15 +5,15 @@ import Overview from './overview/Overview.jsx';
 import RelatedProducts from './related_products/RelatedProducts.jsx';
 import Questions from './questions/Questions.jsx';
 import Reviews from './reviews/Reviews.jsx';
-// import '../../dist/styles.css';
+import '../../dist/styles.css';
 
 function App() {
   return (
     <GlobalContextProvider>
       <div>HEllo!!</div>
-      {/* <OverviewContextProvider>
+      <OverviewContextProvider>
         <Overview />
-      </OverviewContextProvider> */}
+      </OverviewContextProvider>
       <RelatedProducts />
       <Questions />
       <Reviews />
