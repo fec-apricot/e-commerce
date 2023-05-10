@@ -6,8 +6,10 @@ function AnswerListEntry({ answer }) {
   return (
     <div>
       <br />
-      A:&ensp;
-      {answer.body}
+      <span className="answerList">A:</span>
+      &ensp;
+      <span className="answerText">{answer.body}</span>
+      <br />
       <div className="navA">
         by&nbsp;
         {answer.answerer_name}
@@ -15,11 +17,11 @@ function AnswerListEntry({ answer }) {
         &nbsp;
         {new Date(answer.date).toString().slice(4, 15)}
         &emsp;|&emsp; Helpful?&ensp;
-        <button type="button">Yes</button>
+        <button type="button" className="Btn">Yes</button>
         &nbsp;
         {answer.helpfulness}
         &emsp;|&emsp;
-        <button type="button">Report</button>
+        <button type="button" className="Btn">Report</button>
       </div>
       <br />
     </div>

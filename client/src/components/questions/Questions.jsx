@@ -1,13 +1,14 @@
 import React, { useEffect, useContext } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import parse from '../../parse';
-import { ProductIDContext } from '../App.jsx';
+// import { ProductIDContext } from '../App.jsx';
+import { GlobalContext } from '../GlobalContext.jsx';
 import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
 import './questions.css';
 
 function Questions() {
-  const { productID } = useContext(ProductIDContext);
+  const { productID } = useContext(GlobalContext);
   const [questions, setQuestions] = React.useState([]);
 
   useEffect(() => {
@@ -30,9 +31,9 @@ function Questions() {
       <br />
       <QuestionList questions={questions} />
       <div>
-        <button id="moreQuestions" type="button">More Answered Questions</button>
+        <button type="button" className="mainBtn">More Answered Questions</button>
         &emsp;
-        <button type="button">Add Questions +</button>
+        <button type="button" className="mainBtn">Add Questions +</button>
       </div>
     </div>
 

@@ -29,17 +29,17 @@ function QuestionListEntry({question}) {
   return (
     <div>
       <section>
-        <span>
+        <span className="questionList">
           Q:&ensp;
           {question.question_body}
         </span>
         <span className="navQ">
           Helpful?&ensp;
-          <button type="button">Yes</button>
+          <button type="button" className="Btn">Yes</button>
           &nbsp;
           {question.question_helpfulness}
           &emsp;|&emsp;
-          <button type="button">Add Answer</button>
+          <button type="button" className="Btn">Add Answer</button>
         </span>
         <div>
           {answers.map((answer, i) => <AnswerListEntry key={i} answer={answer} />)}
