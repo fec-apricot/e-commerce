@@ -44,10 +44,10 @@ function Overview() {
           <ImageGallery />
           <WidgetPanel>
             {/* <RatingContainer></RatingContainer> */}
-            <Category>{product.category}</Category>
-            <Name>{product.name}</Name>
+            <Category>{product?.category}</Category>
+            <Name>{product?.name}</Name>
             <Price>
-              {product.default_price}
+              {product?.default_price}
             </Price>
             <StyleSelector />
             <AddToCart />

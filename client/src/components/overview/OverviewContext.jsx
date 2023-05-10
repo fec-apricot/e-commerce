@@ -28,14 +28,14 @@ function OverviewContextProvider({ children }) {
 
   useEffect(() => {
     parse
-      .get(`http://localhost:3000/products/${productID}`)
+      .get(`/products/${productID}`)
       .then((data) => {
         setProduct(data);
       })
-      .then(() => parse.get(`http://localhost:3000/products/${productID}/styles`))
+      .then(() => parse.get(`/products/${productID}/styles`))
       .then((data) => {
-        setStyles(data.results);
-        setSelectedStyle(data.results[0]);
+        setStyles(data?.results);
+        setSelectedStyle(data?.results[0]);
       })
       .catch((err) => {
         console.error(err.message);
