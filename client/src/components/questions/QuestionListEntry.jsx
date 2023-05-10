@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import parse from '../../parse';
 import AnswerListEntry from './AnswerListEntry.jsx';
 import './questions.css';
 
 function QuestionListEntry({question}) {
   const [answers, setAnswers] = useState([]);
+  const [helpCount, setHelpCount] = useState({question.question_helpfulness});
   // console.log('I AM A QUESTION', question)
 
   useEffect(() => {

@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import parse from '../../parse';
+import './questions.css';
 
 function AnswerListEntry({ answer }) {
+  const [text, setText] = useState('Report')
+
+  function changeText() {
+    setText('Reported');
+  }
+
   return (
     <div>
       <br />
@@ -21,7 +28,7 @@ function AnswerListEntry({ answer }) {
         &nbsp;
         {answer.helpfulness}
         &emsp;|&emsp;
-        <button type="button" className="Btn">Report</button>
+        <button onClick={() => changeText()} type="button" className="Btn">{text}</button>
       </div>
       <br />
     </div>

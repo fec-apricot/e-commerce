@@ -18,8 +18,6 @@ test('nother test', async () => {
   await waitFor(() => expect(text).toHaveLength(4));
 });
 
-
-
 // test("Validate something", async () => {
 //   const {container} = render(<MyComponent url={url} />);
 //   await waitFor(() => expect(container.getElementsByClassName('someGrid').length).toBe(2));
