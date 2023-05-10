@@ -1,16 +1,16 @@
 .row {
   display: flex;
   flex-direction: row;
-  width: fit-content;
+  width: 100%;
   justify-content: center;
   background-color: grey;
+  margin: 0;
 }
 
 .card {
   background-color: rgb(232, 232, 232);
-  width: 24%;
-  max-width: 250px;
-  min-width: 200px;
+  min-width: 220px;
+  max-width: 220px;
   border: solid;
   border-width: 3px;
   border-color: rgb(152, 152, 152);
@@ -18,7 +18,7 @@
 }
 
 .imgDiv{
-  height: 75%;
+  height: 72%;
   width: 95%;
   margin: auto;
   margin-top: 5px;
@@ -50,6 +50,10 @@
   font-weight: bold;
   margin-top: 4px;
   margin-left: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .price {

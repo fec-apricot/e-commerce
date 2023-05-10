@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import parse from '../../../parse';
 import Stars from '../stars_module/Stars.jsx';
 import '../Related.css';
-import PropTypes from 'prop-types';
 
-function RelatedCard({ relatedID }) {
+function RelatedCard({ relatedID, changeProduct }) {
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
   const [ratings, setRatings] = useState({});
   const [imageURL, setImageURL] = useState('');
+  const [title, setTitle] = useState('');
 
   const updateImageURL = () => {
     let imgURL = '';
@@ -30,7 +31,8 @@ function RelatedCard({ relatedID }) {
 
   useEffect(() => {
     updateImageURL();
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productStyles]);
 
   useEffect(() => {
     const endpoints = [
@@ -45,14 +47,20 @@ function RelatedCard({ relatedID }) {
         setProductInfo(res[0]);
         setProductStyles(res[1]);
         setRatings(res[2].ratings);
+        let expandedTitle = `${res[0].name} - ${res[0].slogan ? res[0].slogan : ''}`;
+        if (expandedTitle.length > 45) {
+          expandedTitle = expandedTitle.slice(0, 45);
+          expandedTitle += '...';
+        }
+        setTitle(expandedTitle);
       })
       .catch((err) => {
         console.log('promise.all err', err);
       });
-  }, []);
+  }, [relatedID]);
 
   return (
-    <div className="card">
+    <div className="card" role="button" tabIndex="0" onKeyDown={() => {}} onClick={() => changeProduct(relatedID)}>
       <div className="imgDiv">
         <img className="relatedIMG" src={imageURL} alt="Coming soon!" />
         <div className="btnDiv">
@@ -60,15 +68,16 @@ function RelatedCard({ relatedID }) {
         </div>
       </div>
       <div className="category">{productInfo ? productInfo.category : ''}</div>
-      <div className="productName">{productInfo ? `${productInfo.name} - ${productInfo.slogan ? productInfo.slogan : ''}` : ''}</div>
+      <div className="productName">{title}</div>
       <div className="price">{productInfo ? `$${productInfo.default_price}` : ''}</div>
-      <Stars ratings={ratings} size="20" interactive={false} />
+      <Stars ratings={ratings} size={20} interactive={false} />
     </div>
   );
 }
 
 RelatedCard.propTypes = {
-  relatedID: PropTypes.number,
-}
+  relatedID: PropTypes.number.isRequired,
+  changeProduct: PropTypes.func.isRequired,
+};
 
 export default RelatedCard;

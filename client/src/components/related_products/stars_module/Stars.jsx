@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-// import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Star from './SingleStar.jsx';
 import './Stars.css';
 
 function Stars({ ratings, size, interactive }) {
-  const [score, setScore] = useState(0);
   const [percentage, setPercentage] = useState(0);
   const [hoveredStar, setHoveredStar] = useState(0);
 
@@ -21,7 +20,6 @@ function Stars({ ratings, size, interactive }) {
     console.log('total', total);
     console.log('totalVotes / total, score:', (total / totalVotes).toFixed(2));
     console.log('(totalVotes / total) / 5, percentage:', ((total / totalVotes) / 5).toFixed(2) * 100);
-    setScore((total / totalVotes).toFixed(2));
 
     const percent = new Intl.NumberFormat('en-US', { style: 'percent' }).format((total / totalVotes) / 5);
     console.log('and now this is percent', percent);
@@ -30,6 +28,7 @@ function Stars({ ratings, size, interactive }) {
 
   useEffect(() => {
     computeRating();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ratings]);
 
   if (interactive) {
@@ -55,5 +54,21 @@ function Stars({ ratings, size, interactive }) {
     </div>
   );
 }
+
+Stars.propTypes = {
+  ratings: PropTypes.shape({
+    1: PropTypes.string,
+    2: PropTypes.string,
+    3: PropTypes.string,
+    4: PropTypes.string,
+    5: PropTypes.string,
+  }).isRequired,
+  size: PropTypes.number.isRequired,
+  interactive: PropTypes.bool,
+};
+
+Stars.defaultProps = {
+  interactive: false,
+};
 
 export default Stars;
