@@ -3,6 +3,14 @@ import styled from 'styled-components';
 import _ from 'underscore';
 import { OverviewContext } from './OverviewContext.jsx';
 
+const Host = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const SizeSelector = styled.div``;
+const QtySelector = styled.div``;
+
 function AddToCart() {
   const { selectedStyle } = useContext(OverviewContext);
   const [skus, setSkus] = useState({});
@@ -20,14 +28,6 @@ function AddToCart() {
       );
     }
   }, [selectedStyle]);
-
-  const Host = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-  `;
-
-  const SizeSelector = styled.div``;
-  const QtySelector = styled.div``;
 
   return (
     <Host>

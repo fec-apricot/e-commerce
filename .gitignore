@@ -4,5 +4,4 @@ bundle.js
 bundle.js.map
 
 ### Prettier ###
-.prettierrc.json
 .prettierignore
