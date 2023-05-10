@@ -1,0 +1,33 @@
+:root {
+  --star-size: 24px;
+  --star-color: gold;
+  --star-background: grey;
+}
+
+
+.spanStar {
+  display: inline-block;
+  height: fit-content;
+}
+
+.starsDiv {
+
+  width: fit-content;
+  margin: 0;
+  position: absolute;
+  height: fit-content;
+  background: linear-gradient(90deg, var(--star-color) var(--ratings), var(--star-background) var(--ratings));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.star {
+  fill: var(--star-background);
+
+}
+
+.gold {
+  fill: var(--star-color);
+}
+

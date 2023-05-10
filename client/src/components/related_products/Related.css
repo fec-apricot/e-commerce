@@ -1,0 +1,62 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  background-color: grey;
+  margin: 0;
+}
+
+.card {
+  background-color: rgb(232, 232, 232);
+  min-width: 220px;
+  max-width: 220px;
+  border: solid;
+  border-width: 3px;
+  border-color: rgb(152, 152, 152);
+  margin: 2px;
+}
+
+.imgDiv{
+  height: 72%;
+  width: 95%;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: blue;
+}
+
+.relatedIMG {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+}
+
+.compareButton {
+
+}
+
+.btnDiv {
+
+}
+
+.category {
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
+.productName {
+  font-weight: bold;
+  margin-top: 4px;
+  margin-left: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price {
+  margin-top: 4px;
+  margin-left: 4px;
+}
