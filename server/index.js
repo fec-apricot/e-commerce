@@ -159,6 +159,7 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 });
 
 app.post('/qa/questions', (req, res) => {
+  // console.log(req.body)
   api.post(req.url, req.body)
     .then((result) => {
       console.log('post /qa/questions result', result.data);

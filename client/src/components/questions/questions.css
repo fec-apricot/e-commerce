@@ -1,0 +1,77 @@
+
+
+.body {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 700px;
+  padding-left: 10%;
+}
+
+.head {
+  font-size: 11pt;
+  color: rgb(67, 67, 72)
+}
+
+.navQ {
+ float: right;
+ font-size: 8pt;
+}
+
+.navA {
+  font-size: 8pt;
+  padding-left: 26px;
+  padding-top: 10px;
+}
+
+.search {
+  width: 652px;
+  height: 37px;
+  border: none;
+  padding-left: 12px;
+  background-color: rgb(246, 247, 251);
+  /* background-color: white; */
+}
+
+.form {
+  background-color: rgb(246, 247, 251);
+  /* background-color: white; */
+  height: 40px;
+  border: 1px solid black;
+
+}
+
+.searchBttn {
+  border: none;
+  background-color: rgb(246, 247, 251);
+  /* background-color: white; */
+  color: rgb(84, 84, 84);
+  background-image: url(https://www.pngarea.com/pngm/109/1164446_searchicon-png-search-icon-png-download.png);
+}
+
+.questionList {
+  font-weight: bold;
+}
+
+.answerList {
+  font-weight: bold;
+}
+
+.answerText {
+  font-size: 10pt;
+}
+
+.Btn {
+  font-size: 8pt;
+  text-decoration: underline;
+  border: none;
+  background-color: transparent;
+}
+
+.mainBtn {
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.Btn:hover {
+  color:rgb(108, 109, 110)
+}
