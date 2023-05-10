@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import parse from '../../../parse';
 import Stars from '../stars_module/Stars.jsx';
 import '../Related.css';
+import PropTypes from 'prop-types';
 
 function RelatedCard({ relatedID }) {
   const [productInfo, setProductInfo] = useState({});
@@ -64,6 +65,10 @@ function RelatedCard({ relatedID }) {
       <Stars ratings={ratings} size="20" interactive={false} />
     </div>
   );
+}
+
+RelatedCard.propTypes = {
+  relatedID: PropTypes.number,
 }
 
 export default RelatedCard;

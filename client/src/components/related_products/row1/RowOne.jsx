@@ -7,6 +7,11 @@ import '../Related.css';
 function RowOne() {
   const { productID, setProductID } = useContext(GlobalContext);
   const [related, setRelated] = useState([]);
+  const [relatedID, setRelatedID] = useState(0);
+
+  const changeProduct = (newID) => {
+    setProductID(newID);
+  };
 
   useEffect(() => {
     parse
@@ -18,11 +23,22 @@ function RowOne() {
       .catch((err) => {
         console.log('Related RowOne GET err', err);
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="row">
-      {related.map((id) => <RelatedCard key={id} relatedID={id} />)}
+      {
+        related
+          .map(
+            (id) => {
+              setRelatedID(id);
+              return (
+                <RelatedCard onClick={() => changeProduct(id)} key={id} relatedID={relatedID} />
+              );
+            },
+          )
+      }
     </div>
   );
 }

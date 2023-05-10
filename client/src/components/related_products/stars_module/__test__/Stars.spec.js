@@ -5,7 +5,7 @@ import Stars from '../Stars.jsx';
 
 describe('Stars module', () => {
   test('Should render', async () => {
-    expect(true).toBe(true);
+    expect(true).toBeInTheDocument(true);
     // const starsModule = screen.getByClas
   });
 });

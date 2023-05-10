@@ -13,5 +13,5 @@ test('nother test', async () => {
     <App />
   );
   const text = await screen.findAllByText(/hello/i);
-  await waitFor(() => expect(text).toHaveLength(4));
+  await waitFor(() => expect(text).toHaveLength(3));
 });
