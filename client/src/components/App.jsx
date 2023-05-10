@@ -11,9 +11,9 @@ function App() {
   return (
     <GlobalContextProvider>
       <div>HEllo!!</div>
-      {/* <OverviewContextProvider>
+      <OverviewContextProvider>
         <Overview />
-      </OverviewContextProvider> */}
+      </OverviewContextProvider>
       <RelatedProducts />
       <Questions />
       <Reviews />
