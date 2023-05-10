@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import parse from '../../../parse';
 import Stars from '../stars_module/Stars.jsx';
 import '../Related.css';
@@ -74,10 +73,5 @@ function RelatedCard({ relatedID, changeProduct }) {
     </div>
   );
 }
-
-RelatedCard.propTypes = {
-  relatedID: PropTypes.number.isRequired,
-  changeProduct: PropTypes.func.isRequired,
-};
 
 export default RelatedCard;

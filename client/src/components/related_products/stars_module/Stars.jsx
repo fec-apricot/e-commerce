@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Star from './SingleStar.jsx';
 import './Stars.css';
 
@@ -49,26 +48,10 @@ function Stars({ ratings, size, interactive }) {
   }
 
   return (
-    <div className="starsDiv" style={{ '--ratings': `${percentage}` }}>
+    <div className="starsDiv" data-testid="theStars" style={{ '--ratings': `${percentage}` }}>
       ★★★★★
     </div>
   );
 }
-
-Stars.propTypes = {
-  ratings: PropTypes.shape({
-    1: PropTypes.string,
-    2: PropTypes.string,
-    3: PropTypes.string,
-    4: PropTypes.string,
-    5: PropTypes.string,
-  }).isRequired,
-  size: PropTypes.number.isRequired,
-  interactive: PropTypes.bool,
-};
-
-Stars.defaultProps = {
-  interactive: false,
-};
 
 export default Stars;

@@ -26,4 +26,22 @@ describe('Stars module', () => {
     const starsOnScreen = screen.getByText(/★★★★★/i);
     expect(starsOnScreen).toBeVisible();
   });
+
+  test('Should render stars to the screen', async () => {
+    render(
+      <Stars
+        ratings={{
+          1: '60',
+          2: '60',
+          3: '60',
+          4: '600',
+          5: '60',
+        }}
+        size={20}
+        interactive={false}
+      />,
+    );
+    const starsOnScreen2 = screen.getByTestId(/theStars/i);
+    expect(starsOnScreen2).toBeInTheDocument();
+  });
 });

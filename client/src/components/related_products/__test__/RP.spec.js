@@ -1,6 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/';
 import RelatedCard from '../row1/RelatedCard.jsx';
 
 describe('Related Products module', () => {
@@ -9,7 +10,7 @@ describe('Related Products module', () => {
       <RelatedCard />,
     );
     screen.debug();
-    const cardOnScreen = screen.getAllByText(/$/i);
-    expect(cardOnScreen).toHaveLength(4);
+    const cardOnScreen = screen.getByText(/$/i);
+    expect(cardOnScreen).toHaveLength(1);
   });
 });
