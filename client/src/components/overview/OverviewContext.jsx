@@ -23,7 +23,7 @@ function OverviewContextProvider({ children }) {
       setSelectedStyle,
       styles,
     }),
-    [product, selectedStyle, setSelectedStyle, styles]
+    [product, selectedStyle, setSelectedStyle, styles],
   );
 
   useEffect(() => {
@@ -32,9 +32,7 @@ function OverviewContextProvider({ children }) {
       .then((data) => {
         setProduct(data);
       })
-      .then(() =>
-        parse.get(`http://localhost:3000/products/${productID}/styles`)
-      )
+      .then(() => parse.get(`http://localhost:3000/products/${productID}/styles`))
       .then((data) => {
         setStyles(data.results);
         setSelectedStyle(data.results[0]);

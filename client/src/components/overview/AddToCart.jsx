@@ -3,6 +3,14 @@ import styled from 'styled-components';
 import _ from 'underscore';
 import { OverviewContext } from './OverviewContext.jsx';
 
+const Host = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const SizeSelector = styled.div``;
+const QtySelector = styled.div``;
+
 function AddToCart() {
   const { selectedStyle } = useContext(OverviewContext);
   const [skus, setSkus] = useState({});
@@ -16,18 +24,10 @@ function AddToCart() {
       setSkus(newSkus);
       setSelectedSku('');
       setIsInStock(
-        _.some(Object.keys(newSkus), (key) => newSkus[key].quantity > 0)
+        _.some(Object.keys(newSkus), (key) => newSkus[key].quantity > 0),
       );
     }
   }, [selectedStyle]);
-
-  const Host = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-  `;
-
-  const SizeSelector = styled.div``;
-  const QtySelector = styled.div``;
 
   return (
     <Host>
@@ -48,12 +48,11 @@ function AddToCart() {
             </option>
             {_.map(
               skus,
-              (value, key) =>
-                value.quantity && (
-                  <option key={key} value={key}>
+              (value, key) => value.quantity && (
+                <option key={key} value={key}>
                     {value.size}
-                  </option>
-                )
+                </option>
+              ),
             )}
           </select>
         </form>
@@ -72,10 +71,10 @@ function AddToCart() {
             <option value="" hidden>
               -
             </option>
-            {skus[selectedSku] &&
-              _.range(1, Math.min(16, skus[selectedSku].quantity + 1)).map(
-                (qty) => <option key={qty}>{qty}</option>
-              )}
+            {skus[selectedSku]
+            && _.range(1, Math.min(16, skus[selectedSku].quantity + 1)).map(
+              (qty) => <option key={qty}>{qty}</option>,
+            )}
           </select>
         </form>
       </QtySelector>

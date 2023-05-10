@@ -9,6 +9,10 @@
   },
   "rules": {
     "no-console": "off",
-    "import/extensions": ["error", "never", { "jsx": "always" }]
+    "import/extensions": ["error", "never", { "jsx": "always" }],
+    "react/react-in-jsx-scope": 1,
+    "react/jsx-uses-react": 1,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": "off"
   }
 }
