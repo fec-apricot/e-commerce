@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import {
@@ -47,7 +46,9 @@ function Overview() {
             {/* <RatingContainer></RatingContainer> */}
             <Category>{product.category}</Category>
             <Name>{product.name}</Name>
-            <Price>${product.default_price}</Price>
+            <Price>
+              {product.default_price}
+            </Price>
             <StyleSelector />
             <AddToCart />
           </WidgetPanel>

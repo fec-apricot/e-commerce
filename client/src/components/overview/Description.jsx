@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable operator-linebreak */
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { OverviewContext } from './OverviewContext.jsx';
@@ -44,12 +42,14 @@ function Description() {
       </SloganAndDescriptionContainer>
       <VerticalLine />
       <FeatureContainer>
-        {product.features &&
-          product.features.map((feature) => (
-            <div key={feature.feature}>
-              {feature.feature}: {feature.value}
-            </div>
-          ))}
+        {product.features
+        && product.features.map((feature) => (
+          <div key={feature.feature}>
+            {feature.feature}
+            :
+            {feature.value}
+          </div>
+        ))}
       </FeatureContainer>
     </Host>
   );

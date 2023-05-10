@@ -1,11 +1,9 @@
-/* eslint-disable operator-linebreak */
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { OverviewContext } from './OverviewContext.jsx';
 
 function StyleSelector() {
-  const { selectedStyle, setSelectedStyle, styles } =
-    useContext(OverviewContext);
+  const { selectedStyle, setSelectedStyle, styles } = useContext(OverviewContext);
   const Host = styled.div`
     display: flex;
     flex-direction: column;
@@ -69,20 +67,19 @@ function StyleSelector() {
         </SelectedStyle>
       </StyleTitle>
       <StyleList>
-        {styles &&
-          styles.map((style) => (
-            <StyleThumbnailContainer key={style.style_id}>
-              <StyleThumbnail
-                src={style.photos[0].thumbnail_url}
-                onClick={() => {
-                  setSelectedStyle(style);
-                }}
-              />
-              {style.style_id === selectedStyle.style_id && (
-                <Checkmark>✓</Checkmark>
-              )}
-            </StyleThumbnailContainer>
-          ))}
+        {styles && styles.map((style) => (
+          <StyleThumbnailContainer key={style.style_id}>
+            <StyleThumbnail
+              src={style.photos[0].thumbnail_url}
+              onClick={() => {
+                setSelectedStyle(style);
+              }}
+            />
+            {style.style_id === selectedStyle.style_id && (
+              <Checkmark>✓</Checkmark>
+            )}
+          </StyleThumbnailContainer>
+        ))}
       </StyleList>
     </Host>
   );

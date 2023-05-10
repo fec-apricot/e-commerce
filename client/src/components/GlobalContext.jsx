@@ -1,6 +1,6 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable comma-dangle */
-import React, { useState, useEffect, createContext, useMemo } from 'react';
+import React, {
+  useState, useEffect, createContext, useMemo,
+} from 'react';
 import parse from '../parse';
 
 export const GlobalContext = createContext();
@@ -10,7 +10,7 @@ export function GlobalContextProvider({ children }) {
   const [productID, setProductID] = useState(40344);
   const productIDMemo = useMemo(
     () => ({ productID, setProductID }),
-    [productID]
+    [productID],
   );
   useEffect(() => {
     parse.get(`/products/${productID}`);
