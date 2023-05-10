@@ -6,8 +6,8 @@ function Search() {
   return (
     <div>
       <form className="form">
-        <input type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." className="search"></input>
-        <button type="submit" className="searchBttn">O--</button>
+        <input type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." className="search" />
+        <button type="submit" className="searchBttn"><i className="fa fa-search" /></button>
       </form>
     </div>
   );

@@ -6,7 +6,7 @@ import './questions.css';
 
 function QuestionListEntry({question}) {
   const [answers, setAnswers] = useState([]);
-  const [helpCount, setHelpCount] = useState({question.question_helpfulness});
+  // const [helpCount, setHelpCount] = useState({question.question_helpfulness});
   // console.log('I AM A QUESTION', question)
 
   useEffect(() => {

@@ -25,7 +25,7 @@ function Questions() {
 
   return (
     <div className="body">
-      <div title="My Header">QUESTIONS & ANSWERS</div>
+      <div className="head" title="My Header">QUESTIONS & ANSWERS</div>
       <br />
       <Search />
       <br />
