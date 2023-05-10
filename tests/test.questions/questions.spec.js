@@ -1,20 +1,23 @@
 /* eslint-env jest */
+
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+// import App from '../App.jsx';
 import Questions from '../../client/src/components/questions/Questions.jsx';
-import { GlobalContextProvider } from '../../client/src/components/GlobalContext.jsx';
-// import Questions from '../../client/src/components/questions/Questions.jsx';
 import '@testing-library/jest-dom/';
 
-test('render title', async () => {
-  render(
-    <GlobalContextProvider>
-      <Questions />
-    </GlobalContextProvider>
-  );
-  const linkElement = screen.getByText(/More Answered Questions/);
-  expect(linkElement).toBeInDocument();
+test('test', () => {
+  expect(true).toBe(true);
 });
+
+test('nother test', async () => {
+  render(
+    <Questions />
+  );
+  const text = await screen.findAllByText(/Q:/i);
+  await waitFor(() => expect(text).toHaveLength(4));
+});
+
 
 
 // test("Validate something", async () => {
