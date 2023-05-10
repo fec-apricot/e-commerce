@@ -5,7 +5,7 @@ import parse from '../../parse';
 import { GlobalContext } from '../GlobalContext.jsx';
 import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
-import AnswerForm from './AnswerForm.jsx';
+import QuestionForm from './QuestionForm.jsx';
 import './questions.css';
 
 function Questions() {
@@ -31,12 +31,15 @@ function Questions() {
       <br />
       <Search />
       <br />
-      <QuestionList questions={questions} />
+      <QuestionList questions={questions} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div>
         <button type="button" className="mainBtn">More Answered Questions</button>
         &emsp;
-        <button type="button" className="mainBtn">Add Questions +</button>
+        <button type="button" className="mainBtn" onClick={() => setIsOpen(true)}>
+          Add Questions +
+        </button>
       </div>
+      {isOpen && <QuestionForm setIsOpen={setIsOpen} />}
     </div>
 
   );

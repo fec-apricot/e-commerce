@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 // import styled from 'styled-components';
 import parse from '../../parse';
 import AnswerListEntry from './AnswerListEntry.jsx';
+import AnswerForm from './AnswerForm.jsx';
 import './questions.css';
 
-function QuestionListEntry({question}) {
+function QuestionListEntry({ question }) {
   const [answers, setAnswers] = useState([]);
+  const [openForm, setOpenForm] = useState(false)
   // const [helpCount, setHelpCount] = useState({question.question_helpfulness});
   // console.log('I AM A QUESTION', question)
 
@@ -17,15 +19,6 @@ function QuestionListEntry({question}) {
 
   // setAnswers(question.answers)
   console.log('I AM ANSWERS', answers);
-
-  // const ContainerDiv = styled.div`
-  //   width: 500px
-  //   `;
-
-  // const ContainerQ = styled.span`
-  //   display: flex;
-  //   justify-content: flex-end;
-  //   `;
 
   return (
     <div>
@@ -40,7 +33,8 @@ function QuestionListEntry({question}) {
           &nbsp;
           {question.question_helpfulness}
           &emsp;|&emsp;
-          <button type="button" className="Btn">Add Answer</button>
+          <button type="button" className="Btn" onClick={() => setOpenForm(true)}>Add Answer</button>
+          {openForm && <AnswerForm setOpenForm={setOpenForm} />}
         </span>
         <div>
           {answers.map((answer, i) => <AnswerListEntry key={i} answer={answer} />)}
