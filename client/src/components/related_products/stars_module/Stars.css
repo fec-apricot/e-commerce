@@ -14,7 +14,6 @@
 
   width: fit-content;
   margin: 0;
-  position: absolute;
   height: fit-content;
   background: linear-gradient(90deg, var(--star-color) var(--ratings), var(--star-background) var(--ratings));
   background-clip: text;

@@ -8,6 +8,28 @@
   display: inline;
   margin-left: 5%;
   width: 49%;
+  height: 1000px;
+  overflow: auto;
+}
+.review-tile-stars {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  display: inline;
+}
+.review-body {
+  margin-top: 1em;
+}
+.review-average {
+  float: left;
+  display: inline;
+}
+.review-star-average {
+  float: left;
+  display: inline;
+  margin-left: 1em;
+}
+.percent-recommend {
+  margin-top: 3em;
 }
 .review-graph-background {
   background: white;
