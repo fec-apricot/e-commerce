@@ -10,7 +10,7 @@ import '../../dist/styles.css';
 function App() {
   return (
     <GlobalContextProvider>
-      {/* <div>HEllo!!</div>
+      <div>HEllo!!</div>
       <OverviewContextProvider>
         <Overview />
       </OverviewContextProvider>
