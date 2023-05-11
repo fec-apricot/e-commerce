@@ -4,7 +4,7 @@
   min-width: 220px;
   max-width: 220px;
   border: solid;
-  border-width: 3px;
+  border-width: 0px;
   border-color: rgb(152, 152, 152);
   cursor: pointer;
 }

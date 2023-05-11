@@ -8,6 +8,8 @@
 .productTrack {
   display: flex;
   flex-direction: row;
+  justify-content: left;
+  height: 400px;
   width: 100%;
   background-color: grey;
   margin: 0;
@@ -19,8 +21,8 @@
 }
 
 .productCard-slide {
-  margin-left: 4px;
-  width: 228px;
+  margin: 2px, 0, 2px, 0;
+  width: 220px;
 
   display: flex;
   justify-content: center;
