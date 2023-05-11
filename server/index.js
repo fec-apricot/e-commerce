@@ -69,7 +69,7 @@ app.get('/reviews/', (req, res) => {
 
   api.get(req.url)
     .then((result) => {
-      console.log('get /reviews res', result.data);
+      console.log('get /reviews res', result.data.results.slice(0, 5));
       res.status(200).json(result.data);
     })
     .catch((err) => {
