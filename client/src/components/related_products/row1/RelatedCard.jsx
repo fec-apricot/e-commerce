@@ -59,7 +59,7 @@ function RelatedCard({ relatedID, changeProduct }) {
   }, [relatedID]);
 
   return (
-    <div className="card" role="button" tabIndex="0" onKeyDown={() => {}} onClick={() => changeProduct(relatedID)}>
+    <div className="cardContainer" role="button" tabIndex="0" onKeyDown={() => {}} onClick={() => changeProduct(relatedID)}>
       <div className="imgDiv">
         <img className="relatedIMG" src={imageURL} alt="Coming soon!" />
 
