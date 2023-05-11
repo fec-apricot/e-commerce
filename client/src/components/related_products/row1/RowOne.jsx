@@ -25,18 +25,22 @@ function RowOne() {
   }, [productID]);
 
   return (
-    <ul className="row productTrack">
-      {
-        related
-          .map(
-            (id) => (
-              <li key={id} className="productCard-li">
-                <RelatedCard relatedID={id} changeProduct={changeProduct} />
-              </li>
-            ),
-          )
-      }
-    </ul>
+    <div className="carousel">
+      <ul className="productTrack">
+        <button className="carouselButton productLeft" type="button">&lt;</button>
+        {
+          related
+            .map(
+              (id) => (
+                <li key={id} className="productCard-slide">
+                  <RelatedCard relatedID={id} changeProduct={changeProduct} />
+                </li>
+              ),
+            )
+        }
+        <button className="carouselButton productRight" type="button">&gt;</button>
+      </ul>
+    </div>
   );
 }
 

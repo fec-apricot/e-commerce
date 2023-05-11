@@ -5,7 +5,7 @@ import RowTwo from './row2/RowTwo.jsx';
 
 function RelatedProducts() {
   return (
-    <div>
+    <div className="widgetContainer">
       <RowOne className="row1" />
       <RowTwo />
     </div>
