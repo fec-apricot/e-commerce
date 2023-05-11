@@ -9,11 +9,13 @@ function Carousel() {
   const [related, setRelated] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
 
+  const productSlider = document.querySelector('.productTrack');
+
   const changeProduct = (newID) => {
     setProductID(newID);
+    productSlider.style.setProperty('--slider-index', 0);
+    setSlideIndex(0);
   };
-
-  const productSlider = document.querySelector('.productTrack');
 
   const slide = (direction) => {
     const index = Number(productSlider.style.getPropertyValue('--slider-index'));
