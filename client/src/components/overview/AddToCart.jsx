@@ -4,12 +4,62 @@ import _ from 'underscore';
 import { OverviewContext } from './OverviewContext.jsx';
 
 const Host = styled.div`
+  height: 25%;
+`;
+
+const FormContainer = styled.form`
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 `;
 
-const SizeSelector = styled.div``;
-const QtySelector = styled.div``;
+const SelectContainer = styled.div`
+  position: relative;
+  height: 60px;
+  margin: 0;
+  &.size-selector {
+    width: 200px;
+  }
+  &.qty-selector {
+    width: 160px;
+  }
+`;
+
+const SelectLabel = styled.select`
+  width: 90%;
+  height: 90%;
+  background-color: #fff;
+  border: 1px solid slategrey;
+  border-radius: 3px;
+  color: #111;
+  padding-left: 10px;
+  font-size: 16px;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 1px 4px 0 #ccc;
+  transition: 0.3s ease;
+  &:hover {
+    background-color: #eee;
+  }
+`;
+
+const DropdownItem = styled.option`
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 0.15rem 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  &:hover, :focus, :focus:hover {
+    background-color: #166edc;
+    color: #fafafa;
+    outline: none;
+  }
+`;
 
 function AddToCart() {
   const { selectedStyle } = useContext(OverviewContext);
@@ -31,9 +81,9 @@ function AddToCart() {
 
   return (
     <Host>
-      <SizeSelector>
-        <form>
-          <select
+      <FormContainer>
+        <SelectContainer className="size-selector">
+          <SelectLabel
             name="size"
             value={selectedSku}
             disabled={!isInStock}
@@ -43,9 +93,9 @@ function AddToCart() {
               setSelectedQty(1);
             }}
           >
-            <option value="" hidden>
+            <DropdownItem value="">
               {isInStock ? 'SELECT SIZE' : 'OUT OF STOCK'}
-            </option>
+            </DropdownItem>
             {_.map(
               skus,
               (value, key) => value.quantity && (
@@ -54,12 +104,10 @@ function AddToCart() {
                 </option>
               ),
             )}
-          </select>
-        </form>
-      </SizeSelector>
-      <QtySelector>
-        <form>
-          <select
+          </SelectLabel>
+        </SelectContainer>
+        <SelectContainer className="qty-selector">
+          <SelectLabel
             name="qty"
             value={selectedSku && selectedQty}
             disabled={selectedSku === ''}
@@ -68,16 +116,16 @@ function AddToCart() {
               setSelectedQty(event.target.value);
             }}
           >
-            <option value="" hidden>
+            <DropdownItem value="">
               -
-            </option>
+            </DropdownItem>
             {skus[selectedSku]
             && _.range(1, Math.min(16, skus[selectedSku].quantity + 1)).map(
-              (qty) => <option key={qty}>{qty}</option>,
+              (qty) => <DropdownItem key={qty}>{qty}</DropdownItem>,
             )}
-          </select>
-        </form>
-      </QtySelector>
+          </SelectLabel>
+        </SelectContainer>
+      </FormContainer>
     </Host>
   );
 }

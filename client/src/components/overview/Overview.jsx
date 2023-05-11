@@ -10,28 +10,37 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
 const Host = styled.div`
-display: flex;
-flex-direction: column;
+  width: 125%;
+  height: fit-content;
+  margin-left: -100px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const TopContainer = styled.div`
-display: flex;
+  display: flex;
+  justify-content: space-between;
+  height: 600px;
 `;
 
 const WidgetPanel = styled.div`
-display: flex;
-flex-direction: column;
+  width: 35%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 25px;
 `;
 
 const Category = styled.div`
-font-size: 20px;
+  font-size: 20px;
 `;
 const Name = styled.div`
-font-weight: bold;
-font-size: 40px;
+  font-weight: bold;
+  font-size: 40px;
 `;
 const Price = styled.div`
-font-size: 20px;
+  font-size: 20px;
 `;
 
 function Overview() {

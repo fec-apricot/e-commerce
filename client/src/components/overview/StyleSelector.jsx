@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { OverviewContext } from './OverviewContext.jsx';
 
 const Host = styled.div`
+  height: 40%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 const StyleTitle = styled.div`
@@ -20,36 +22,38 @@ const SelectedStyle = styled.div`
 `;
 
 const StyleList = styled.div`
+  height: 80%;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
 `;
 
 const StyleThumbnailContainer = styled.div`
   position: relative;
-  margin-top: 10px;
 `;
 
 const StyleThumbnail = styled.img`
-  height: 50px;
-  width: 50px;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
 `;
 
 const Checkmark = styled.span`
   display: inline-block;
-  height: 15px;
-  width: 15px;
+  height: 18px;
+  width: 18px;
   border-radius: 50%;
   border-style: solid;
-  border-color: black;
+  border-color: grey;
   border-width: 1px;
   margin-left: -20px;
   margin-top: 10px;
   background-color: white;
   text-align: center;
   position: absolute;
-  top: 1px;
-  right: 4px;
+  top: -10px;
+  right: 15px;
 `;
 
 function StyleSelector() {
