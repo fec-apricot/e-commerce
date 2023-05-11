@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import _ from 'underscore';
+import parse from '../../parse';
 import { OverviewContext } from './OverviewContext.jsx';
 
 const Host = styled.div`
   height: 25%;
+  margin: 0 10px;
 `;
 
 const FormContainer = styled.form`
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
 `;
 
@@ -19,16 +23,16 @@ const SelectContainer = styled.div`
   height: 60px;
   margin: 0;
   &.size-selector {
-    width: 200px;
+    width: 220px;
   }
   &.qty-selector {
-    width: 160px;
+    width: 120px;
   }
 `;
 
 const SelectLabel = styled.select`
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   background-color: #fff;
   border: 1px solid slategrey;
   border-radius: 3px;
@@ -61,6 +65,29 @@ const DropdownItem = styled.option`
   }
 `;
 
+const Button = styled.button`
+  height: 60px;
+  border: 1px solid slategrey;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+  &.add-btn {
+    width: 280px;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  & .add-icon {
+    font-size: 25px;
+    font-weight: light;
+    color: grey;
+  }
+  &.collect-btn {
+    width: 60px;
+  }
+`;
+
 function AddToCart() {
   const { selectedStyle } = useContext(OverviewContext);
   const [skus, setSkus] = useState({});
@@ -78,6 +105,11 @@ function AddToCart() {
       );
     }
   }, [selectedStyle]);
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+
+  // };
 
   return (
     <Host>
@@ -125,6 +157,11 @@ function AddToCart() {
             )}
           </SelectLabel>
         </SelectContainer>
+        <Button className="add-btn" onClick={handleSubmit}>
+          <span>ADD TO BAG</span>
+          <span className="add-icon">&#43;</span>
+        </Button>
+        <Button className="collect-btn">&#9734;</Button>
       </FormContainer>
     </Host>
   );
