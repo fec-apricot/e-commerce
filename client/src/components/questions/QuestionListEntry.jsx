@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import styled from 'styled-components';
 import parse from '../../parse';
 import AnswerListEntry from './AnswerListEntry.jsx';
 import AnswerForm from './AnswerForm.jsx';
@@ -37,7 +36,7 @@ function QuestionListEntry({ question }) {
           {openForm && <AnswerForm setOpenForm={setOpenForm} />}
         </span>
         <div>
-          {answers.map((answer, i) => <AnswerListEntry key={i} answer={answer} />)}
+          {answers.slice(0, 2).map((answer, i) => <AnswerListEntry key={i} answer={answer} />)}
         </div>
         <br />
       </section>

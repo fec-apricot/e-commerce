@@ -1,7 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-// import styled from 'styled-components';
 import parse from '../../parse';
-// import { ProductIDContext } from '../App.jsx';
 import { GlobalContext } from '../GlobalContext.jsx';
 import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
@@ -17,13 +15,8 @@ function Questions() {
     parse.get(`/qa/questions/?product_id=${productID}&page=30&count=4`)
       .then((data) => setQuestions(data.results))
       .catch((err) => console.log(err));
-  },[]);
+  }, [productID]);
   console.log('I AM THE QUESTIONS', questions);
-
-  // const ContainerMain = styled.div`
-  //   width: 700px;
-  //   padding-left: 20%;
-  //   `;
 
   return (
     <div className="body">
@@ -33,15 +26,14 @@ function Questions() {
       <br />
       <QuestionList questions={questions} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div>
-        <button type="button" className="mainBtn">More Answered Questions</button>
+        <button type="button" className="mainBtn">MORE ANSWERED QUESTIONS</button>
         &emsp;
         <button type="button" className="mainBtn" onClick={() => setIsOpen(true)}>
-          Add Questions +
+          ADD A QUESTION +
         </button>
       </div>
       {isOpen && <QuestionForm setIsOpen={setIsOpen} />}
     </div>
-
   );
 }
 

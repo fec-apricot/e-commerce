@@ -7,7 +7,7 @@ function Search() {
     <div>
       <form className="form">
         <input type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." className="search" />
-        <button type="submit" className="searchBttn"><i className="fa fa-search" /></button>
+        <button type="submit" className="searchBttn"><i className="fa fa-search fa-xl" /></button>
       </form>
     </div>
   );

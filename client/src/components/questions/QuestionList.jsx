@@ -1,7 +1,5 @@
 import React from 'react';
-// import styled from 'styled-components';
 import QuestionListEntry from './QuestionListEntry.jsx';
-// import PropTypes from 'prop-types';
 
 function QuestionList({ questions }) {
   return (
@@ -10,9 +8,5 @@ function QuestionList({ questions }) {
     </div>
   );
 }
-
-// QuestionList.proptype = {
-//   questions: PropTypes.Array
-// }
 
 export default QuestionList;
