@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import _ from 'underscore';
 import { OverviewContext } from './OverviewContext.jsx';
 
 const Host = styled.div`
@@ -48,7 +47,7 @@ function Description() {
         && product.features.map((feature) => (
           <div key={feature.feature}>
             {feature.feature}
-            :
+            :&nbsp;
             {feature.value}
           </div>
         ))}

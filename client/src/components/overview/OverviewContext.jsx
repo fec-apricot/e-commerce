@@ -10,9 +10,9 @@ import parse from '../../parse';
 
 const OverviewContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 function OverviewContextProvider({ children }) {
   const { productID } = useContext(GlobalContext);
+
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState({});
