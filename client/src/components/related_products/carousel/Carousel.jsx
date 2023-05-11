@@ -7,6 +7,7 @@ import './Carousel.css';
 function Carousel() {
   const { productID, setProductID } = useContext(GlobalContext);
   const [related, setRelated] = useState([]);
+  const [slideIndex, setSlideIndex] = useState(0);
 
   const changeProduct = (newID) => {
     setProductID(newID);
@@ -15,19 +16,18 @@ function Carousel() {
   const productSlider = document.querySelector('.productTrack');
 
   const slide = (direction) => {
-    console.log('------>', productSlider, direction);
     const index = Number(productSlider.style.getPropertyValue('--slider-index'));
+    console.log('------>', productSlider, direction);
     console.log('------index---->', index);
     if (direction === 'left') {
       productSlider.style.setProperty('--slider-index', index - 1);
+      setSlideIndex(slideIndex - 1);
     } else {
       productSlider.style.setProperty('--slider-index', index + 1);
+      setSlideIndex(slideIndex + 1);
     }
+    console.log(Number(productSlider.style.getPropertyValue('--slider-index')));
   };
-  // const resizeTrack = () => {
-  //   console.log('window.innerWidth------>', window.innerWidth);
-  //   trackWidth.style.setProperty('--slider-index', Math.floor(window.innerWidth / 228));
-  // };
 
   useEffect(() => {
     parse
@@ -44,15 +44,18 @@ function Carousel() {
   return (
     <div className="carousel">
       <ul className="productTrack">
-        <button
-          className="carouselButton productLeft"
-          type="button"
-          onClick={() => {
-            slide('left');
-          }}
-        >
-          &lt;
-        </button>
+        {slideIndex < 1 ? ''
+          : (
+            <button
+              className="carouselButton productLeft"
+              type="button"
+              onClick={() => {
+                slide('left');
+              }}
+            >
+              &lt;
+            </button>
+          )}
         {
           related
             .map(
@@ -63,15 +66,18 @@ function Carousel() {
               ),
             )
         }
-        <button
-          className="carouselButton productRight"
-          type="button"
-          onClick={() => {
-            slide('right');
-          }}
-        >
-          &gt;
-        </button>
+        {related.length - slideIndex < 5 ? ''
+          : (
+            <button
+              className="carouselButton productRight"
+              type="button"
+              onClick={() => {
+                slide('right');
+              }}
+            >
+              &gt;
+            </button>
+          )}
       </ul>
     </div>
   );
