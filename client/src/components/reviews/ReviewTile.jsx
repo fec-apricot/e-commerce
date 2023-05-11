@@ -1,17 +1,12 @@
 import React from 'react';
 import parse from '../../parse';
 
-function ReviewTile({ review, getReviews }) {
+function ReviewTile({ review }) {
   console.log('Review Tile: ', review);
-  let reviewDate = new Date(review.date);
+  const reviewDate = new Date(review.date);
   const [helpCount, setHelpCount] = React.useState(review.helpfulness);
   const upvote = () => {
     parse.put(`reviews/${review.review_id}/helpful`)
-    //     .then(() => {
-    //       getReviews()
-    //         .then(() => { console.log('Client refreshed reviews'); })
-    //         .catch((err) => { console.log('Client refresh review error: ', err); });
-    //     })
       .then(() => { console.log('Client marked review as helpful'); })
       .catch((err) => { console.log('Client put error :', err); });
   };
@@ -19,6 +14,7 @@ function ReviewTile({ review, getReviews }) {
     return (
       <>
         <h3>{review.summary}</h3>
+        <h4>{`Rating ${review.rating} stars`}</h4>
         <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
         <div>{review.body}</div>
         <div>I recommend this product</div>
@@ -41,6 +37,7 @@ function ReviewTile({ review, getReviews }) {
     return (
       <>
         <h3>{review.summary}</h3>
+        <h4>{`Rating ${review.rating} stars`}</h4>
         <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
         <div>{review.body}</div>
         <div>{`Reponse: ${review.response}`}</div>
@@ -62,6 +59,7 @@ function ReviewTile({ review, getReviews }) {
     return (
       <>
         <h3>{review.summary}</h3>
+        <h4>{`Rating ${review.rating} stars`}</h4>
         <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
         <div>{review.body}</div>
         <div>I recommend this product</div>
@@ -82,6 +80,7 @@ function ReviewTile({ review, getReviews }) {
   return (
     <>
       <h3>{review.summary}</h3>
+      <h4>{`Rating ${review.rating} stars`}</h4>
       <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
       <div>{review.body}</div>
       <div>Was this Review Helpful?</div>
