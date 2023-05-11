@@ -6,8 +6,8 @@ import './questions.css';
 
 function QuestionListEntry({ question }) {
   const [answers, setAnswers] = useState([]);
-  const [openForm, setOpenForm] = useState(false)
-  // const [helpCount, setHelpCount] = useState({question.question_helpfulness});
+  const [openForm, setOpenForm] = useState(false);
+  const [helpCount, setHelpCount] = useState(0);
   // console.log('I AM A QUESTION', question)
 
   useEffect(() => {
@@ -19,6 +19,13 @@ function QuestionListEntry({ question }) {
   // setAnswers(question.answers)
   console.log('I AM ANSWERS', answers);
 
+  const updateHelp = (event) => {
+    event.preventDefault();
+    parse.put(`qa/questions/${question.queston_id}/helpful`)
+      .then(() => console.log('I am helpful'))
+      .cathc((err) => console.log('I did not update helpfulnerss', err));
+  };
+
   return (
     <div>
       <section>
@@ -28,12 +35,18 @@ function QuestionListEntry({ question }) {
         </span>
         <span className="navQ">
           Helpful?&ensp;
-          <button type="button" className="Btn">Yes</button>
+          <button
+            type="button"
+            className="Btn"
+            onClick={(event) => updateHelp(event)}
+          >
+            Yes
+          </button>
           &nbsp;
           {question.question_helpfulness}
           &emsp;|&emsp;
           <button type="button" className="Btn" onClick={() => setOpenForm(true)}>Add Answer</button>
-          {openForm && <AnswerForm setOpenForm={setOpenForm} />}
+          {openForm && <AnswerForm setOpenForm={setOpenForm} question={question} />}
         </span>
         <div>
           {answers.slice(0, 2).map((answer, i) => <AnswerListEntry key={i} answer={answer} />)}

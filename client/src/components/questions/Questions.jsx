@@ -1,22 +1,36 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import parse from '../../parse';
 import { GlobalContext } from '../GlobalContext.jsx';
 import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
 import QuestionForm from './QuestionForm.jsx';
 import './questions.css';
+const axios = require('axios');
 
 function Questions() {
   const { productID } = useContext(GlobalContext);
-  const [questions, setQuestions] = React.useState([]);
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [questions, setQuestions] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  // const [pageNum, setPageNum] = useState(1);
 
   useEffect(() => {
-    parse.get(`/qa/questions/?product_id=${productID}&page=30&count=4`)
-      .then((data) => setQuestions(data.results))
+    parse.get(`/qa/questions/?product_id=${productID}&page=1&count=100`)
+      .then((data) => setQuestions(data.results.slice(0, 4)))
       .catch((err) => console.log(err));
   }, [productID]);
-  console.log('I AM THE QUESTIONS', questions);
+
+  // useEffect(() => {
+  //   const getData = () => {
+  //     parse.get(`/qa/questions/?product_id=${productID}&page=${pageNum}&count=100`)
+  //       .then((data) => {
+  //         setQuestions([...data.results]);
+  //         setPageNum(pageNum + 1);
+  //       });
+  //   };
+  //   getData();
+  // }, [productID]);
+
+  // console.log('I AM THE QUESTIONS', questions);
 
   return (
     <div className="body">

@@ -15,7 +15,15 @@ function App() {
         <Overview />
       </OverviewContextProvider>
       <RelatedProducts />
+      <br />
+      <br />
+      <br />
+      <br />
       <Questions />
+      <br />
+      <br />
+      <br />
+      <br />
       <Reviews />
     </GlobalContextProvider>
   );
