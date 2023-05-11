@@ -4,8 +4,9 @@
   min-width: 220px;
   max-width: 220px;
   border: solid;
-  border-width: 0px;
-  border-color: rgb(152, 152, 152);
+  border-width: 2px;
+
+  border-color: rgb(45, 45, 45);
   cursor: pointer;
 }
 
