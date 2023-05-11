@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import parse from '../../../parse';
 import Stars from '../stars_module/Stars.jsx';
-import '../Related.css';
+import './ProductCard.css';
 
-function RelatedCard({ relatedID, changeProduct }) {
+function ProductCard({ relatedID, changeProduct }) {
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
   const [ratings, setRatings] = useState({});
@@ -63,7 +63,7 @@ function RelatedCard({ relatedID, changeProduct }) {
       <div className="imgDiv">
         <img className="relatedIMG" src={imageURL} alt="Coming soon!" />
 
-        <button className="compareButton" type="button">Compare</button>
+        <button className="compareButton" type="button">★</button>
 
       </div>
       <div className="category">{productInfo ? productInfo.category : ''}</div>
@@ -74,4 +74,4 @@ function RelatedCard({ relatedID, changeProduct }) {
   );
 }
 
-export default RelatedCard;
+export default ProductCard;
