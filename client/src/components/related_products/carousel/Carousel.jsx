@@ -56,9 +56,9 @@ function Carousel() {
         )}
         {
           related
-            .map((id, i) => (
+            .map((id) => (
               // eslint-disable-next-line react/no-array-index-key
-              <li key={id + i} className="productCard-slide">
+              <li key={id} className="productCard-slide">
                 <ProductCard relatedID={id} changeProduct={changeProduct} />
               </li>
             ))
