@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import parse from '../../../parse';
 import Stars from '../stars_module/Stars.jsx';
-import '../Related.css';
+import './ProductCard.css';
 
-function RelatedCard({ relatedID, changeProduct }) {
+function ProductCard({ relatedID, changeProduct }) {
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
   const [ratings, setRatings] = useState({});
@@ -12,7 +12,6 @@ function RelatedCard({ relatedID, changeProduct }) {
 
   const updateImageURL = () => {
     let imgURL = '';
-    console.log('----------->', productStyles);
     if (productStyles.results) {
       for (let i = 0; i < productStyles.results.length; i += 1) {
         if (productStyles.results[i]['default?'] === true) {
@@ -42,7 +41,7 @@ function RelatedCard({ relatedID, changeProduct }) {
 
     Promise.all(endpoints.map((endpoint) => parse.get(endpoint)))
       .then((res) => {
-        console.log('this is all the data', res);
+        // console.log('this is all the data for a single RP', res);
         setProductInfo(res[0]);
         setProductStyles(res[1]);
         setRatings(res[2].ratings);
@@ -56,22 +55,23 @@ function RelatedCard({ relatedID, changeProduct }) {
       .catch((err) => {
         console.log('promise.all err', err);
       });
-  }, [relatedID]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <div className="card" role="button" tabIndex="0" onKeyDown={() => {}} onClick={() => changeProduct(relatedID)}>
+    <div className="cardContainer" role="button" tabIndex="0" onKeyDown={() => {}} onClick={() => changeProduct(relatedID)}>
       <div className="imgDiv">
         <img className="relatedIMG" src={imageURL} alt="Coming soon!" />
-        <div className="btnDiv">
-          <button className="compareButton" type="button">Compare</button>
-        </div>
+
+        <button className="compareButton" type="button">★</button>
+
       </div>
       <div className="category">{productInfo ? productInfo.category : ''}</div>
       <div className="productName">{title}</div>
       <div className="price">{productInfo ? `$${productInfo.default_price}` : ''}</div>
-      <Stars ratings={ratings} size={20} interactive={false} />
+      <Stars ratings={ratings} size={20} interactive={false} cb={() => {}} />
     </div>
   );
 }
 
-export default RelatedCard;
+export default ProductCard;

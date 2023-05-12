@@ -1,0 +1,56 @@
+.carousel {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%
+}
+
+.productTrack {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  height: 400px;
+  width: 100%;
+  background-color: grey;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  position: relative;
+  --slider-index: 0;
+}
+
+.productCard-slide {
+  margin: 0, 4px, 0, 4px;
+  width: 220px;
+
+  display: flex;
+  justify-content: center;
+  transform: translateX(calc(var(--slider-index) * -100%));
+  transition: transform .5s;
+}
+
+.carouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,.4);
+  cursor: pointer;
+  z-index: 5;
+  height: 50%;
+  width: 1.5rem;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 25px;
+}
+
+.productLeft {
+  left: 0;
+
+}
+
+.productRight {
+  right: 0;
+}
+

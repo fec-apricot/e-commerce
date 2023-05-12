@@ -1,12 +1,12 @@
 import React from 'react';
-import RowOne from './row1/RowOne.jsx';
+import Carousel from './carousel/Carousel.jsx';
 import RowTwo from './row2/RowTwo.jsx';
-// import styles from './Related.css';
+import './Related.css';
 
 function RelatedProducts() {
   return (
-    <div>
-      <RowOne className="row1" />
+    <div className="widgetContainer">
+      <Carousel />
       <RowTwo />
     </div>
   );

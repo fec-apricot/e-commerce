@@ -4,12 +4,12 @@ import axios from 'axios';
 import { render, screen, cleanup } from '@testing-library/react';
 import { act } from 'react-test-renderer';
 import '@testing-library/jest-dom';
-import RelatedProducts from '../RelatedProducts.jsx';
-import { GlobalContext } from '../../GlobalContext.jsx';
+import Carousel from '../Carousel.jsx';
+import { GlobalContext } from '../../../GlobalContext.jsx';
 
 jest.mock('axios');
 
-describe('RelatedProducts component', () => {
+describe('Carousel component', () => {
   beforeEach(() => {
     axios.get.mockImplementation((url) => {
       if (url === '/products/40450') {
@@ -76,31 +76,32 @@ describe('RelatedProducts component', () => {
 
   afterEach(cleanup);
 
-  describe('Related Products Carousel and Product Cards', () => {
+  describe('Related Products Carousel', () => {
     beforeEach(async () => {
       const mockProductID = 40450;
       await act(() => {
         render(
           <GlobalContext.Provider value={{ productID: mockProductID }}>
-            <RelatedProducts />
+            <Carousel />
           </GlobalContext.Provider>,
         );
       });
     });
-    it('should render product category', async () => {
-      expect(screen.getAllByText('Slacks')).toHaveLength(4);
-    });
 
-    it('should render product name', async () => {
+    it('should render product category', () => {
+      expect(screen.getAllByText('Slacks')).toHaveLength(4);
+    }); // using a regular expression here finds 'Slacks' 8 times. bc the name
+
+    it('should render product name', () => {
       expect(screen.getAllByText(/Alivia Slacks/i)).toHaveLength(4);
     });
 
-    it('should render product price', async () => {
+    it('should render product price', () => {
       expect(screen.getAllByText(/873.00/i)).toHaveLength(4);
     });
 
-    it('should render product slogan', async () => {
-      expect(screen.getAllByText(/Alivia Slacks - Voluptas maiores/i)).toHaveLength(4);
+    it('should render product slogan', () => {
+      expect(screen.getAllByText(/Voluptas maiores/i)).toHaveLength(4);
     });
   });
 });
