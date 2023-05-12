@@ -12,7 +12,6 @@ function ProductCard({ relatedID, changeProduct }) {
 
   const updateImageURL = () => {
     let imgURL = '';
-    console.log('----------->', productStyles);
     if (productStyles.results) {
       for (let i = 0; i < productStyles.results.length; i += 1) {
         if (productStyles.results[i]['default?'] === true) {
@@ -42,7 +41,7 @@ function ProductCard({ relatedID, changeProduct }) {
 
     Promise.all(endpoints.map((endpoint) => parse.get(endpoint)))
       .then((res) => {
-        console.log('this is all the data', res);
+        // console.log('this is all the data for a single RP', res);
         setProductInfo(res[0]);
         setProductStyles(res[1]);
         setRatings(res[2].ratings);
@@ -56,7 +55,8 @@ function ProductCard({ relatedID, changeProduct }) {
       .catch((err) => {
         console.log('promise.all err', err);
       });
-  }, [relatedID]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="cardContainer" role="button" tabIndex="0" onKeyDown={() => {}} onClick={() => changeProduct(relatedID)}>
@@ -69,7 +69,7 @@ function ProductCard({ relatedID, changeProduct }) {
       <div className="category">{productInfo ? productInfo.category : ''}</div>
       <div className="productName">{title}</div>
       <div className="price">{productInfo ? `$${productInfo.default_price}` : ''}</div>
-      <Stars ratings={ratings} size={20} interactive={false} />
+      <Stars ratings={ratings} size={20} interactive={false} cb={() => {}} />
     </div>
   );
 }

@@ -19,8 +19,6 @@ function Carousel() {
 
   const slide = (direction) => {
     const index = Number(productSlider.style.getPropertyValue('--slider-index'));
-    console.log('------>', productSlider, direction);
-    console.log('------index---->', index);
     if (direction === 'left') {
       productSlider.style.setProperty('--slider-index', index - 1);
       setSlideIndex(slideIndex - 1);
@@ -28,58 +26,54 @@ function Carousel() {
       productSlider.style.setProperty('--slider-index', index + 1);
       setSlideIndex(slideIndex + 1);
     }
-    console.log(Number(productSlider.style.getPropertyValue('--slider-index')));
+    // console.log(Number(productSlider.style.getPropertyValue('--slider-index')));
   };
 
   useEffect(() => {
     parse
       .get(`/products/${productID}/related`)
       .then((res) => {
-        console.log('Related Carousel GET res', res);
         setRelated(res);
       })
       .catch((err) => {
-        console.log('Related Carousel GET err', err);
+        console.log('RP Carousel GET err', err);
       });
   }, [productID]);
 
   return (
     <div className="carousel">
       <ul className="productTrack">
-        {slideIndex < 1 ? ''
-          : (
-            <button
-              className="carouselButton productLeft"
-              type="button"
-              onClick={() => {
-                slide('left');
-              }}
-            >
-              &lt;
-            </button>
-          )}
+        {slideIndex < 1 ? '' : (
+          <button
+            className="carouselButton productLeft"
+            type="button"
+            onClick={() => {
+              slide('left');
+            }}
+          >
+            &lt;
+          </button>
+        )}
         {
           related
-            .map(
-              (id) => (
-                <li key={id} className="productCard-slide">
-                  <ProductCard relatedID={id} changeProduct={changeProduct} />
-                </li>
-              ),
-            )
+            .map((id, i) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={id + i} className="productCard-slide">
+                <ProductCard relatedID={id} changeProduct={changeProduct} />
+              </li>
+            ))
         }
-        {related.length - slideIndex < 5 ? ''
-          : (
-            <button
-              className="carouselButton productRight"
-              type="button"
-              onClick={() => {
-                slide('right');
-              }}
-            >
-              &gt;
-            </button>
-          )}
+        {related.length - slideIndex < 5 ? '' : (
+          <button
+            className="carouselButton productRight"
+            type="button"
+            onClick={() => {
+              slide('right');
+            }}
+          >
+            &gt;
+          </button>
+        )}
       </ul>
     </div>
   );

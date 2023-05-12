@@ -6,7 +6,7 @@ import './Related.css';
 function RelatedProducts() {
   return (
     <div className="widgetContainer">
-      <Carousel className="row1" />
+      <Carousel />
       <RowTwo />
     </div>
   );
