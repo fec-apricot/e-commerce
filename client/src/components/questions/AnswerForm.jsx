@@ -41,7 +41,7 @@ function AnswerForm({ setOpenForm, question }) {
               <input onChange={(event) => setAnswerBody(event.target.value)} className="formBar" placeholder="ADD YOUR ANSWER HERE..." />
               <input onChange={(event) => setName(event.target.value)} className="formBar" placeholder="YOUR NAME..." />
               <input onChange={(event) => setEmail(event.target.value)} className="formBar" placeholder="YOUR EMAIL..." />
-              <input onChange={(event) => setImages(event.target.value)} className="formBar" placeholder="YOUR IMAGES..." />
+              {/* <input onChange={(event) => setImages(event.target.value)} className="formBar" placeholder="YOUR IMAGES..." /> */}
             </form>
 
           </div>

@@ -60,7 +60,17 @@
 
 .questionList {
   font-weight: bold;
+  /* height: 40px;
+  display: inline-block;
+  font-weight: bold;
+  max-width: 650px; */
 }
+
+/* .qbody {
+  display: inline-block;
+  font-weight: bold;
+  max-width: 650px;
+} */
 
 .answerList {
   font-weight: bold;
