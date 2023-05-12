@@ -21,11 +21,6 @@ function QuestionFrom({ setIsOpen }) {
       .then(() => console.log('question form submitted'))
       .catch((err) => console.log('unable to add use questions', err));
   };
-  // .then(() => {
-  //   parse.get(`/qa/questions/?product_id=${productID}&page=30&count=4`)
-  //     .then((data) => setQuestions(data.results))
-  //     .catch((err) => console.log(err));
-  // }, [productID]);
 
   return (
     <>

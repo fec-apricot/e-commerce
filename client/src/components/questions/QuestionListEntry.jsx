@@ -6,10 +6,8 @@ import AnswerForm from './AnswerForm.jsx';
 import './questions.css';
 
 function QuestionListEntry({ question }) {
-  // const { productID } = useContext(GlobalContext);
   const [answers, setAnswers] = useState([]);
   const [openForm, setOpenForm] = useState(false);
-  // const [helpCount, setHelpCount] = useState(0);
   // console.log('I AM A QUESTION', question)
 
   useEffect(() => {
@@ -18,7 +16,6 @@ function QuestionListEntry({ question }) {
       .catch((err) => console.log(err));
   },[question.question_id]);
 
-  // setAnswers(question.answers)
   // console.log('I AM ANSWERS', answers);
   // console.log('I AM A QUESTION ID', question.question_id)
 
