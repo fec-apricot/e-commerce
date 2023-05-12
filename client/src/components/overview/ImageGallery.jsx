@@ -28,7 +28,7 @@ const ThumbnailViewContainer = styled.div`
   height: 600px;
   display: felx;
   flex-direction: column;
-  justify-containt: space-between;
+  justify-content: space-between;
 `;
 
 const ThumbnailView = styled.img`
@@ -82,6 +82,7 @@ function ImageGallery() {
           ←
         </Button>
       )}
+      {/* eslint-disable-next-line no-unsafe-optional-chaining */}
       {defaultViewIndex < photos?.length - 1
       && (
         <Button
