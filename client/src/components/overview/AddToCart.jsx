@@ -3,15 +3,19 @@ import styled from 'styled-components';
 import _ from 'underscore';
 import parse from '../../parse';
 import { OverviewContext } from './OverviewContext.jsx';
+import DropdownLogo from '../../assets/dropdown-icon.svg';
 
 const Host = styled.div`
-  height: 25%;
+  height: 30%;
   margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `;
 
-const FormContainer = styled.form`
+const MainContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 80%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,9 +34,11 @@ const SelectContainer = styled.div`
   }
 `;
 
-const SelectLabel = styled.select`
+const DropdownBtn = styled.button`
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: space-around;
   background-color: #fff;
   border: 1px solid slategrey;
   border-radius: 3px;
@@ -47,14 +53,28 @@ const SelectLabel = styled.select`
   &:hover {
     background-color: #eee;
   }
+  & .dropdown-icon {
+    height: 20px;
+    width: 20px;
+  }
 `;
 
-const DropdownItem = styled.option`
-  display: flex;
+const DropdownList = styled.div`
+  width: 100%;
+  position: absolute;
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border: 1px solid slategrey;
+  border-radius: 3px;
+`;
+
+const DropdownItem = styled.a`
+  display: block;
   align-items: center;
-  width: 90%;
-  margin: 0.15rem 0.5rem;
+  padding: 12px 16px;
   font-size: 0.9rem;
+  text-decoration: none;
   color: #333;
   border-radius: 0.3rem;
   cursor: pointer;
@@ -67,6 +87,7 @@ const DropdownItem = styled.option`
 
 const Button = styled.button`
   height: 60px;
+  background-color: white;
   border: 1px solid slategrey;
   border-radius: 3px;
   font-size: 16px;
@@ -88,12 +109,20 @@ const Button = styled.button`
   }
 `;
 
+const Notification = styled.div`
+  height: 5%;
+`;
+
 function AddToCart() {
   const { selectedStyle } = useContext(OverviewContext);
   const [skus, setSkus] = useState({});
+  const [selectSizeDropdownExpanded, setSelectSizeDropdownExpanded] = useState(false);
+  const [selectQtyDropdownExpanded, setSelectQtyDropdownExpanded] = useState(false);
   const [selectedSku, setSelectedSku] = useState('');
   const [isInStock, setIsInStock] = useState(false);
   const [selectedQty, setSelectedQty] = useState(1);
+  const [selectSizeMsgVisible, setSelectSizeMsgVisible] = useState(false);
+  const [addToCartMsgVisible, setAddToCartMsgVisible] = useState(false);
 
   useEffect(() => {
     const { skus: newSkus } = selectedStyle;
@@ -106,63 +135,127 @@ function AddToCart() {
     }
   }, [selectedStyle]);
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (selectedSku === '') {
+      setSelectSizeMsgVisible(true);
+      setSelectSizeDropdownExpanded(true);
+      setTimeout(() => {
+        setSelectSizeMsgVisible(false);
+      }, 5000);
+    } else {
+      parse.post('/cart', { sku_id: selectedSku }).then(() => {
+        setAddToCartMsgVisible(true);
+        setTimeout(() => {
+          setAddToCartMsgVisible(false);
+        }, 5000);
+      }).catch();
+    }
+  };
 
-  // };
+  const getSelectSizeBtnContent = () => {
+    if (!isInStock) {
+      return 'OUT OF STOCK';
+    }
+    if (selectedSku !== '') {
+      return skus[selectedSku].size;
+    }
+    return 'SELECT SIZE';
+  };
+
+  const getSelectQtyBtnContent = () => {
+    if (selectedSku === '') {
+      return '-';
+    }
+    return selectedQty;
+  };
 
   return (
     <Host>
-      <FormContainer>
+      <Notification>{selectSizeMsgVisible && <div>Please select size</div>}</Notification>
+      <MainContainer>
         <SelectContainer className="size-selector">
-          <SelectLabel
-            name="size"
-            value={selectedSku}
+          <DropdownBtn
             disabled={!isInStock}
-            onChange={(event) => {
+            onClick={(event) => {
               event.preventDefault();
-              setSelectedSku(event.target.value);
-              setSelectedQty(1);
+              setSelectSizeDropdownExpanded(!selectSizeDropdownExpanded);
             }}
           >
-            <DropdownItem value="">
-              {isInStock ? 'SELECT SIZE' : 'OUT OF STOCK'}
-            </DropdownItem>
-            {_.map(
-              skus,
-              (value, key) => value.quantity && (
-                <option key={key} value={key}>
-                    {value.size}
-                </option>
-              ),
-            )}
-          </SelectLabel>
+            <span>{getSelectSizeBtnContent()}</span>
+            <span><img src={DropdownLogo} alt="Dropdown Logo" className="dropdown-icon" /></span>
+          </DropdownBtn>
+          {selectSizeDropdownExpanded
+          && (
+            <DropdownList
+              onMouseLeave={() => {
+                setSelectSizeDropdownExpanded(false);
+              }}
+            >
+                {_.map(
+                  skus,
+                  (value, key) => value.quantity && (
+                    <DropdownItem
+                      key={key}
+                      href="#"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setSelectedSku(key);
+                        setSelectedQty(1);
+                        setSelectSizeDropdownExpanded(false);
+                      }}
+                    >
+                        {value.size}
+                    </DropdownItem>
+                  ),
+                )}
+            </DropdownList>
+          )}
         </SelectContainer>
         <SelectContainer className="qty-selector">
-          <SelectLabel
-            name="qty"
-            value={selectedSku && selectedQty}
+          <DropdownBtn
             disabled={selectedSku === ''}
-            onChange={(event) => {
+            onClick={(event) => {
               event.preventDefault();
-              setSelectedQty(event.target.value);
+              setSelectQtyDropdownExpanded(!selectQtyDropdownExpanded);
             }}
           >
-            <DropdownItem value="">
-              -
-            </DropdownItem>
-            {skus[selectedSku]
-            && _.range(1, Math.min(16, skus[selectedSku].quantity + 1)).map(
-              (qty) => <DropdownItem key={qty}>{qty}</DropdownItem>,
+            <span>{getSelectQtyBtnContent()}</span>
+            <span><img src={DropdownLogo} alt="Dropdown Logo" className="dropdown-icon" /></span>
+          </DropdownBtn>
+          {selectQtyDropdownExpanded
+            && (
+              <DropdownList
+                onMouseLeave={() => {
+                  setSelectQtyDropdownExpanded(false);
+                }}
+              >
+                {skus[selectedSku]
+                && _.range(1, Math.min(16, skus[selectedSku].quantity + 1)).map(
+                  (qty) => (
+                    <DropdownItem
+                      key={qty}
+                      href="#"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setSelectedQty(qty);
+                        setSelectQtyDropdownExpanded(false);
+                      }}
+                    >
+                      {qty}
+                    </DropdownItem>
+                  ),
+                )}
+              </DropdownList>
             )}
-          </SelectLabel>
         </SelectContainer>
         <Button className="add-btn" onClick={handleSubmit}>
           <span>ADD TO BAG</span>
           <span className="add-icon">&#43;</span>
         </Button>
         <Button className="collect-btn">&#9734;</Button>
-      </FormContainer>
+      </MainContainer>
+      <Notification>{addToCartMsgVisible && <div>Added to cart!</div>}</Notification>
     </Host>
   );
 }
