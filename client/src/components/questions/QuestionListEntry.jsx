@@ -20,10 +20,13 @@ function QuestionListEntry({ question }) {
 
   // setAnswers(question.answers)
   // console.log('I AM ANSWERS', answers);
+  // console.log('I AM A QUESTION ID', question.question_id)
 
   const updateHelp = (event) => {
     event.preventDefault();
-    parse.put(`qa/questions/${question.queston_id}/helpful`)
+    parse.put(`qa/questions/${question.question_id}/helpful`, {
+      helpfulness: question.question_helpfulness + 1,
+    })
       .then(() => console.log('I am helpful'))
       .catch((err) => console.log('I did not update helpfulnerss', err));
   };
