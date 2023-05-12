@@ -4,7 +4,7 @@ import parse from '../../parse';
 import './questions.css';
 
 function AnswerListEntry({ answer }) {
-  const [text, setText] = useState('Report')
+  const [text, setText] = useState('Report');
 
   function changeText() {
     setText('Reported');
