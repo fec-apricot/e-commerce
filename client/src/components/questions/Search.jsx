@@ -1,7 +1,7 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useState } from 'react';
 import './questions.css';
 
-function Search({ questions, setQuestions, allQuestions }) {
+function Search({ setQuestions, allQuestions, setAllQuestions }) {
   const [query, setQuery] = useState('');
 
   const searchButton = (event) => {
@@ -12,6 +12,7 @@ function Search({ questions, setQuestions, allQuestions }) {
         return question;
       }
     }));
+    // return setQuestions(allQuestions.slice(0, 4));
   };
 
   return (

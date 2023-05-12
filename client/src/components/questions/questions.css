@@ -39,6 +39,13 @@
   border: 1px solid black;
 
 }
+
+.label {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 62px;
+
+}
 /* .fa fa-search {
   height: 30px;
   width: 30px
@@ -98,10 +105,14 @@
 }
 
 .formBar {
-  width: 350px;
+  width: 400px;
   height: 30px
 }
 
+.qformBar {
+  width: 400px;
+  height: 60px
+}
 
 .darkBG {
   background-color: rgba(0, 0, 0, 0.2);
@@ -122,8 +133,8 @@
 }
 
 .modal {
-  width: 400px;
-  height: 260px;
+  width: 540px;
+  height: 440px;
   background: white;
   color: white;
   z-index: 10;
@@ -133,6 +144,7 @@
 }
 
 .modalHeader {
+  padding-top:20px;
   height: 50px;
   background: white;
   overflow: hidden;
@@ -167,6 +179,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .closeBtn {

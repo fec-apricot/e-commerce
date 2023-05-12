@@ -11,7 +11,6 @@ function Questions() {
   const [questions, setQuestions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [allQuestions, setAllQuestions] = useState([]);
-  // const [pageNum, setPageNum] = useState(1);
 
   useEffect(() => {
     parse.get(`/qa/questions/?product_id=${productID}&page=1&count=100`)
@@ -22,26 +21,15 @@ function Questions() {
       .catch((err) => console.log(err));
   }, [productID]);
 
-  // console.log(allQuestions)
-  // setQuestions(allQuestions.slice(0, 4));
-  // useEffect(() => {
-  //   const getData = () => {
-  //     parse.get(`/qa/questions/?product_id=${productID}&page=${pageNum}&count=100`)
-  //       .then((data) => {
-  //         setQuestions([...data.results]);
-  //         setPageNum(pageNum + 1);
-  //       });
-  //   };
-  //   getData();
-  // }, [productID]);
-
-  // console.log('I AM THE QUESTIONS', questions);
-
   return (
     <div className="body">
       <div className="head" title="My Header" data-testid="title">QUESTIONS & ANSWERS</div>
       <br />
-      <Search questions={questions} setQuestions={setQuestions} allQuestions={allQuestions} />
+      <Search
+        setQuestions={setQuestions}
+        allQuestions={allQuestions}
+        setAllQuestions={setAllQuestions}
+      />
       <br />
       <QuestionList questions={questions} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div>

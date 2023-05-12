@@ -41,9 +41,17 @@ function QuestionFrom({ setIsOpen }) {
           <div className="modalContent">
 
             <form>
-              <input onChange={(event) => setQuestionBody(event.target.value)} className="formBar" placeholder="ADD YOUR QUESTION HERE..." />
-              <input onChange={(event) => setUserName(event.target.value)} className="formBar" placeholder="YOUR NAME..." />
-              <input onChange={(event) => setUserEmail(event.target.value)} className="formBar" placeholder="YOUR EMAIL..." />
+              <label className="label">Your Question (mandatory)</label>
+              <input onChange={(event) => setQuestionBody(event.target.value)} className="qformBar" />
+              <br />
+              <br />
+              <label className="label">What is your nickname (mandatory)</label>
+              <input onChange={(event) => setUserName(event.target.value)} className="formBar" placeholder="Example: jackson11!" />
+              <br />
+              <br />
+              <label className="label">Your email (mandatory)</label>
+              <input onChange={(event) => setUserEmail(event.target.value)} className="formBar" placeholder="Why did you like the product or not?" />
+              <p>For authentication reasons, you will not be emailed</p>
             </form>
 
           </div>
