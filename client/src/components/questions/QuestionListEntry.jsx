@@ -19,7 +19,7 @@ function QuestionListEntry({ question }) {
   },[question.question_id]);
 
   // setAnswers(question.answers)
-  console.log('I AM ANSWERS', answers);
+  // console.log('I AM ANSWERS', answers);
 
   const updateHelp = (event) => {
     event.preventDefault();
