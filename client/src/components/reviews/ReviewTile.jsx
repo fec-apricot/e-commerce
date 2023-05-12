@@ -31,7 +31,7 @@ function ReviewTile({ review }) {
       <>
         <h3>{review.summary}</h3>
         <h4>{`Rating ${review.rating} stars`}</h4>
-        <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} />
+        <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} cb={() => {}} />
         <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
         <div className="review-body">{review.body}</div>
         <div>I recommend this product</div>
@@ -55,7 +55,7 @@ function ReviewTile({ review }) {
       <>
         <h3>{review.summary}</h3>
         <h4>{`Rating ${review.rating} stars`}</h4>
-        <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} />
+        <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} cb={() => {}} />
         <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
         <div className="review-body">{review.body}</div>
         <div>{`Reponse: ${review.response}`}</div>
@@ -78,7 +78,7 @@ function ReviewTile({ review }) {
       <>
         <h3>{review.summary}</h3>
         <h4>{`Rating ${review.rating} stars`}</h4>
-        <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} />
+        <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} cb={() => {}} />
         <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
         <div className="review-body">{review.body}</div>
         <div>I recommend this product</div>
@@ -100,7 +100,7 @@ function ReviewTile({ review }) {
     <>
       <h3>{review.summary}</h3>
       <h4>{`Rating ${review.rating} stars`}</h4>
-      <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} />
+      <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} cb={() => {}} />
       <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
       <div className="review-body">{review.body}</div>
       <div>Was this Review Helpful?</div>

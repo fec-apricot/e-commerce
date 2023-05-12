@@ -118,7 +118,7 @@ function ReviewBreakdown({ productID, reviewList, setReviewList, sortParam }) {
             {reviewAverage.toString().slice(0, 3)}
           </div>
           <div className="review-star-average">
-            <Stars ratings={allRatings} size={20} interactive={false} />
+            <Stars ratings={allRatings} size={20} interactive={false} cb={() => {}} />
           </div>
         </div>
         <div className="percent-recommend">{`${Math.floor((recommended / totalReviews) * 100)}% of reviews recommend this product`}</div>
@@ -188,7 +188,7 @@ function ReviewBreakdown({ productID, reviewList, setReviewList, sortParam }) {
           {reviewAverage.toString().slice(0, 3)}
         </div>
         <div className="review-star-average">
-          <Stars ratings={allRatings} size={20} interactive={false} />
+          <Stars ratings={allRatings} size={20} interactive={false} cb={() => {}} />
         </div>
       </div>
       <div className="percent-recommend">{`${Math.floor((recommended / totalReviews) * 100)}% of reviews recommend this product`}</div>
