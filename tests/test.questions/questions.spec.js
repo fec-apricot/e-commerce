@@ -1,4 +1,4 @@
-/* eslint-env jest */
+// /* eslint-env jest */
 
 import React from 'react';
 import axios from 'axios';
@@ -8,8 +8,14 @@ import Questions from '../../client/src/components/questions/Questions.jsx';
 import { GlobalContextProvider } from '../../client/src/components/GlobalContext.jsx';
 import '@testing-library/jest-dom/';
 
-// test('test', () => {
-//   expect(true).toBe(true);
+// test('nother test', () => {
+//   render(
+//     <GlobalContextProvider>
+//       <Questions />
+//     </GlobalContextProvider>,
+//   );
+//   const title = screen.getByTestId('title');
+//   expect(title).toBeInTheDocument();
 // });
 
 test('nother test', () => {

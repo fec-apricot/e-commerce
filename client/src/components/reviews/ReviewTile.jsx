@@ -4,7 +4,7 @@ import Stars from '../related_products/stars_module/Stars.jsx';
 import './reviewStyle.css';
 
 function ReviewTile({ review }) {
-  console.log('Review Tile: ', review);
+  // console.log('Review Tile: ', review);
   const reviewDate = new Date(review.date);
   const [helpCount, setHelpCount] = React.useState(review.helpfulness);
   const upvote = () => {

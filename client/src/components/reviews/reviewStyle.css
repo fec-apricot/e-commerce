@@ -51,6 +51,9 @@
   display: flex;
   margin-bottom: 4%
 }
+.rating-breakdown:hover {
+  background: wheat;
+}
 .inner {
   background: mediumseagreen;
   width: 50%;
