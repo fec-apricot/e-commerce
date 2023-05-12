@@ -10,9 +10,9 @@ import parse from '../../parse';
 
 const OverviewContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 function OverviewContextProvider({ children }) {
   const { productID } = useContext(GlobalContext);
+
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState({});
@@ -28,14 +28,14 @@ function OverviewContextProvider({ children }) {
 
   useEffect(() => {
     parse
-      .get(`http://localhost:3000/products/${productID}`)
+      .get(`/products/${productID}`)
       .then((data) => {
         setProduct(data);
       })
-      .then(() => parse.get(`http://localhost:3000/products/${productID}/styles`))
+      .then(() => parse.get(`/products/${productID}/styles`))
       .then((data) => {
-        setStyles(data.results);
-        setSelectedStyle(data.results[0]);
+        setStyles(data?.results);
+        setSelectedStyle(data?.results[0]);
       })
       .catch((err) => {
         console.error(err.message);

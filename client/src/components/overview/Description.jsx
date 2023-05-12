@@ -38,16 +38,16 @@ function Description() {
   return (
     <Host>
       <SloganAndDescriptionContainer>
-        <Slogan>{product.slogan}</Slogan>
-        <DescriptionContent>{product.description}</DescriptionContent>
+        <Slogan>{product?.slogan}</Slogan>
+        <DescriptionContent>{product?.description}</DescriptionContent>
       </SloganAndDescriptionContainer>
       <VerticalLine />
       <FeatureContainer>
-        {product.features
+        {product?.features
         && product.features.map((feature) => (
           <div key={feature.feature}>
             {feature.feature}
-            :
+            :&nbsp;
             {feature.value}
           </div>
         ))}
