@@ -26,37 +26,56 @@ const ThumbnailViewContainer = styled.div`
   top: 45px;
   left: 10px;
   width: 90px;
-  height: 600px;
-  display: felx;
+  height: 500px;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 3px;
 `;
 
 const ThumbnailView = styled.img`
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  padding-bottom: 1px;
   cursor: pointer;
+  box-shadow: ${(props) => (props.selected ? '4px 6px 12px 2px rgba(0,0,0,0.5)' : '0 4px 8px 0 rgba(0,0,0,0.2)')};
+  border-radius: 2px;
+  border-bottom: ${(props) => (props.selected ? '3px solid black' : 'none')};
 `;
 
 const Button = styled.button`
   position: absolute;
+  border: none;
+  background-color: transparent;
   &.prev-left {
     top: 50%;
     left: 100px;
+    width: 30px;
+    height: 30px;
   }
   &.next-right {
     top: 50%;
     right: 30px;
+    width: 30px;
+    height: 30px;
   }
   &.prev-up {
     top: 15px;
-    left: 30px;
+    left: 35px;
+    width: 30px;
+    height: 30px;
     rotate: 180deg;
   }
   &.next-down {
     bottom: 15px;
-    left: 30px;
+    left: 35px;
+    width: 30px;
+    height: 30px;
   }
 `;
 
@@ -65,7 +84,7 @@ function ImageGallery() {
   const { photos } = selectedStyle;
   const [defaultViewIndex, setDefaultViewIndex] = useState(0);
   const [thumbnailViewIndexStart, setThumbnailIndexStart] = useState(0);
-  const MAXTHUMBNAILVIEWLENGTH = 3;
+  const MAXTHUMBNAILVIEWLENGTH = 7;
 
   const handleScrollHorizontal = (direction) => {
     setDefaultViewIndex((prevIndex) => prevIndex + direction);
@@ -114,6 +133,7 @@ function ImageGallery() {
             <ThumbnailView
               src={photo.thumbnail_url}
               key={photo.thumbnail_url}
+              selected={defaultViewIndex === index}
               onClick={() => {
                 setDefaultViewIndex(index);
               }}
