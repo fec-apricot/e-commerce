@@ -33,28 +33,55 @@ function ProductCard({ relatedID, changeProduct }) {
   }, [productStyles]);
 
   useEffect(() => {
-    const endpoints = [
-      `/products/${relatedID}`,
-      `/products/${relatedID}/styles`,
-      `/reviews/meta?product_id=${relatedID}`,
-    ];
+    if (relatedID !== 10001) {
+      const endpoints = [
+        `/products/${relatedID}`,
+        `/products/${relatedID}/styles`,
+        `/reviews/meta?product_id=${relatedID}`,
+      ];
 
-    Promise.all(endpoints.map((endpoint) => parse.get(endpoint)))
-      .then((res) => {
-        // console.log('this is all the data for a single RP', res);
-        setProductInfo(res[0]);
-        setProductStyles(res[1]);
-        setRatings(res[2].ratings);
-        let expandedTitle = `${res[0].name} - ${res[0].slogan ? res[0].slogan : ''}`;
-        if (expandedTitle.length > 45) {
-          expandedTitle = expandedTitle.slice(0, 45);
-          expandedTitle += '...';
-        }
-        setTitle(expandedTitle);
-      })
-      .catch((err) => {
-        console.log('promise.all err', err);
-      });
+      Promise.all(endpoints.map((endpoint) => parse.get(endpoint)))
+        .then((res) => {
+          console.log('this is all the data for a single RP', res);
+          setProductInfo(res[0]);
+          setProductStyles(res[1]);
+          setRatings(res[2].ratings);
+          let expandedTitle = `${res[0].name} - ${res[0].slogan ? res[0].slogan : ''}`;
+          if (expandedTitle.length > 45) {
+            expandedTitle = expandedTitle.slice(0, 45);
+            expandedTitle += '...';
+          }
+          setTitle(expandedTitle);
+        })
+        .catch((err) => {
+          console.log('promise.all err', err);
+        });
+    } else {
+      const blankInfo = {
+        name: 'Name',
+        category: 'Category',
+        default_price: '$$',
+      };
+      const blankStyles = {
+        results: [{
+          photos: [{
+            thumbnail_url: '',
+          }],
+        }],
+      };
+      const blankRatings = {
+        ratings: {
+          1: 0,
+          2: 0,
+          3: 0,
+          4: 0,
+          5: 1,
+        },
+      };
+      setProductInfo(blankInfo);
+      setProductStyles(blankStyles);
+      setRatings(blankRatings);
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

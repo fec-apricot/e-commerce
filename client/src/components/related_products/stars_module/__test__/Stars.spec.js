@@ -43,6 +43,7 @@ describe('Stars module', () => {
   });
 
   beforeEach(() => {
+    const yes = true;
     render(
       <Stars
         ratings={{
@@ -53,7 +54,7 @@ describe('Stars module', () => {
           5: '60',
         }}
         size={20}
-        interactive
+        interactive={yes}
         cb={() => {}}
       />,
     );
