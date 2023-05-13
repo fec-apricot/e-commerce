@@ -40,7 +40,7 @@ function AnswerForm({ setOpenForm, question }) {
           <div className="modalHeader">
             <h5 className="heading">Submit your Answer</h5>
             <h6 className="subheading">product name: {question.question_body}</h6>
-          {inputErr && <p className="invalidInput">You must enter the following:</p>}
+           {inputErr && <p className="invalidInput">You must enter the following:</p>}
           </div>
           <button type="button" className="closeBtn" onClick={() => setOpenForm(false)}>
             {/* <RiCloseLine style={{ marginBottom: "-3px" }} /> */}
