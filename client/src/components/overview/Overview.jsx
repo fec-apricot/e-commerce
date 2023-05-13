@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { GlobalContext } from '../GlobalContext.jsx';
-import ImageGallery from './ImageGallery.jsx';
+import ImageGallery from './image-gallery/ImageGallery.jsx';
 import Description from './Description.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';

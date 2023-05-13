@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import _ from 'underscore';
 import parse from '../../parse';
 import { OverviewContext } from './OverviewContext.jsx';
-import DropdownLogo from '../../assets/dropdown-icon.svg';
+import DropdownIcon from '../../assets/dropdown-icon.svg';
 
 const Host = styled.div`
   height: 30%;
@@ -184,7 +184,7 @@ function AddToCart() {
             data-testid="size-dropdown-btn"
           >
             <span>{getSelectSizeBtnContent()}</span>
-            <span><img src={DropdownLogo} alt="Dropdown Logo" className="dropdown-icon" /></span>
+            <span><img src={DropdownIcon} alt="Dropdown Logo" className="dropdown-icon" /></span>
           </DropdownBtn>
           {sizeDropdownExpanded
           && (
@@ -225,7 +225,7 @@ function AddToCart() {
             data-testid="qty-dropdown-btn"
           >
             <span>{getSelectQtyBtnContent()}</span>
-            <span><img src={DropdownLogo} alt="Dropdown Logo" className="dropdown-icon" /></span>
+            <span><img src={DropdownIcon} alt="Dropdown Logo" className="dropdown-icon" /></span>
           </DropdownBtn>
           {qtyDropdownExpanded
             && (
