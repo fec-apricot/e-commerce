@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { OverviewContext } from './OverviewContext.jsx';
+import DropdownLogo from '../../assets/dropdown-icon.svg';
 
 const Host = styled.div`
   position: relative;
@@ -35,6 +36,7 @@ const ThumbnailView = styled.img`
   width: 80px;
   height: 80px;
   object-fit: contain;
+  cursor: pointer;
 `;
 
 const Button = styled.button`
@@ -48,12 +50,13 @@ const Button = styled.button`
     right: 30px;
   }
   &.prev-up {
-    top: 20px;
-    left: 15px;
+    top: 15px;
+    left: 30px;
+    rotate: 180deg;
   }
   &.next-down {
-    bottom: 20px;
-    left: 15px;
+    bottom: 15px;
+    left: 30px;
   }
 `;
 
@@ -64,8 +67,17 @@ function ImageGallery() {
   const [thumbnailViewIndexStart, setThumbnailIndexStart] = useState(0);
   const MAXTHUMBNAILVIEWLENGTH = 3;
 
-  const handleScroll = (direction, setIndex) => {
-    setIndex((prevIndex) => prevIndex + direction);
+  const handleScrollHorizontal = (direction) => {
+    setDefaultViewIndex((prevIndex) => prevIndex + direction);
+    if (defaultViewIndex < thumbnailViewIndexStart) {
+      setThumbnailIndexStart((prevIndex) => prevIndex - 1);
+    } else if (defaultViewIndex >= thumbnailViewIndexStart + MAXTHUMBNAILVIEWLENGTH - 1) {
+      setThumbnailIndexStart((prevIndex) => prevIndex + 1);
+    }
+  };
+
+  const handleScrollVertical = (direction) => {
+    setThumbnailIndexStart((prevIndex) => prevIndex + direction);
   };
 
   return (
@@ -76,7 +88,7 @@ function ImageGallery() {
         <Button
           className="prev-left"
           onClick={() => {
-            handleScroll(-1, setDefaultViewIndex);
+            handleScrollHorizontal(-1);
           }}
         >
           ←
@@ -88,35 +100,35 @@ function ImageGallery() {
         <Button
           className="next-right"
           onClick={() => {
-            handleScroll(1, setDefaultViewIndex);
+            handleScrollHorizontal(1);
           }}
         >
           →
         </Button>
       )}
       <ThumbnailViewContainer>
-        {photos?.slice(
-          thumbnailViewIndexStart,
-          Math.min(
-            photos.length,
-            thumbnailViewIndexStart + MAXTHUMBNAILVIEWLENGTH,
-          ),
-        ).map((photo) => (
-          <ThumbnailView
-            src={photo.thumbnail_url}
-            key={photo.thumbnail_url}
-          />
-        ))}
+        {photos?.map((photo, index) => (
+          thumbnailViewIndexStart <= index
+          && index < thumbnailViewIndexStart + MAXTHUMBNAILVIEWLENGTH
+          && (
+            <ThumbnailView
+              src={photo.thumbnail_url}
+              key={photo.thumbnail_url}
+              onClick={() => {
+                setDefaultViewIndex(index);
+              }}
+            />
+          )))}
       </ThumbnailViewContainer>
       {thumbnailViewIndexStart > 0
       && (
         <Button
           className="prev-up"
           onClick={() => {
-            handleScroll(-1, setThumbnailIndexStart);
+            handleScrollVertical(-1);
           }}
         >
-          ←
+          <img src={DropdownLogo} alt="Scroll Up Logo" className="scroll-up-icon" />
         </Button>
       )}
       {thumbnailViewIndexStart + MAXTHUMBNAILVIEWLENGTH < photos?.length
@@ -124,10 +136,10 @@ function ImageGallery() {
         <Button
           className="next-down"
           onClick={() => {
-            handleScroll(1, setThumbnailIndexStart);
+            handleScrollVertical(1);
           }}
         >
-          →
+          <img src={DropdownLogo} alt="Scroll Down Logo" className="scroll-down-icon" />
         </Button>
       )}
     </Host>
