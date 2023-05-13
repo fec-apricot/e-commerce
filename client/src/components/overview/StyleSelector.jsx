@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { OverviewContext } from './OverviewContext.jsx';
 
 const Host = styled.div`
-  height: 40%;
+  height: 35%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,6 +25,8 @@ const StyleList = styled.div`
   height: 80%;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
+  overflow-y: scroll;
+  scroll-behavior: auto;
 `;
 
 const StyleThumbnailContainer = styled.div`
