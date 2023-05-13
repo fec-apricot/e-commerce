@@ -4,12 +4,12 @@ import parse from '../../../parse';
 import ProductCard from './ProductCard.jsx';
 import './Carousel.css';
 
-function Carousel({ relatedProductsMode }) {
+function Carousel({ rpMode }) {
   const { productID, setProductID } = useContext(GlobalContext);
   const [related, setRelated] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
   const [outfit, setOutfit] = useState([]);
-  const blankProduct = 10001;
+  const [currentProductInOutfit, setCurrentProductInOutfit] = useState(false);
 
   const productSlider = document.querySelector('.productTrack');
 
@@ -34,14 +34,25 @@ function Carousel({ relatedProductsMode }) {
   const addBlanksToOutfit = (list) => {
     if (list.length < 3) {
       for (let i = list.length; i < 3; i += 1) {
-        list.push(blankProduct);
+        list.push(10001); // blank product
       }
     }
     return list;
   };
 
+  const toggleOutfitProduct = () => {
+    const outfitList = [...outfit];
+    const index = outfitList.indexOf(productID);
+    if (index === -1) {
+      setOutfit([productID, ...outfitList]);
+    } else {
+      outfitList.splice(index, 1);
+      setOutfit(outfitList);
+    }
+  };
+
   useEffect(() => {
-    if (relatedProductsMode) {
+    if (rpMode) {
       parse
         .get(`/products/${productID}/related`)
         .then((res) => {
@@ -57,6 +68,11 @@ function Carousel({ relatedProductsMode }) {
 
   useEffect(() => {
     let localList = [];
+    if (localList.indexOf(productID) === -1) {
+      setCurrentProductInOutfit(false);
+    } else {
+      setCurrentProductInOutfit(true);
+    }
     localList = addBlanksToOutfit(localList);
     setOutfit(localList); // set to outfit stored in local storage or nothing
   }, []);
@@ -75,12 +91,17 @@ function Carousel({ relatedProductsMode }) {
             &lt;
           </button>
         )}
+        {rpMode ? '' : (
+          <li key="addToOutfitButton" className={`${rpMode ? 'productCard-slide' : 'outfitCard-slide'} AddToOutfitBtn`}>
+            <ProductCard relatedID={productID} triggerFunction={toggleOutfitProduct} />
+          </li>
+        )}
         {
           related
             .map((id, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <li key={`${id}-${index}`} className="productCard-slide">
-                <ProductCard relatedID={id} changeProduct={changeProduct} />
+                <ProductCard relatedID={id} triggerFunction={changeProduct} />
               </li>
             ))
         }

@@ -3,7 +3,7 @@ import parse from '../../../parse';
 import Stars from '../stars_module/Stars.jsx';
 import './ProductCard.css';
 
-function ProductCard({ relatedID, changeProduct }) {
+function ProductCard({ relatedID, triggerFunction }) {
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
   const [ratings, setRatings] = useState({});
@@ -58,7 +58,6 @@ function ProductCard({ relatedID, changeProduct }) {
         });
     } else {
       const blankInfo = {
-        name: 'Name',
         category: 'Category',
         default_price: '$$',
       };
@@ -70,23 +69,22 @@ function ProductCard({ relatedID, changeProduct }) {
         }],
       };
       const blankRatings = {
-        ratings: {
-          1: 0,
-          2: 0,
-          3: 0,
-          4: 0,
-          5: 1,
-        },
+        1: '0',
+        2: '0',
+        3: '0',
+        4: '0',
+        5: '1',
       };
       setProductInfo(blankInfo);
       setProductStyles(blankStyles);
       setRatings(blankRatings);
+      setTitle('Name and Description');
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [relatedID]);
 
   return (
-    <div className="cardContainer" role="button" tabIndex="0" onKeyDown={() => {}} onClick={() => changeProduct(relatedID)}>
+    <div className="cardContainer" role="button" tabIndex="0" onKeyDown={() => {}} onClick={() => triggerFunction(relatedID)}>
       <div className="imgDiv">
         <img className="relatedIMG" src={imageURL} alt="Coming soon!" />
 
