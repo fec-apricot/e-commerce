@@ -8,6 +8,7 @@ import './questions.css';
 function QuestionListEntry({ question }) {
   const [answers, setAnswers] = useState([]);
   const [openForm, setOpenForm] = useState(false);
+  const [helpful, setHelpful] = useState(question.question_helpfulness);
   // console.log('I AM A QUESTION', question)
 
   useEffect(() => {
@@ -21,6 +22,7 @@ function QuestionListEntry({ question }) {
 
   const updateHelp = (event) => {
     event.preventDefault();
+    setHelpful(helpful + 1);
     parse.put(`qa/questions/${question.question_id}/helpful`, {
       helpfulness: question.question_helpfulness + 1,
     })
@@ -46,7 +48,7 @@ function QuestionListEntry({ question }) {
             Yes
           </button>
           &nbsp;
-          {question.question_helpfulness}
+          {helpful}
           &emsp;|&emsp;
           <button type="button" className="Btn" onClick={() => setOpenForm(true)}>Add Answer</button>
           {openForm && <AnswerForm setOpenForm={setOpenForm} question={question} />}
