@@ -66,7 +66,7 @@ const Button = styled.button`
   }
   &.prev-up {
     top: 15px;
-    left: 35px;
+    left: 40px;
     width: 30px;
     height: 30px;
     rotate: 180deg;
