@@ -34,6 +34,8 @@ function ExpandedView({ handleHide }) {
     handleClick: setShowMagnifier,
     showMagnifier,
     setShowMagnifier,
+    viewportWidth: document.documentElement.clientWidth,
+    viewportHeight: document.documentElement.clientHeight,
   };
 
   return (

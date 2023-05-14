@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function ImageMagnifier({
-  src, top, left, x, y, zoomLevel,
+  src, viewportWidth, viewportHeight, clientX, clientY, zoomLevel,
 }) {
   const [[imgWidth, imgHeight], setImgSize] = useState([0, 0]);
   return (
@@ -14,9 +14,9 @@ function ImageMagnifier({
         // set size of magnifier div
         width: `${imgWidth * zoomLevel}px`,
         height: `${imgHeight * zoomLevel}px`,
-        // set position of the magnifier div
-        top: `${top - y}px`,
-        left: `${left - x}px`,
+        // set position of the zoomed image
+        top: `-${(imgHeight * zoomLevel - viewportHeight) * (clientY / viewportHeight)}px`,
+        left: `-${(imgWidth * zoomLevel - viewportWidth) * (clientX / viewportWidth)}px`,
         opacity: '5', // reduce opacity so position can be verified
         zIndex: 10,
       }}

@@ -16,6 +16,8 @@ function OverviewCarousel({
   handleClick,
   showMagnifier,
   setShowMagnifier,
+  viewportWidth,
+  viewportHeight,
 }) {
   const { selectedStyle } = useContext(OverviewContext);
   const { photos } = selectedStyle;
@@ -34,16 +36,14 @@ function OverviewCarousel({
     setThumbnailIndexStart((prevIndex) => prevIndex + direction);
   };
 
-  // image position relative to the screen
-  const [[top, left], setImgPosition] = useState([0, 0]);
-  // cursor position on the image
-  const [[x, y], setXY] = useState([0, 0]);
+  // cursor position to the viewport
+  const [[clientX, clientY], setClientXY] = useState([0, 0]);
   const magnifierProps = {
     src: defaultSrc,
-    top,
-    left,
-    x,
-    y,
+    viewportWidth,
+    viewportHeight,
+    clientX,
+    clientY,
     zoomLevel: 2.5,
   };
 
@@ -62,11 +62,7 @@ function OverviewCarousel({
           }
         }}
         onMouseMove={(event) => {
-          const element = event.currentTarget;
-          setImgPosition([
-            element.getBoundingClientRect().top, element.getBoundingClientRect().left,
-          ]);
-          setXY([event.pageX - left - window.pageXOffset, event.pageY - top - window.pageYOffset]);
+          setClientXY([event.clientX, event.clientY]);
         }}
       />
       {defaultViewIndex > 0
