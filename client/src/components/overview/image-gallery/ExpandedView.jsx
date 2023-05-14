@@ -21,16 +21,19 @@ const CloseButton = styled.div`
   }
 `;
 
-function ExpandedView({ photos, handleHide }) {
+function ExpandedView({ handleHide }) {
   const [defaultViewIndex, setDefaultViewIndex] = useState(0);
   const [thumbnailViewIndexStart, setThumbnailIndexStart] = useState(0);
+  const [showMagnifier, setShowMagnifier] = useState(false);
   const carouselProps = {
-    photos,
     defaultViewIndex,
     setDefaultViewIndex,
     thumbnailViewIndexStart,
     setThumbnailIndexStart,
     inExpandedView: true,
+    handleClick: setShowMagnifier,
+    showMagnifier,
+    setShowMagnifier,
   };
 
   return (

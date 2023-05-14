@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import DropdownIcon from '../../../assets/dropdown-icon.svg';
 import ArrowIcon from '../../../assets/arrow-icon.svg';
 import {
   DefaultView, CarouselButton, ThumbnailViewContainer, ThumbnailView,
 } from './ImageGallery.styled';
+import { OverviewContext } from '../OverviewContext.jsx';
+import ImageMagnifier from './ImageMagnifier.jsx';
 
 function OverviewCarousel({
-  photos,
   defaultViewIndex,
   setDefaultViewIndex,
   thumbnailViewIndexStart,
   setThumbnailIndexStart,
   inExpandedView,
-  setShowExpandedView,
+  handleClick,
+  showMagnifier,
+  setShowMagnifier,
 }) {
+  const { selectedStyle } = useContext(OverviewContext);
+  const { photos } = selectedStyle;
+  const defaultSrc = photos && photos[defaultViewIndex]?.url;
   const MAXTHUMBNAILVIEWLENGTH = 7;
   const handleScrollHorizontal = (direction) => {
     setDefaultViewIndex((prevIndex) => prevIndex + direction);
@@ -28,15 +34,39 @@ function OverviewCarousel({
     setThumbnailIndexStart((prevIndex) => prevIndex + direction);
   };
 
+  // image position relative to the screen
+  const [[top, left], setImgPosition] = useState([0, 0]);
+  // cursor position on the image
+  const [[x, y], setXY] = useState([0, 0]);
+  const magnifierProps = {
+    src: defaultSrc,
+    top,
+    left,
+    x,
+    y,
+    zoomLevel: 2.5,
+  };
+
   return (
     <>
+      {showMagnifier && <ImageMagnifier {...magnifierProps} />}
       <DefaultView
-        src={photos && photos[defaultViewIndex]?.url}
+        src={defaultSrc}
         expanded={inExpandedView}
+        zoomedIn={showMagnifier}
         onClick={() => {
-          if (!inExpandedView) {
-            setShowExpandedView(true);
+          if (inExpandedView) {
+            handleClick(!showMagnifier);
+          } else {
+            handleClick(true);
           }
+        }}
+        onMouseMove={(event) => {
+          const element = event.currentTarget;
+          setImgPosition([
+            element.getBoundingClientRect().top, element.getBoundingClientRect().left,
+          ]);
+          setXY([event.pageX - left - window.pageXOffset, event.pageY - top - window.pageYOffset]);
         }}
       />
       {defaultViewIndex > 0
@@ -73,6 +103,7 @@ function OverviewCarousel({
               selected={defaultViewIndex === index}
               onClick={() => {
                 setDefaultViewIndex(index);
+                setShowMagnifier(false);
               }}
             />
           )))}
