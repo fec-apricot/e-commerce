@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const parse = {
   get: (url) => {
-    console.log('GET triggered');
+    console.log('GET triggered', url);
     return axios
       .get(url)
       .then((res) => {
