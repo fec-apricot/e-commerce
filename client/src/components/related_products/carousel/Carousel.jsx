@@ -4,7 +4,7 @@ import parse from '../../../parse';
 import ProductCard from './ProductCard.jsx';
 import './Carousel.css';
 
-function Carousel({ rpMode }) {
+function Carousel({ rpMode, setDataStore, dataStore }) {
   const { productID, setProductID } = useContext(GlobalContext);
   const [products, setProducts] = useState([]);
   const [related, setRelated] = useState([]);
@@ -107,6 +107,7 @@ function Carousel({ rpMode }) {
         allProducts.current[id] = res;
         console.log('*****----***----setting allProducts:', allProducts.current, ' value with res', res);
         setProducts(allProducts.current);
+        if (rpMode) { setDataStore(allProducts.current); }
       })
       .catch((err) => {
         console.log('promise.all err', err);
@@ -120,6 +121,7 @@ function Carousel({ rpMode }) {
       if (id === undefined) { return; }
       if (searchAllProducts(id)) {
         console.log('req avoided');
+        setProducts(allProducts.current);
         return;
       }
       if (id !== 10001) {
@@ -179,6 +181,7 @@ function Carousel({ rpMode }) {
   }, [productID]);
 
   useEffect(() => {
+    if (!rpMode) { setProducts(dataStore); }
     let localList = [];
     if (localList.indexOf(productID) === -1) {
       setCurrentProductInOutfit(false);
@@ -216,6 +219,7 @@ function Carousel({ rpMode }) {
               details={allProducts.current[productID]}
               burn={burn}
               allProducts={allProducts.current}
+              dataStore={dataStore}
             />
           </li>
         )}
@@ -232,6 +236,7 @@ function Carousel({ rpMode }) {
                   burn={burn}
                   allProducts={allProducts.current}
                   rpMode={rpMode}
+                  dataStore={dataStore}
                 />
               </li>
             ))

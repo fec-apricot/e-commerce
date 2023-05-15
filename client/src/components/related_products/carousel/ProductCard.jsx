@@ -7,6 +7,7 @@ import './ProductCard.css';
 function ProductCard({
   relatedID,
   triggerFunction,
+  dataStore,
   products,
   details,
   burn,
@@ -22,7 +23,6 @@ function ProductCard({
   const [title, setTitle] = useState('');
   const [isBtn, setIsBtn] = useState(false);
   const [myInfo, setMyInfo] = useState({});
-  const backup = useRef({});
 
   const updateImageURL = () => {
     if (productStyles === undefined) { return; }
@@ -58,30 +58,33 @@ function ProductCard({
 
   useEffect(() => {
     console.log('------+++++++=======******* * * * * * productID changed', productID, relatedID);
+    if (!rpMode) {
+      setProductIdNum(productID);
+    }
   }, [productID]);
 
   useEffect(() => {
-    if (relatedID === productID) {
-      setIsBtn(true);
-      setProductIdNum(productID);
-      console.log('reset buttons productIdNum to????????????', productID);
-    }
+    // if (relatedID === productID) {
+    //   setIsBtn(true);
+    //   setProductIdNum(productID);
+    //   console.log('reset buttons productIdNum to????????????', productID);
+    // }
+    if (!rpMode) { setProductIdNum(productID); }
     // if (isBtn) {
     //   setProductIdNum(productID);
     // }
-    console.log('my id: ', relatedID, ' my products: ', products[relatedID], ' my details: ', details, ' and allProducts: ', allProducts);
+    console.log('my id: ', relatedID, ' my products: ', products, ' my details: ', details, ' and allProducts: ', allProducts, ' and the dataStore:', dataStore);
     if (products[productIdNum] !== undefined) {
       console.log('Info made it to the card', products[productIdNum]);
       setProductInfo(products[productIdNum][0]);
       setProductStyles(products[productIdNum][1]);
       setRatings(products[productIdNum][2].ratings);
       buildTitle(productIdNum);
-      backup.current = allProducts.current;
     }
-    console.log('backup------>>>>>', backup);
-  }, [products[relatedID], productIdNum]);
+  }, [products[relatedID], productIdNum], burn);
 
   useEffect(() => {
+    console.log('dataStore on card load', dataStore);
     console.log('the details+++++++========', details, products);
     console.log('the diff? ', productID, relatedID);
     if (relatedID === 0) {
