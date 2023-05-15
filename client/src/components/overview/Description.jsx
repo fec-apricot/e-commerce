@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { OverviewContext } from './OverviewContext.jsx';
+import { GlobalContext } from '../GlobalContext.jsx';
 
 const Host = styled.div`
   display: flex;
@@ -33,7 +33,7 @@ const FeatureContainer = styled.div`
 `;
 
 function Description() {
-  const { product } = useContext(OverviewContext);
+  const { product } = useContext(GlobalContext);
 
   return (
     <Host>

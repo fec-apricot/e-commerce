@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { GlobalContext } from '../GlobalContext.jsx';
 import {
-  OverviewContext,
   OverviewContextProvider,
 } from './OverviewContext.jsx';
 import ImageGallery from './ImageGallery.jsx';
@@ -44,7 +44,7 @@ const Price = styled.div`
 `;
 
 function Overview() {
-  const { product } = useContext(OverviewContext);
+  const { product } = useContext(GlobalContext);
 
   return (
     <OverviewContextProvider>
