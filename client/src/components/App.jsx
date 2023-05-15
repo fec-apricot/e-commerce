@@ -19,9 +19,7 @@ function App() {
       <br />
       <br />
       <br />
-      <OverviewContextProvider>
-        <Questions />
-      </OverviewContextProvider>
+      <Questions />
       <br />
       <br />
       <br />

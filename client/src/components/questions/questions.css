@@ -123,7 +123,7 @@
 .invalidInput {
   color: red;
   text-align: center;
-  font-size: 12pt;
+  font-size: 10pt;
   /* margin: auto; */
 }
 
@@ -147,7 +147,7 @@
 
 .modal {
   width: 540px;
-  height: 520px;
+  height: 500px;
   background: white;
   color: white;
   z-index: 10;

@@ -1,19 +1,20 @@
 import React, { useEffect, useContext, useState } from 'react';
 import parse from '../../parse';
 import { GlobalContext } from '../GlobalContext.jsx';
-import { OverviewContext } from '../overview/OverviewContext.jsx';
+// import { OverviewContext } from '../overview/OverviewContext.jsx';
 import './questions.css';
 // import { RiCloseLine } from "react-icons/ri";
 
-function AnswerForm({ setOpenForm, question }) {
+function AnswerForm({ setOpenForm, question, setAnswers, setBurn, burn }) {
   // const { productID } = useContext(GlobalContext);
+  const { product, setProduct } = useContext(GlobalContext);
   // const { product } = useContext(OverviewContext);
   const [answerBody, setAnswerBody] = useState('');
   const [userName, setName] = useState('');
   const [userEmail, setEmail] = useState('');
   const [inputErr, setInputErr] = useState(false);
   // const [images, setImages] = useState([]);
-  // console.log('PRODUCT', product)
+  console.log('PRODUCT', product)
 
   const submitForm = (event) => {
     event.preventDefault();
@@ -24,7 +25,9 @@ function AnswerForm({ setOpenForm, question }) {
         name: userName,
         email: userEmail,
       })
-        .then(() => console.log('question form submitted'))
+        .then(() => setBurn(!burn))
+        // parse.get(`/qa/questions/${question.question_id}/answers`)
+        //   .then((data) => setAnswers(data.results)))
         .catch((err) => console.log('unable to add use questions', err));
     } else {
       setInputErr(true);
@@ -40,7 +43,7 @@ function AnswerForm({ setOpenForm, question }) {
           <div className="modalHeader">
             <h5 className="heading">Submit your Answer</h5>
             <h6 className="subheading">product name: {question.question_body}</h6>
-           {inputErr && <p className="invalidInput">You must enter the following:</p>}
+          {inputErr && <p className="invalidInput">You must enter the following:</p>}
           </div>
           <button type="button" className="closeBtn" onClick={() => setOpenForm(false)}>
             {/* <RiCloseLine style={{ marginBottom: "-3px" }} /> */}
