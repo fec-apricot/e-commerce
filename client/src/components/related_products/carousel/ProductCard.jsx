@@ -7,12 +7,9 @@ import './ProductCard.css';
 function ProductCard({
   relatedID,
   triggerFunction,
-  dataStore,
-  products,
-  details,
   burn,
-  allProducts,
   rpMode,
+  dataStore,
 }) {
   const { productID } = useContext(GlobalContext);
   const [productIdNum, setProductIdNum] = useState(0);
@@ -21,8 +18,8 @@ function ProductCard({
   const [ratings, setRatings] = useState({});
   const [imageURL, setImageURL] = useState('');
   const [title, setTitle] = useState('');
-  const [isBtn, setIsBtn] = useState(false);
-  const [myInfo, setMyInfo] = useState({});
+  // const [isBtn, setIsBtn] = useState(false);
+  // const [myInfo, setMyInfo] = useState({});
 
   const updateImageURL = () => {
     if (productStyles === undefined) { return; }
@@ -43,7 +40,7 @@ function ProductCard({
   };
 
   const buildTitle = (id) => {
-    let expandedTitle = `${products[id][0].name} - ${products[id][0].slogan ? products[id][0].slogan : ''}`;
+    let expandedTitle = `${dataStore[id][0].name} - ${dataStore[id][0].slogan ? dataStore[id][0].slogan : ''}`;
     if (expandedTitle.length > 45) {
       expandedTitle = expandedTitle.slice(0, 45);
       expandedTitle += '...';
@@ -59,39 +56,31 @@ function ProductCard({
   useEffect(() => {
     console.log('------+++++++=======******* * * * * * productID changed', productID, relatedID);
     if (!rpMode) {
-      setProductIdNum(productID);
+      // setProductIdNum(productID);
     }
   }, [productID]);
 
   useEffect(() => {
-    // if (relatedID === productID) {
-    //   setIsBtn(true);
-    //   setProductIdNum(productID);
-    //   console.log('reset buttons productIdNum to????????????', productID);
-    // }
     if (!rpMode) { setProductIdNum(productID); }
-    // if (isBtn) {
-    //   setProductIdNum(productID);
-    // }
-    console.log('my id: ', relatedID, ' my products: ', products, ' my details: ', details, ' and allProducts: ', allProducts, ' and the dataStore:', dataStore);
-    if (products[productIdNum] !== undefined) {
-      console.log('Info made it to the card', products[productIdNum]);
-      setProductInfo(products[productIdNum][0]);
-      setProductStyles(products[productIdNum][1]);
-      setRatings(products[productIdNum][2].ratings);
-      buildTitle(productIdNum);
+
+    console.log(rpMode ? 'RP' : 'Outfit');
+    console.log('my id: ', relatedID, ' and the dataStore:', dataStore);
+    if (dataStore[relatedID] !== undefined && dataStore[relatedID][0] !== undefined) {
+      console.log('Info made it to the card', dataStore[relatedID]);
+      setProductInfo(dataStore[relatedID][0]);
+      setProductStyles(dataStore[relatedID][1]);
+      setRatings(dataStore[relatedID][2].ratings);
+      buildTitle(relatedID);
     }
-  }, [products[relatedID], productIdNum], burn);
+  }, [relatedID, dataStore[relatedID], burn, productID]);
 
   useEffect(() => {
     console.log('dataStore on card load', dataStore);
-    console.log('the details+++++++========', details, products);
-    console.log('the diff? ', productID, relatedID);
     if (relatedID === 0) {
       const value = `${productID}`;
       setProductIdNum(Number(value));
     } else {
-      setProductIdNum(relatedID);
+      // setProductIdNum(relatedID);
     }
   }, []);
 
@@ -103,7 +92,8 @@ function ProductCard({
       onKeyDown={() => {}}
       onClick={(e) => {
         e.preventDefault();
-        triggerFunction(isBtn ? productIdNum : relatedID); // was relatedID
+        // triggerFunction(isBtn ? productIdNum : relatedID); // was relatedID
+        triggerFunction(relatedID);
       }}
     >
       <div className="imgDiv">
