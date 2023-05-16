@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const DefaultView = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: ${(props) => (props.expanded ? 'cover' : 'contain')};
+  object-fit: contain;
   cursor: ${(props) => (props.zoomedIn ? 'zoom-out' : 'zoom-in')};
   margin-left: ${(props) => (props.expanded ? '100px' : 0)};
 `;
