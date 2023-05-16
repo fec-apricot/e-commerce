@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import { GlobalContext } from '../GlobalContext.jsx';
 
 const Host = styled.div`
+  width: 76%;
   display: flex;
-  margin: 20px 60px 20px 60px;
+  margin: 20px 100px;
 `;
 
 const SloganAndDescriptionContainer = styled.div`
+  width: 75%;
   display: flex;
   flex-direction: column;
   margin-right: 20px;
@@ -27,6 +29,7 @@ const VerticalLine = styled.div`
 `;
 
 const FeatureContainer = styled.div`
+  width: 25%;
   display: flex;
   flex-direction: column;
   margin-left: 20px;
