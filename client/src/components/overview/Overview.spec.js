@@ -1,115 +1,159 @@
 /* eslint-env jest */
 import React from 'react';
 import axios from 'axios';
-import { render, screen, cleanup } from '@testing-library/react';
-import { act } from 'react-test-renderer';
+import {
+  render,
+  screen,
+  fireEvent,
+  within,
+  cleanup,
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Overview from './Overview.jsx';
 import { OverviewContextProvider } from './OverviewContext.jsx';
 import { GlobalContext } from '../GlobalContext.jsx';
+import { mockProduct, mockStyles } from './mockProductData';
 
 jest.mock('axios');
+axios.get.mockImplementation((url) => {
+  if (url === '/products/40450') {
+    return Promise.resolve({
+      data: mockProduct,
+    });
+  }
+  if (url === '/products/40450/styles') {
+    return Promise.resolve({
+      data: mockStyles,
+    });
+  }
+  return Promise.reject(new Error('Mock axios GET failed'));
+});
+
+axios.post.mockImplementation((url) => {
+  if (url === '/cart') {
+    return Promise.resolve();
+  }
+  return Promise.reject(new Error('Mock axios POST failed'));
+});
 
 describe('Overview component', () => {
-  beforeEach(() => {
-    axios.get.mockImplementation((url) => {
-      if (url === '/products/40450') {
-        return Promise.resolve({
-          data: {
-            id: 40450,
-            campus: 'hr-rfp',
-            name: 'Alivia Slacks',
-            slogan: 'Voluptas maiores et dolores harum.',
-            description: 'Voluptas nam voluptas non qui. Dolore mollitia qui rerum illo. Tempore sed et assumenda fuga voluptates officiis explicabo inventore. Aut voluptatibus doloribus.',
-            category: 'Slacks',
-            default_price: '873.00',
-            created_at: '2021-08-13T14:38:44.588Z',
-            updated_at: '2021-08-13T14:38:44.588Z',
-            features: [
-              {
-                feature: 'Cut',
-                value: '\'Striaght\'',
-              },
-            ],
-          },
-        });
+  beforeEach(async () => {
+    const mockProductID = 40450;
+    const mockSetProductID = jest.fn();
+
+    render(
+      <GlobalContext.Provider value={
+        { productID: mockProductID, setProductID: mockSetProductID, product: mockProduct }
       }
-      if (url === '/products/40450/styles') {
-        return Promise.resolve({
-          data: {
-            product_id: '40450',
-            results: [{
-              style_id: 240910,
-              name: 'Purple',
-              original_price: '873.00',
-              sale_price: '668.00',
-              default: true,
-              photos: [
-                {
-                  thumbnail_url: 'https://images.unsplash.com/uploads/1412198532414025532c0/6a31309c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-                  url: 'https://images.unsplash.com/photo-1507920676663-3b72429774ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80',
-                },
-              ],
-              skus: {
-                1397049: {
-                  quantity: 15,
-                  size: 'XS',
-                },
-                1397050: {
-                  quantity: 15,
-                  size: 'S',
-                },
-                1397051: {
-                  quantity: 51,
-                  size: 'M',
-                },
-              },
-            },
-            ],
-          },
-        });
-      }
-      return Promise.reject(new Error('Mock axios GET failed'));
-    });
+      >
+        <OverviewContextProvider>
+          <Overview />
+        </OverviewContextProvider>
+      </GlobalContext.Provider>,
+    );
   });
 
   afterEach(cleanup);
 
-  describe('Product overview and description', () => {
-    beforeEach(async () => {
-      const mockProductID = 40450;
-      await act(() => {
-        render(
-          <GlobalContext.Provider value={{ productID: mockProductID }}>
-            <OverviewContextProvider>
-              <Overview />
-            </OverviewContextProvider>
-          </GlobalContext.Provider>,
-        );
-      });
-    });
-    it('should render product category', () => {
-      expect(screen.getByText('Slacks')).toBeInTheDocument();
-    });
+  it('should render product general information correctly', () => {
+    expect(screen.getByText('Slacks')).toBeInTheDocument();
+    expect(screen.getByText('Alivia Slacks')).toBeInTheDocument();
+    expect(screen.getByText('873.00')).toBeInTheDocument();
+    expect(screen.getByText('Voluptas maiores et dolores harum.')).toBeInTheDocument();
+    expect(screen.getByText('Voluptas nam voluptas non qui. Dolore mollitia qui rerum illo. Tempore sed et assumenda fuga voluptates officiis explicabo inventore. Aut voluptatibus doloribus.')).toBeInTheDocument();
+    expect(screen.getByText('Cut: \'Straight\'')).toBeInTheDocument();
+  });
 
-    it('should render product name', () => {
-      expect(screen.getByText('Alivia Slacks')).toBeInTheDocument();
-    });
+  it('should have one selected style at all times', () => {
+    expect(screen.queryByText('SELECTED STYLE')).toBeNull();
+  });
 
-    it('should render product price', () => {
-      expect(screen.getByText('873.00')).toBeInTheDocument();
-    });
+  it('should render name of current style above the list of styles', async () => {
+    const styleTitleElement = await screen.findByText('Purple');
+    expect(styleTitleElement).toBeInTheDocument();
+  });
 
-    it('should render product slogan', () => {
-      expect(screen.getByText('Voluptas maiores et dolores harum.')).toBeInTheDocument();
-    });
+  it('should show a list of styles', async () => {
+    const styleListElement = await screen.findAllByTestId(/style-item-/i);
+    expect(styleListElement).toHaveLength(2);
+  });
 
-    it('should render product description', () => {
-      expect(screen.getByText('Voluptas nam voluptas non qui. Dolore mollitia qui rerum illo. Tempore sed et assumenda fuga voluptates officiis explicabo inventore. Aut voluptatibus doloribus.')).toBeInTheDocument();
-    });
+  it('should show a checkmark on selected style', async () => {
+    const selectedStyleElement = await screen.findByTestId('style-item-0');
+    expect(within(selectedStyleElement).getByTestId('checkmark')).toBeInTheDocument();
+  });
 
-    it('should render product features', () => {
-      expect(screen.getByText('Cut: \'Striaght\'')).toBeInTheDocument();
-    });
+  it('should not show a checkmark on unselected style', async () => {
+    const unselectedStyleElement = await screen.findByTestId('style-item-1');
+    expect(within(unselectedStyleElement).queryByTestId('checkmark')).toBeNull();
+  });
+
+  it('should be able to select a different style', async () => {
+    const anotherStyleElement = await screen.findByTestId('style-item-1');
+    fireEvent.click(anotherStyleElement);
+    expect(screen.getByText('Pink')).toBeInTheDocument();
+  });
+
+  it('should be able to expand the dropdown button of size selector on click', async () => {
+    expect(screen.queryByTestId('size-dropdown-list')).not.toBeInTheDocument();
+    fireEvent.click(await screen.findByTestId('size-dropdown-btn'));
+    expect(screen.getByTestId('size-dropdown-list')).toBeInTheDocument();
+  });
+
+  it('should collapse the size dropdown list on mouse leave', async () => {
+    fireEvent.click(await screen.findByTestId('size-dropdown-btn'));
+    expect(screen.getByTestId('size-dropdown-list')).toBeInTheDocument();
+    fireEvent.mouseLeave(screen.getByTestId('size-dropdown-list'));
+    expect(screen.queryByTestId('size-dropdown-list')).not.toBeInTheDocument();
+  });
+
+  it('should only be able to click the dropdown button of quantity selector when size is selected', async () => {
+    expect(screen.getByTestId('qty-dropdown-btn')).toBeDisabled();
+
+    fireEvent.click(await screen.findByTestId('size-dropdown-btn'));
+    fireEvent.click(screen.getByTestId('size-item-1397050'));
+    expect(screen.getByTestId('qty-dropdown-btn')).not.toBeDisabled();
+  });
+
+  it('should render the dropdown list of quantity selector correctly', async () => {
+    fireEvent.click(await screen.findByTestId('size-dropdown-btn'));
+    fireEvent.click(screen.getByTestId('size-item-1397049'));
+    fireEvent.click(screen.getByTestId('qty-dropdown-btn'));
+    expect(screen.getAllByTestId(/qty-item-/i)).toHaveLength(10);
+    fireEvent.click(screen.getByTestId('size-dropdown-btn'));
+    fireEvent.click(screen.getByTestId('size-item-1397050'));
+    expect(screen.getAllByTestId(/qty-item-/i)).toHaveLength(15);
+  });
+
+  it('should collapse the quantity dropdown list on mouse leave', async () => {
+    fireEvent.click(await screen.findByTestId('size-dropdown-btn'));
+    fireEvent.click(screen.getByTestId('size-item-1397049'));
+    fireEvent.click(screen.getByTestId('qty-dropdown-btn'));
+    expect(screen.getByTestId('qty-dropdown-list')).toBeInTheDocument();
+    fireEvent.mouseLeave(screen.getByTestId('qty-dropdown-list'));
+    expect(screen.queryByTestId('qty-dropdown-list')).not.toBeInTheDocument();
+  });
+
+  it('should be able to select quantity', async () => {
+    fireEvent.click(await screen.findByTestId('size-dropdown-btn'));
+    fireEvent.click(screen.getByTestId('size-item-1397049'));
+    fireEvent.click(screen.getByTestId('qty-dropdown-btn'));
+    fireEvent.click(screen.getByTestId('qty-item-3'));
+    expect(screen.queryByTestId('qty-dropdown-list')).not.toBeInTheDocument();
+  });
+
+  it('should not be able to add to cart without selected size', () => {
+    fireEvent.click(screen.getByTestId('add-to-cart-btn'));
+    expect(screen.getByText('Please select size')).toBeInTheDocument();
+  });
+
+  it('should be able to add to cart with selected size', async () => {
+    fireEvent.click(await screen.findByTestId('size-dropdown-btn'));
+    fireEvent.click(screen.getByTestId('size-item-1397049'));
+    fireEvent.click(screen.getByTestId('qty-dropdown-btn'));
+    fireEvent.click(screen.getByTestId('qty-item-3'));
+    fireEvent.click(screen.getByTestId('add-to-cart-btn'));
+    screen.debug();
+    expect(await screen.findByText('Added to cart!')).toBeInTheDocument();
   });
 });

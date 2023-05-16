@@ -12,27 +12,19 @@ const OverviewContext = createContext();
 
 function OverviewContextProvider({ children }) {
   const { productID } = useContext(GlobalContext);
-
-  const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState({});
   const productMemo = useMemo(
     () => ({
-      product,
       selectedStyle,
       setSelectedStyle,
       styles,
     }),
-    [product, selectedStyle, setSelectedStyle, styles],
+    [selectedStyle, setSelectedStyle, styles],
   );
 
   useEffect(() => {
-    parse
-      .get(`/products/${productID}`)
-      .then((data) => {
-        setProduct(data);
-      })
-      .then(() => parse.get(`/products/${productID}/styles`))
+    parse.get(`/products/${productID}/styles`)
       .then((data) => {
         setStyles(data?.results);
         setSelectedStyle(data?.results[0]);
