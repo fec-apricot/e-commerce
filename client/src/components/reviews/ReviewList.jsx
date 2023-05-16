@@ -43,10 +43,12 @@ function ReviewList({ productID, sortParam, setSortParam, reviewList, setReviewL
           </select>
         </label>
       </form>
-      {reviewList.slice(0, sliceCount)
-        .map((review) => (
-          <ReviewTile review={review} key={review.review_id} />
-        ))}
+      <div className="tile-list" data-testid="tile-list">
+        {reviewList.slice(0, sliceCount)
+          .map((review) => (
+            <ReviewTile review={review} key={review.review_id} />
+          ))}
+      </div>
       <button type="submit" onClick={getMoreReviews}>More Reviews</button>
       <button type="submit">Write a review</button>
     </div>
