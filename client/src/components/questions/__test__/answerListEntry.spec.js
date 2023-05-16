@@ -36,7 +36,7 @@ describe('Questions Component', () => {
     expect(helpBtn[0]).toBeInTheDocument();
   });
 
-  it('should render a Add an Answer button', () => {
+  it('should render a report button', () => {
     const report = screen.getAllByText(/Report/i);
     expect(report[0]).toBeInTheDocument();
   });

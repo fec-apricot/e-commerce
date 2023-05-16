@@ -30,7 +30,7 @@ describe('Questions Component', () => {
       );
     });
   });
-  it('should have a llist of Questions', () => {
+  it('should have a list of Questions', () => {
     screen.debug();
     screen.logTestingPlaygroundURL();
     const helpBtn = screen.getAllByText(/Q:/);
@@ -49,7 +49,7 @@ describe('Questions Component', () => {
     expect(addAnswer).toBeInTheDocument();
   });
 
-  it('should incement the helpfulness count', () => {
+  it('should increment the helpfulness count', () => {
     const button = screen.getByTestId('helpBtn');
     expect(screen.getByText(/0/)).toBeInTheDocument();
     fireEvent.click(button);

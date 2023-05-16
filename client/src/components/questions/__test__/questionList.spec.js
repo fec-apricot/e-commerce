@@ -66,7 +66,7 @@ describe('Questions Component', () => {
     expect(helpBtn[0]).toBeInTheDocument();
   });
 
-  it('should render a Add an Answer button', () => {
+  it('should render an Add an Answer button', () => {
     const addAnswer = screen.getAllByText(/Add Answer/i);
     expect(addAnswer[0]).toBeInTheDocument();
   });

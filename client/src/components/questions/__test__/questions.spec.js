@@ -32,7 +32,7 @@ describe('Questions Component', () => {
     expect(moreBtn).toBeInTheDocument();
   });
 
-  it('should render a Add a Question button', () => {
+  it('should render an Add a Question button', () => {
     const addBtn = screen.getByTestId('addBtn');
     expect(addBtn).toBeInTheDocument();
   });

@@ -30,14 +30,14 @@ describe('QuestionForm Component', () => {
       );
     });
   });
-  it('should render a title, Have A Question?', () => {
+  it('should render a title, Submint your Answer', () => {
     screen.debug();
     screen.logTestingPlaygroundURL();
     const title = screen.getByText(/Submit your Answer/i);
     expect(title).toBeInTheDocument();
   });
 
-  it('should render an input field for questions', () => {
+  it('should render an input field for answers', () => {
     const answerField = screen.getByText(/Your Answer/);
     expect(answerField).toBeInTheDocument();
   });
@@ -57,7 +57,7 @@ describe('QuestionForm Component', () => {
     expect(submit).toBeInTheDocument();
   });
 
-  it('should render a Add a Question button', () => {
+  it('should render cancel button', () => {
     const cancel = screen.getByTestId('cancel');
     expect(cancel).toBeInTheDocument();
   });
@@ -69,19 +69,19 @@ describe('QuestionForm Component', () => {
     expect(button).toBeVisible();
   });
 
-  it('should test for change', () => {
+  it('should test for change on answer field', () => {
     const input = screen.getByTestId('input1');
     fireEvent.change(input, { target: { value: 'hello world' } });
     expect(input.value).toBe('hello world');
   });
 
-  it('should test for change', () => {
+  it('should test for change on name input', () => {
     const input = screen.getByTestId('input2');
     fireEvent.change(input, { target: { value: 'hello world' } });
     expect(input.value).toBe('hello world');
   });
 
-  it('should test for change', () => {
+  it('should test for change on email input', () => {
     const input = screen.getByTestId('input3');
     fireEvent.change(input, { target: { value: 'hello world' } });
     expect(input.value).toBe('hello world');

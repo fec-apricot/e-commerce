@@ -24,7 +24,6 @@ describe('QuestionForm Component', () => {
   });
   it('should render a title, Have A Question?', () => {
     screen.debug();
-    // screen.logTestingPlaygroundURL();
     const title = screen.getByText(/Have A Question/i);
     expect(title).toBeInTheDocument();
   });
@@ -39,7 +38,7 @@ describe('QuestionForm Component', () => {
     expect(nickname).toBeInTheDocument();
   });
 
-  it('should render an input for name', () => {
+  it('should render an input for email', () => {
     const email = screen.getByText(/Your email/i);
     expect(email).toBeInTheDocument();
   });
@@ -49,7 +48,7 @@ describe('QuestionForm Component', () => {
     expect(submit).toBeInTheDocument();
   });
 
-  it('should render a Add a Question button', () => {
+  it('should render a cancel button', () => {
     const cancel = screen.getByTestId('cancel');
     expect(cancel).toBeInTheDocument();
   });
@@ -66,26 +65,19 @@ describe('QuestionForm Component', () => {
     expect(screen.getByText(/Submit/)).toBeVisible();
   });
 
-  it('should not submit without input fields filled in', () => {
-    const button = screen.getByTestId('submit');
-    expect(screen.getByText(/Submit/)).toBeInTheDocument();
-    fireEvent.click(button);
-    expect(screen.getByText(/Submit/)).toBeVisible();
-  });
-
-  it('should test for change', () => {
+  it('should test for change in question input field', () => {
     const input = screen.getByTestId('input1');
     fireEvent.change(input, { target: { value: 'hello world' } });
     expect(input.value).toBe('hello world');
   });
 
-  it('should test for change', () => {
+  it('should test for change in name input', () => {
     const input = screen.getByTestId('input2');
     fireEvent.change(input, { target: { value: 'hello world' } });
     expect(input.value).toBe('hello world');
   });
 
-  it('should test for change', () => {
+  it('should test for change in email input', () => {
     const input = screen.getByTestId('input3');
     fireEvent.change(input, { target: { value: 'hello world' } });
     expect(input.value).toBe('hello world');
