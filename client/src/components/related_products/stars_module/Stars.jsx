@@ -48,7 +48,7 @@ function Stars({
             tabIndex="-1"
             onKeyDown={() => {}}
           >
-            <Star gold={i <= hoveredStar || i <= selectedStar} size={size} />
+            <Star gold={i <= hoveredStar || i <= selectedStar} size={size} i={i} />
           </span>
         ))}
       </div>

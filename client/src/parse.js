@@ -1,8 +1,10 @@
 const axios = require('axios');
 
+let count = 0;
 const parse = {
   get: (url) => {
-    console.log('GET triggered');
+    count += 1;
+    console.log('GET ', count, 'triggered', url);
     return axios
       .get(url)
       .then((res) => {

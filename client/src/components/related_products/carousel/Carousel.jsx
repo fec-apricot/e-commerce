@@ -1,73 +1,122 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, {
+  useState,
+  useContext,
+  useEffect,
+} from 'react';
 import { GlobalContext } from '../../GlobalContext.jsx';
-import parse from '../../../parse';
+// import parse from '../../../parse';
 import ProductCard from './ProductCard.jsx';
 import './Carousel.css';
 
-function Carousel() {
+function Carousel({
+  rpMode,
+  dataStore,
+  related,
+  burn,
+  outfitToggle,
+  outfitList,
+}) {
   const { productID, setProductID } = useContext(GlobalContext);
-  const [related, setRelated] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
+  const [slide2Index, setSlide2Index] = useState(0);
 
-  const productSlider = document.querySelector('.productTrack');
+  const trackLimit = (rpMode ? 5 : 4);
+  let productSlider = document.querySelector('.productTrack');
 
   const changeProduct = (newID) => {
+    productSlider = document.querySelector('.productTrack');
+    console.log('product changed');
+    if (newID === 10001) { return; }
     setProductID(newID);
     productSlider.style.setProperty('--slider-index', 0);
+    productSlider.style.setProperty('--slider2-index', 0);
     setSlideIndex(0);
+    setSlide2Index(0);
+    // setOutfitBtnID(newID);
   };
 
   const slide = (direction) => {
-    const index = Number(productSlider.style.getPropertyValue('--slider-index'));
-    if (direction === 'left') {
-      productSlider.style.setProperty('--slider-index', index - 1);
-      setSlideIndex(slideIndex - 1);
+    productSlider = document.querySelector('.productTrack');
+    if (rpMode) {
+      console.log('RP slide');
+      const index = Number(productSlider.style.getPropertyValue('--slider-index'));
+      if (direction === 'left') {
+        productSlider.style.setProperty('--slider-index', index - 1);
+        setSlideIndex(slideIndex - 1);
+      } else {
+        productSlider.style.setProperty('--slider-index', index + 1);
+        setSlideIndex(slideIndex + 1);
+      }
+      // console.log('rp slide index:', Number(productSlider.style.getPropertyValue('--slider-index')));
     } else {
-      productSlider.style.setProperty('--slider-index', index + 1);
-      setSlideIndex(slideIndex + 1);
+      console.log('Outfit slide');
+      const index = Number(productSlider.style.getPropertyValue('--slider2-index'));
+      if (direction === 'left') {
+        productSlider.style.setProperty('--slider2-index', index - 1);
+        setSlide2Index(slide2Index - 1);
+      } else {
+        productSlider.style.setProperty('--slider2-index', index + 1);
+        setSlide2Index(slide2Index + 1);
+      }
+      // console.log('outfit slide index:', Number(productSlider.style.getPropertyValue('--slider2-index')));
     }
-    // console.log(Number(productSlider.style.getPropertyValue('--slider-index')));
   };
 
   useEffect(() => {
-    parse
-      .get(`/products/${productID}/related`)
-      .then((res) => {
-        setRelated(res);
-      })
-      .catch((err) => {
-        console.log('RP Carousel GET err', err);
-      });
-  }, [productID]);
+
+  }, []);
 
   return (
     <div className="carousel">
       <ul className="productTrack">
-        {slideIndex < 1 ? '' : (
+        {(rpMode ? (slideIndex < 1) : (slide2Index < 1)) ? '' : (
           <button
             className="carouselButton productLeft"
+            data-testid="carouselBtnL"
             type="button"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               slide('left');
             }}
           >
             &lt;
           </button>
         )}
+        {rpMode ? '' : (
+          <li key={productID} className={`AddToOutfitBtn ${productID}`}>
+            <ProductCard
+              relatedID={productID}
+              triggerFunction={outfitToggle}
+              // products={products}
+              burn={burn}
+              rpMode={rpMode}
+              dataStore={dataStore}
+            />
+          </li>
+        )}
         {
-          related
-            .map((id) => (
+          (rpMode ? related : outfitList)
+            .map((id, index) => (
               // eslint-disable-next-line react/no-array-index-key
-              <li key={id} className="productCard-slide">
-                <ProductCard relatedID={id} changeProduct={changeProduct} />
+              <li key={`${id}-${index}`} className={`${rpMode ? 'productCard-slide' : 'outfitCard-slide'} ${id}`}>
+                <ProductCard
+                  relatedID={id}
+                  triggerFunction={changeProduct}
+                  // products={products}
+                  burn={burn}
+                  rpMode={rpMode}
+                  dataStore={dataStore}
+                />
               </li>
             ))
         }
-        {related.length - slideIndex < 5 ? '' : (
+        {(rpMode ? (related.length - slideIndex < trackLimit) : (outfitList.length - slide2Index < trackLimit)) ? '' : (
           <button
             className="carouselButton productRight"
+            data-testid="carouselBtnR"
             type="button"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               slide('right');
             }}
           >
