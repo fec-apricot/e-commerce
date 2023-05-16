@@ -10,12 +10,12 @@ import '../../dist/styles.css';
 function App() {
   return (
     <GlobalContextProvider>
-      <div>HEllo!!</div>
+      {/* <div>HEllo!!</div>
       <OverviewContextProvider>
         <Overview />
-      </OverviewContextProvider>
-      <RelatedProducts />
-      <br />
+      </OverviewContextProvider> */}
+      {/* <RelatedProducts /> */}
+      {/* <br />
       <br />
       <br />
       <br />
@@ -23,7 +23,7 @@ function App() {
       <br />
       <br />
       <br />
-      <br />
+      <br /> */}
       <Reviews />
     </GlobalContextProvider>
   );

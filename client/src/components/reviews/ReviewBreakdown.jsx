@@ -5,11 +5,11 @@ import Stars from '../related_products/stars_module/Stars.jsx';
 
 function ReviewBreakdown({ productID, reviewList, setReviewList, sortParam }) {
   const [allRatings, setAllRatings] = useState({});
-  // const [reviewScore1, setReviewScore1] = useState(0);
-  // const [reviewScore2, setReviewScore2] = useState(0);
-  // const [reviewScore3, setReviewScore3] = useState(0);
-  // const [reviewScore4, setReviewScore4] = useState(0);
-  // const [reviewScore5, setReviewScore5] = useState(0);
+  const [reviewScore1, setReviewScore1] = useState(0);
+  const [reviewScore2, setReviewScore2] = useState(0);
+  const [reviewScore3, setReviewScore3] = useState(0);
+  const [reviewScore4, setReviewScore4] = useState(0);
+  const [reviewScore5, setReviewScore5] = useState(0);
   const [totalReviews, setTotalReviews] = useState(0);
   const [reviewAverage, setReviewAverage] = useState(0);
   const [recommended, setRecommended] = useState(0);
@@ -37,15 +37,15 @@ function ReviewBreakdown({ productID, reviewList, setReviewList, sortParam }) {
 
   const reviewMeta = () => parse.get(`reviews/meta/?product_id=${productID}`)
     .then((data) => {
-      // console.log('Metadata :', data);
+      console.log('Metadata :', data);
       const totalReviewArray = Object.values(data.ratings);
       setAllRatings(data.ratings);
       setTotalReviews(totalReviewArray.reduce((acc, rating) => acc + Number(rating), 0));
-      // setReviewScore1(Number(data.ratings['1']));
-      // setReviewScore2(Number(data.ratings['2']));
-      // setReviewScore3(Number(data.ratings['3']));
-      // setReviewScore4(Number(data.ratings['4']));
-      // setReviewScore5(Number(data.ratings['5']));
+      setReviewScore1(Number(data.ratings['1']));
+      setReviewScore2(Number(data.ratings['2']));
+      setReviewScore3(Number(data.ratings['3']));
+      setReviewScore4(Number(data.ratings['4']));
+      setReviewScore5(Number(data.ratings['5']));
       setRecommended(Number(data.recommended.true));
 
       setReviewAverage((((Number(data.ratings['1'])) * 1) + ((Number(data.ratings['2'])) * 2) + ((Number(data.ratings['3'])) * 3)
@@ -87,101 +87,53 @@ function ReviewBreakdown({ productID, reviewList, setReviewList, sortParam }) {
     return setReviewList(filteredList);
   };
   useEffect(() => { filterByRating(); }, [filterObj])
-  if (Object.values(filterObj).every((filterBool) => filterBool === false)) {
-    return (
-      <>
-        <h3
-          role="presentation"
-          onClick={() => {
-            // console.log('total reviews: ', totalReviews)
-            // console.log('1: ', reviewScore1)
-            // console.log('2: ', reviewScore2)
-            // console.log('3: ', reviewScore3)
-            // console.log('4: ', reviewScore4)
-            // console.log('5: ', reviewScore5)
-            // console.log('average: ', reviewAverage);
-            // console.log('recommended ', recommended);
-            // console.log('bar 1 percent', bar1)
-            // console.log('bar 2 percent', bar2)
-            // console.log('bar 3 percent', bar3)
-            // console.log('bar 4 percent', bar4)
-            // console.log('bar 5 percent', bar5)
-            // console.log('filterObj', filterObj);
-            // console.log('allreviews ', allReviews);
-            // console.log('reviewList ', reviewList);
-          }}
-        >
-          Rating Breakdown
-        </h3>
-        <div>
-          <div className="review-average">
-            {reviewAverage.toString().slice(0, 3)}
-          </div>
-          <div className="review-star-average">
-            <Stars ratings={allRatings} size={20} interactive={false} cb={() => {}} />
-          </div>
-        </div>
-        <div className="percent-recommend">{`${Math.floor((recommended / totalReviews) * 100)}% of reviews recommend this product`}</div>
-        <div className="review-graph-background">
-          <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(5); }}>
-            <div className="review-bar-label"> 5 stars </div>
-            <div className="outer">
-              <div className="inner" style={{width: `${bar5}%`}}></div>
-            </div>
-          </div>
-          <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(4); }}>
-            <div className="review-bar-label"> 4 stars </div>
-            <div className="outer">
-              <div className="inner" style={{width: `${bar4}%`}}></div>
-            </div>
-          </div>
-          <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(3); }}>
-            <div className="review-bar-label"> 3 stars </div>
-            <div className="outer">
-              <div className="inner" style={{width: `${bar3}%`}}></div>
-            </div>
-          </div>
-          <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(2); }}>
-            <div className="review-bar-label"> 2 stars </div>
-            <div className="outer">
-              <div className="inner" style={{width: `${bar2}%`}}></div>
-            </div>
-          </div>
-          <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(1); }}>
-            <div className="review-bar-label"> 1 stars </div>
-            <div className="outer">
-              <div className="inner" style={{width: `${bar1}%`}}></div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
+
+  const resetFilter = () => {
+    setFilterObj({
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+    });
+  };
+  useEffect(() => { resetFilter(); }, [productID]);
   return (
     <>
       <h3
         role="presentation"
-        // onClick={() => {
-        //   console.log('allreviews ', allReviews);
-        //   console.log('reviewList ', reviewList);
-        // }}
+  //           // console.log('total reviews: ', totalReviews)
+  //           // console.log('1: ', reviewScore1)
+  //           // console.log('2: ', reviewScore2)
+  //           // console.log('3: ', reviewScore3)
+  //           // console.log('4: ', reviewScore4)
+  //           // console.log('5: ', reviewScore5)
+  //           // console.log('average: ', reviewAverage);
+  //           // console.log('recommended ', recommended);
+  //           // console.log('bar 1 percent', bar1)
+  //           // console.log('bar 2 percent', bar2)
+  //           // console.log('bar 3 percent', bar3)
+  //           // console.log('bar 4 percent', bar4)
+  //           // console.log('bar 5 percent', bar5)
+  //           // console.log('filterObj', filterObj);
+  //           // console.log('allreviews ', allReviews);
+  //           // console.log('reviewList ', reviewList);
       >
         Rating Breakdown
       </h3>
-      <div>{`Filtered reviews by star ratings (${filterKeys.filter((key) => filterObj[key]).slice(0, filterKeys.length - 1).join(', ')})`}</div>
-      <div
-        role="presentation"
-        onClick={() => {
-          setFilterObj({
-            1: false,
-            2: false,
-            3: false,
-            4: false,
-            5: false,
-          });
-        }}
-      >
-        <u style={{ cursor: 'pointer' }}>Remove All Filters</u>
+      <div>
+        {!(Object.values(filterObj).every((filterBool) => filterBool === false)) &&
+        (
+        <>
+          <div>{`Filtered reviews by star ratings (${filterKeys.filter((key) => filterObj[key]).slice(0, filterKeys.length - 1).join(', ')})`}</div>
+          <div
+            role="presentation"
+            onClick={() => { resetFilter(); }}
+          >
+            <u style={{ cursor: 'pointer' }}>Remove All Filters</u>
+          </div>
+        </>
+        )}
       </div>
       <div>
         <div className="review-average">
@@ -196,32 +148,37 @@ function ReviewBreakdown({ productID, reviewList, setReviewList, sortParam }) {
         <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(5); }}>
           <div className="review-bar-label"> 5 stars </div>
           <div className="outer">
-            <div className="inner" style={{width: `${bar5}%`}}></div>
+            <div className="inner" data-testid="inner" style={{ width: `${bar5}%` }}></div>
           </div>
+          <div className="review-total">{`(${reviewScore5})`}</div>
         </div>
         <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(4); }}>
           <div className="review-bar-label"> 4 stars </div>
           <div className="outer">
-            <div className="inner" style={{width: `${bar4}%`}}></div>
+            <div className="inner" data-testid="inner" style={{ width: `${bar4}%` }}></div>
           </div>
+          <div className="review-total">{`(${reviewScore4})`}</div>
         </div>
         <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(3); }}>
           <div className="review-bar-label"> 3 stars </div>
           <div className="outer">
-            <div className="inner" style={{width: `${bar3}%`}}></div>
+            <div className="inner" data-testid="inner" style={{ width: `${bar3}%` }}></div>
           </div>
+          <div className="review-total">{`(${reviewScore3})`}</div>
         </div>
         <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(2); }}>
           <div className="review-bar-label"> 2 stars </div>
           <div className="outer">
-            <div className="inner" style={{width: `${bar2}%`}}></div>
+            <div className="inner" data-testid="inner" style={{ width: `${bar2}%` }}></div>
           </div>
+          <div className="review-total">{`(${reviewScore2})`}</div>
         </div>
         <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(1); }}>
           <div className="review-bar-label"> 1 stars </div>
           <div className="outer">
-            <div className="inner" style={{width: `${bar1}%`}}></div>
+            <div className="inner" data-testid="inner" style={{ width: `${bar1}%` }}></div>
           </div>
+          <div className="review-total">{`(${reviewScore1})`}</div>
         </div>
       </div>
     </>
