@@ -1,9 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { GlobalContext } from '../GlobalContext.jsx';
-import {
-  OverviewContextProvider,
-} from './OverviewContext.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import Description from './Description.jsx';
 import StyleSelector from './StyleSelector.jsx';
