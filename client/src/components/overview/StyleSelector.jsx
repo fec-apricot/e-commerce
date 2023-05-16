@@ -60,7 +60,7 @@ function StyleSelector() {
   const { selectedStyle, setSelectedStyle, styles } = useContext(OverviewContext);
 
   return (
-    <Host>
+    <Host data-testid="style-selector">
       <StyleTitle>
         <StyleHeader>STYLE &gt; </StyleHeader>
         <SelectedStyle>
@@ -78,7 +78,7 @@ function StyleSelector() {
             onClick={() => {
               setSelectedStyle(style);
             }}
-            data-testid={`style-${index}`}
+            data-testid={`style-item-${index}`}
           >
             <StyleThumbnail
               src={style.photos[0].thumbnail_url}

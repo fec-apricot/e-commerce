@@ -116,8 +116,8 @@ const Notification = styled.div`
 function AddToCart() {
   const { selectedStyle } = useContext(OverviewContext);
   const [skus, setSkus] = useState({});
-  const [selectSizeDropdownExpanded, setSelectSizeDropdownExpanded] = useState(false);
-  const [selectQtyDropdownExpanded, setSelectQtyDropdownExpanded] = useState(false);
+  const [sizeDropdownExpanded, setSizeDropdownExpanded] = useState(false);
+  const [qtyDropdownExpanded, setQtyDropdownExpanded] = useState(false);
   const [selectedSku, setSelectedSku] = useState('');
   const [isInStock, setIsInStock] = useState(false);
   const [selectedQty, setSelectedQty] = useState(1);
@@ -139,7 +139,7 @@ function AddToCart() {
     event.preventDefault();
     if (selectedSku === '') {
       setSelectSizeMsgVisible(true);
-      setSelectSizeDropdownExpanded(true);
+      setSizeDropdownExpanded(true);
       setTimeout(() => {
         setSelectSizeMsgVisible(false);
       }, 5000);
@@ -179,18 +179,20 @@ function AddToCart() {
             disabled={!isInStock}
             onClick={(event) => {
               event.preventDefault();
-              setSelectSizeDropdownExpanded(!selectSizeDropdownExpanded);
+              setSizeDropdownExpanded(!sizeDropdownExpanded);
             }}
+            data-testid="size-dropdown-btn"
           >
             <span>{getSelectSizeBtnContent()}</span>
             <span><img src={DropdownLogo} alt="Dropdown Logo" className="dropdown-icon" /></span>
           </DropdownBtn>
-          {selectSizeDropdownExpanded
+          {sizeDropdownExpanded
           && (
             <DropdownList
               onMouseLeave={() => {
-                setSelectSizeDropdownExpanded(false);
+                setSizeDropdownExpanded(false);
               }}
+              data-testid="size-dropdown-list"
             >
                 {_.map(
                   skus,
@@ -202,8 +204,9 @@ function AddToCart() {
                         event.preventDefault();
                         setSelectedSku(key);
                         setSelectedQty(1);
-                        setSelectSizeDropdownExpanded(false);
+                        setSizeDropdownExpanded(false);
                       }}
+                      data-testid={`size-item-${key}`}
                     >
                         {value.size}
                     </DropdownItem>
@@ -217,18 +220,20 @@ function AddToCart() {
             disabled={selectedSku === ''}
             onClick={(event) => {
               event.preventDefault();
-              setSelectQtyDropdownExpanded(!selectQtyDropdownExpanded);
+              setQtyDropdownExpanded(!qtyDropdownExpanded);
             }}
+            data-testid="qty-dropdown-btn"
           >
             <span>{getSelectQtyBtnContent()}</span>
             <span><img src={DropdownLogo} alt="Dropdown Logo" className="dropdown-icon" /></span>
           </DropdownBtn>
-          {selectQtyDropdownExpanded
+          {qtyDropdownExpanded
             && (
               <DropdownList
                 onMouseLeave={() => {
-                  setSelectQtyDropdownExpanded(false);
+                  setQtyDropdownExpanded(false);
                 }}
+                data-testid="qty-dropdown-list"
               >
                 {skus[selectedSku]
                 && _.range(1, Math.min(16, skus[selectedSku].quantity + 1)).map(
@@ -239,8 +244,9 @@ function AddToCart() {
                       onClick={(event) => {
                         event.preventDefault();
                         setSelectedQty(qty);
-                        setSelectQtyDropdownExpanded(false);
+                        setQtyDropdownExpanded(false);
                       }}
+                      data-testid={`qty-item-${qty}`}
                     >
                       {qty}
                     </DropdownItem>
@@ -249,7 +255,7 @@ function AddToCart() {
               </DropdownList>
             )}
         </SelectContainer>
-        <Button className="add-btn" onClick={handleSubmit}>
+        <Button className="add-btn" onClick={handleSubmit} data-testid="add-to-cart-btn">
           <span>ADD TO BAG</span>
           <span className="add-icon">&#43;</span>
         </Button>

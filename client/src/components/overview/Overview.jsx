@@ -47,24 +47,22 @@ function Overview() {
   const { product } = useContext(GlobalContext);
 
   return (
-    <OverviewContextProvider>
-      <Host>
-        <TopContainer>
-          <ImageGallery />
-          <WidgetPanel>
-            {/* <RatingContainer></RatingContainer> */}
-            <Category>{product?.category}</Category>
-            <Name>{product?.name}</Name>
-            <Price>
-              {product?.default_price}
-            </Price>
-            <StyleSelector />
-            <AddToCart />
-          </WidgetPanel>
-        </TopContainer>
-        <Description />
-      </Host>
-    </OverviewContextProvider>
+    <Host>
+      <TopContainer>
+        <ImageGallery />
+        <WidgetPanel>
+          {/* <RatingContainer></RatingContainer> */}
+          <Category>{product?.category}</Category>
+          <Name>{product?.name}</Name>
+          <Price>
+            {product?.default_price}
+          </Price>
+          <StyleSelector />
+          <AddToCart />
+        </WidgetPanel>
+      </TopContainer>
+      <Description />
+    </Host>
   );
 }
 
