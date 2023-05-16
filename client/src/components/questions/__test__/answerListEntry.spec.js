@@ -2,7 +2,7 @@
 
 import React from 'react';
 import axios from 'axios';
-import { render, screen, waitFor, cleanup, act } from '@testing-library/react';
+import { render, screen, waitFor, cleanup, act, fireEvent } from '@testing-library/react';
 import AnswerListEntry from '../AnswerListEntry.jsx';
 import { GlobalContextProvider } from '../../GlobalContext.jsx';
 import '@testing-library/jest-dom/';
@@ -38,5 +38,19 @@ describe('Questions Component', () => {
   it('should render a Add an Answer button', () => {
     const report = screen.getAllByText(/Report/i);
     expect(report[0]).toBeInTheDocument();
+  });
+
+  it('should trigger click event', () => {
+    const button = screen.getByTestId('report');
+    expect(button.textContent).toBe('Report');
+    fireEvent.click(button);
+    expect(button.textContent).toBe('Reported');
+  });
+
+  it('should incement the helpfulness count', () => {
+    const button = screen.getByTestId('help');
+    expect(screen.getByText(/0/)).toBeInTheDocument();
+    fireEvent.click(button);
+    expect(screen.getByText(/1/)).toBeInTheDocument();
   });
 });

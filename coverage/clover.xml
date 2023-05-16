@@ -1,111 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1684215191862" clover="3.2.0">
-  <project timestamp="1684215191862" name="All files">
-    <metrics statements="125" coveredstatements="55" conditionals="20" coveredconditionals="4" methods="65" coveredmethods="18" elements="210" coveredelements="77" complexity="0" loc="125" ncloc="125" packages="3" files="9" classes="9"/>
+<coverage generated="1684261171901" clover="3.2.0">
+  <project timestamp="1684261171901" name="All files">
+    <metrics statements="125" coveredstatements="83" conditionals="20" coveredconditionals="10" methods="65" coveredmethods="36" elements="210" coveredelements="129" complexity="0" loc="125" ncloc="125" packages="3" files="9" classes="9"/>
     <package name="src">
-      <metrics statements="18" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="2"/>
+      <metrics statements="18" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="3"/>
       <file name="parse.js" path="/Users/aliyahindra/Desktop/FEC-Apricot/e-commerce/client/src/parse.js">
-        <metrics statements="18" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="2"/>
-        <line num="1" count="5" type="stmt"/>
-        <line num="3" count="5" type="stmt"/>
-        <line num="5" count="33" type="stmt"/>
-        <line num="6" count="33" type="stmt"/>
+        <metrics statements="18" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="3"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="5" count="48" type="stmt"/>
+        <line num="6" count="48" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
-        <line num="13" count="17" type="stmt"/>
+        <line num="13" count="31" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="44" count="5" type="stmt"/>
+        <line num="44" count="6" type="stmt"/>
       </file>
     </package>
     <package name="src.components">
       <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="GlobalContext.jsx" path="/Users/aliyahindra/Desktop/FEC-Apricot/e-commerce/client/src/components/GlobalContext.jsx">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="6" count="5" type="stmt"/>
-        <line num="9" count="25" type="stmt"/>
-        <line num="10" count="25" type="stmt"/>
-        <line num="11" count="25" type="stmt"/>
-        <line num="12" count="19" type="stmt"/>
-        <line num="15" count="25" type="stmt"/>
-        <line num="16" count="22" type="stmt"/>
-        <line num="17" count="14" type="stmt"/>
-        <line num="20" count="25" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="9" count="40" type="stmt"/>
+        <line num="10" count="40" type="stmt"/>
+        <line num="11" count="40" type="stmt"/>
+        <line num="12" count="34" type="stmt"/>
+        <line num="15" count="40" type="stmt"/>
+        <line num="16" count="37" type="stmt"/>
+        <line num="17" count="28" type="stmt"/>
+        <line num="20" count="40" type="stmt"/>
       </file>
     </package>
     <package name="src.components.questions">
-      <metrics statements="98" coveredstatements="40" conditionals="20" coveredconditionals="4" methods="52" coveredmethods="12"/>
+      <metrics statements="98" coveredstatements="66" conditionals="20" coveredconditionals="10" methods="52" coveredmethods="29"/>
       <file name="AnswerForm.jsx" path="/Users/aliyahindra/Desktop/FEC-Apricot/e-commerce/client/src/components/questions/AnswerForm.jsx">
-        <metrics statements="22" coveredstatements="7" conditionals="7" coveredconditionals="1" methods="11" coveredmethods="1"/>
-        <line num="10" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="14" count="6" type="stmt"/>
-        <line num="15" count="6" type="stmt"/>
-        <line num="19" count="6" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="cond" truecount="0" falsecount="5"/>
+        <metrics statements="22" coveredstatements="15" conditionals="7" coveredconditionals="4" methods="11" coveredmethods="6"/>
+        <line num="10" count="14" type="stmt"/>
+        <line num="12" count="14" type="stmt"/>
+        <line num="13" count="14" type="stmt"/>
+        <line num="14" count="14" type="stmt"/>
+        <line num="15" count="14" type="stmt"/>
+        <line num="19" count="14" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="cond" truecount="2" falsecount="3"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="38" count="6" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="38" count="14" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="62" count="0" type="stmt"/>
-        <line num="76" count="0" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
         <line num="86" count="0" type="stmt"/>
       </file>
       <file name="AnswerListEntry.jsx" path="/Users/aliyahindra/Desktop/FEC-Apricot/e-commerce/client/src/components/questions/AnswerListEntry.jsx">
-        <metrics statements="12" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="1"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
+        <metrics statements="12" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="5"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
       </file>
       <file name="QuestionForm.jsx" path="/Users/aliyahindra/Desktop/FEC-Apricot/e-commerce/client/src/components/questions/QuestionForm.jsx">
-        <metrics statements="22" coveredstatements="7" conditionals="7" coveredconditionals="1" methods="11" coveredmethods="1"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="10" count="6" type="stmt"/>
-        <line num="11" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
-        <line num="14" count="6" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="cond" truecount="0" falsecount="5"/>
+        <metrics statements="22" coveredstatements="15" conditionals="7" coveredconditionals="4" methods="11" coveredmethods="6"/>
+        <line num="8" count="17" type="stmt"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="10" count="17" type="stmt"/>
+        <line num="11" count="17" type="stmt"/>
+        <line num="12" count="17" type="stmt"/>
+        <line num="14" count="17" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="cond" truecount="2" falsecount="3"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="32" count="6" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="32" count="17" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="70" count="2" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
       </file>
       <file name="QuestionList.jsx" path="/Users/aliyahindra/Desktop/FEC-Apricot/e-commerce/client/src/components/questions/QuestionList.jsx">
@@ -150,17 +150,17 @@
         <line num="38" count="0" type="stmt"/>
       </file>
       <file name="Search.jsx" path="/Users/aliyahindra/Desktop/FEC-Apricot/e-commerce/client/src/components/questions/Search.jsx">
-        <metrics statements="10" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="1"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="7" count="3" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
+        <metrics statements="10" coveredstatements="7" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="4"/>
+        <line num="5" count="8" type="stmt"/>
+        <line num="7" count="8" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="18" count="3" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
       </file>
     </package>
   </project>

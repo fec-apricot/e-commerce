@@ -12,17 +12,18 @@ afterEach(cleanup);
 describe('QuestionForm Component', () => {
   beforeEach(async () => {
     const mockProductID = 40344;
+    const setIsOpen = () => false;
     await act(() => {
       render(
         <GlobalContextProvider value={{ productID: mockProductID }}>
-          <QuestionForm />
+          <QuestionForm setIsOpen={setIsOpen} />
         </GlobalContextProvider>,
       );
     });
   });
   it('should render a title, Have A Question?', () => {
     screen.debug();
-    screen.logTestingPlaygroundURL();
+    // screen.logTestingPlaygroundURL();
     const title = screen.getByText(/Have A Question/i);
     expect(title).toBeInTheDocument();
   });
@@ -50,5 +51,42 @@ describe('QuestionForm Component', () => {
   it('should render a Add a Question button', () => {
     const cancel = screen.getByTestId('cancel');
     expect(cancel).toBeInTheDocument();
+  });
+
+  it('should render a more questions form', () => {
+    const form = screen.getByTestId('questionForm');
+    expect(form).toBeInTheDocument();
+  });
+
+  it('should not submit without input fields filled in', () => {
+    const button = screen.getByTestId('submit');
+    expect(screen.getByText(/Submit/)).toBeInTheDocument();
+    fireEvent.click(button);
+    expect(screen.getByText(/Submit/)).toBeVisible();
+  });
+
+  it('should not submit without input fields filled in', () => {
+    const button = screen.getByTestId('submit');
+    expect(screen.getByText(/Submit/)).toBeInTheDocument();
+    fireEvent.click(button);
+    expect(screen.getByText(/Submit/)).toBeVisible();
+  });
+
+  it('should test for change', () => {
+    const input = screen.getByTestId('input1');
+    fireEvent.change(input, { target: { value: 'hello world' } });
+    expect(input.value).toBe('hello world');
+  });
+
+  it('should test for change', () => {
+    const input = screen.getByTestId('input2');
+    fireEvent.change(input, { target: { value: 'hello world' } });
+    expect(input.value).toBe('hello world');
+  });
+
+  it('should test for change', () => {
+    const input = screen.getByTestId('input3');
+    fireEvent.change(input, { target: { value: 'hello world' } });
+    expect(input.value).toBe('hello world');
   });
 });

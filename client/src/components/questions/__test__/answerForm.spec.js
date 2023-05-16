@@ -24,7 +24,7 @@ describe('QuestionForm Component', () => {
     await act(() => {
       render(
         <GlobalContextProvider value={{ productID: mockProductID }}>
-          <AnswerForm question={mockQuestion}/>
+          <AnswerForm question={mockQuestion} />
         </GlobalContextProvider>,
       );
     });
@@ -59,5 +59,30 @@ describe('QuestionForm Component', () => {
   it('should render a Add a Question button', () => {
     const cancel = screen.getByTestId('cancel');
     expect(cancel).toBeInTheDocument();
+  });
+
+  it('should not submit without input fields filled in', () => {
+    const button = screen.getByTestId('submit');
+    expect(button).toBeInTheDocument();
+    fireEvent.click(button);
+    expect(button).toBeVisible();
+  });
+
+  it('should test for change', () => {
+    const input = screen.getByTestId('input1');
+    fireEvent.change(input, { target: { value: 'hello world' } });
+    expect(input.value).toBe('hello world');
+  });
+
+  it('should test for change', () => {
+    const input = screen.getByTestId('input2');
+    fireEvent.change(input, { target: { value: 'hello world' } });
+    expect(input.value).toBe('hello world');
+  });
+
+  it('should test for change', () => {
+    const input = screen.getByTestId('input3');
+    fireEvent.change(input, { target: { value: 'hello world' } });
+    expect(input.value).toBe('hello world');
   });
 });

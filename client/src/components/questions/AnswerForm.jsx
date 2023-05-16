@@ -51,15 +51,15 @@ function AnswerForm({ setOpenForm, question, setAnswers, setBurn, burn }) {
           <div className="modalContent">
             <form>
               <label className="label">Your Answer (mandatory)</label>
-              <textarea onChange={(event) => setAnswerBody(event.target.value)} className="qformBar" maxLength="1000" type="text" onInvalid="alert('You must fill out the form!');" required />
+              <textarea data-testid="input1" onChange={(event) => setAnswerBody(event.target.value)} className="qformBar" maxLength="1000" type="text" onInvalid="alert('You must fill out the form!');" required />
               <br />
               <br />
               <label className="label">What is your nickname (mandatory)</label>
-              <input onChange={(event) => setName(event.target.value)} className="formBar" maxLength="60" placeholder="Example: jack543!" type="text" onInvalid="alert('You must fill out the form!');" required />
+              <input data-testid="input2" onChange={(event) => setName(event.target.value)} className="formBar" maxLength="60" placeholder="Example: jack543!" type="text" onInvalid="alert('You must fill out the form!');" required />
               <br />
               <br />
               <label className="label">Your email (mandatory)</label>
-              <input onChange={(event) => setEmail(event.target.value)} className="formBar" maxLength="60" placeholder="Example: jack@email.com" type="text" onInvalid="alert('You must fill out the form!');" required />
+              <input data-testid="input3" onChange={(event) => setEmail(event.target.value)} className="formBar" maxLength="60" placeholder="Example: jack@email.com" type="text" onInvalid="alert('You must fill out the form!');" required />
               <p>For authentication reasons, you will not be emailed</p>
               {/* <input onChange={(event) => setImages(event.target.value)} className="formBar" placeholder="YOUR IMAGES..." /> */}
             </form>
