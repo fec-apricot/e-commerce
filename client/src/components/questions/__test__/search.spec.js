@@ -1,8 +1,9 @@
 // /* eslint-env jest */
 
 import React from 'react';
-import axios from 'axios';
-import { render, screen, waitFor, cleanup, act, fireEvent } from '@testing-library/react';
+import {
+  render, screen, cleanup, act, fireEvent,
+} from '@testing-library/react';
 import Search from '../Search.jsx';
 import { GlobalContextProvider } from '../../GlobalContext.jsx';
 import '@testing-library/jest-dom/';
@@ -12,46 +13,45 @@ afterEach(cleanup);
 describe('QuestionForm Component', () => {
   beforeEach(async () => {
     const mockProductID = 40344;
-    const setQuestions = setQuestions;
-    const allQuestions = allQuestions;
-    // const allQuestions = [
-    //   {
-    //     question_id: 645217,
-    //     question_body: 'test',
-    //     question_date: '2023-02-21T00:00:00.000Z',
-    //     asker_name: 'afg',
-    //     question_helpfulness: 0,
-    //     reported: false,
-    //     answers: {},
-    //   },
-    //   {
-    //     question_id: 645216,
-    //     question_body: 'hjh',
-    //     question_date: '2023-02-21T00:00:00.000Z',
-    //     asker_name: 'afg',
-    //     question_helpfulness: 0,
-    //     reported: false,
-    //     answers: {},
-    //   },
-    //   {
-    //     question_id: 644189,
-    //     question_body: 'If you see this text me at 9257867239',
-    //     question_date: '2022-12-03T00:00:00.000Z',
-    //     asker_name: 'Jeff',
-    //     question_helpfulness: 0,
-    //     reported: false,
-    //     answers: {},
-    //   },
-    //   {
-    //     question_id: 644188,
-    //     question_body: 'If you see this text me at 9257867239',
-    //     question_date: '2022-12-03T00:00:00.000Z',
-    //     asker_name: 'Jeff',
-    //     question_helpfulness: 0,
-    //     reported: false,
-    //     answers: {},
-    //   },
-    // ];
+    const setQuestions = () => {};
+    const allQuestions = [
+      {
+        question_id: 645217,
+        question_body: 'test',
+        question_date: '2023-02-21T00:00:00.000Z',
+        asker_name: 'afg',
+        question_helpfulness: 0,
+        reported: false,
+        answers: {},
+      },
+      {
+        question_id: 645216,
+        question_body: 'hjh',
+        question_date: '2023-02-21T00:00:00.000Z',
+        asker_name: 'afg',
+        question_helpfulness: 0,
+        reported: false,
+        answers: {},
+      },
+      {
+        question_id: 644189,
+        question_body: 'If you see this text me at 9257867239',
+        question_date: '2022-12-03T00:00:00.000Z',
+        asker_name: 'Jeff',
+        question_helpfulness: 0,
+        reported: false,
+        answers: {},
+      },
+      {
+        question_id: 644188,
+        question_body: 'If you see this text me at 9257867239',
+        question_date: '2022-12-03T00:00:00.000Z',
+        asker_name: 'Jeff',
+        question_helpfulness: 0,
+        reported: false,
+        answers: {},
+      },
+    ];
     await act(() => {
       render(
         <GlobalContextProvider value={{ productID: mockProductID }}>

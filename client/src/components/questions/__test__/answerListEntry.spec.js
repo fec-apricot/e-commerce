@@ -1,8 +1,9 @@
 // /* eslint-env jest */
 
 import React from 'react';
-import axios from 'axios';
-import { render, screen, waitFor, cleanup, act, fireEvent } from '@testing-library/react';
+import {
+  render, screen, cleanup, act, fireEvent,
+} from '@testing-library/react';
 import AnswerListEntry from '../AnswerListEntry.jsx';
 import { GlobalContextProvider } from '../../GlobalContext.jsx';
 import '@testing-library/jest-dom/';
@@ -14,9 +15,9 @@ describe('Questions Component', () => {
     const mockProductID = 40344;
     const mockAnswer = {
       answer_id: 8,
-      body: "What a great question!",
-      date: "2018-01-04T00:00:00.000Z",
-      answerer_name: "metslover",
+      body: 'What a great question!',
+      date: '2018-01-04T00:00:00.000Z',
+      answerer_name: 'metslover',
       helpfulness: 8,
       photos: [],
     };

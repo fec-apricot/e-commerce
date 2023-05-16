@@ -1,8 +1,9 @@
 // /* eslint-env jest */
 
 import React from 'react';
-import axios from 'axios';
-import { render, screen, waitFor, cleanup, act, fireEvent } from '@testing-library/react';
+import {
+  render, screen, cleanup, act, fireEvent,
+} from '@testing-library/react';
 import QuestionForm from '../QuestionForm.jsx';
 import { GlobalContextProvider } from '../../GlobalContext.jsx';
 import '@testing-library/jest-dom/';
