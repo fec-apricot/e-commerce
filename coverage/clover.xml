@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1684261171901" clover="3.2.0">
-  <project timestamp="1684261171901" name="All files">
-    <metrics statements="125" coveredstatements="83" conditionals="20" coveredconditionals="10" methods="65" coveredmethods="36" elements="210" coveredelements="129" complexity="0" loc="125" ncloc="125" packages="3" files="9" classes="9"/>
+<coverage generated="1684262109013" clover="3.2.0">
+  <project timestamp="1684262109013" name="All files">
+    <metrics statements="125" coveredstatements="89" conditionals="20" coveredconditionals="10" methods="65" coveredmethods="40" elements="210" coveredelements="139" complexity="0" loc="125" ncloc="125" packages="3" files="9" classes="9"/>
     <package name="src">
       <metrics statements="18" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="3"/>
       <file name="parse.js" path="/Users/aliyahindra/Desktop/FEC-Apricot/e-commerce/client/src/parse.js">
         <metrics statements="18" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="3"/>
-        <line num="1" count="6" type="stmt"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="5" count="48" type="stmt"/>
-        <line num="6" count="48" type="stmt"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="5" count="56" type="stmt"/>
+        <line num="6" count="56" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
-        <line num="13" count="31" type="stmt"/>
+        <line num="13" count="35" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="44" count="6" type="stmt"/>
+        <line num="44" count="7" type="stmt"/>
       </file>
     </package>
     <package name="src.components">
       <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="GlobalContext.jsx" path="/Users/aliyahindra/Desktop/FEC-Apricot/e-commerce/client/src/components/GlobalContext.jsx">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="9" count="40" type="stmt"/>
-        <line num="10" count="40" type="stmt"/>
-        <line num="11" count="40" type="stmt"/>
-        <line num="12" count="34" type="stmt"/>
-        <line num="15" count="40" type="stmt"/>
-        <line num="16" count="37" type="stmt"/>
-        <line num="17" count="28" type="stmt"/>
-        <line num="20" count="40" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="9" count="44" type="stmt"/>
+        <line num="10" count="44" type="stmt"/>
+        <line num="11" count="44" type="stmt"/>
+        <line num="12" count="38" type="stmt"/>
+        <line num="15" count="44" type="stmt"/>
+        <line num="16" count="41" type="stmt"/>
+        <line num="17" count="30" type="stmt"/>
+        <line num="20" count="44" type="stmt"/>
       </file>
     </package>
     <package name="src.components.questions">
-      <metrics statements="98" coveredstatements="66" conditionals="20" coveredconditionals="10" methods="52" coveredmethods="29"/>
+      <metrics statements="98" coveredstatements="72" conditionals="20" coveredconditionals="10" methods="52" coveredmethods="33"/>
       <file name="AnswerForm.jsx" path="/Users/aliyahindra/Desktop/FEC-Apricot/e-commerce/client/src/components/questions/AnswerForm.jsx">
         <metrics statements="22" coveredstatements="15" conditionals="7" coveredconditionals="4" methods="11" coveredmethods="6"/>
         <line num="10" count="14" type="stmt"/>
@@ -114,23 +114,23 @@
         <line num="7" count="8" type="stmt"/>
       </file>
       <file name="QuestionListEntry.jsx" path="/Users/aliyahindra/Desktop/FEC-Apricot/e-commerce/client/src/components/questions/QuestionListEntry.jsx">
-        <metrics statements="18" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="10" coveredmethods="2"/>
-        <line num="9" count="8" type="stmt"/>
-        <line num="10" count="8" type="stmt"/>
-        <line num="11" count="8" type="stmt"/>
-        <line num="12" count="8" type="stmt"/>
-        <line num="15" count="8" type="stmt"/>
-        <line num="16" count="8" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="24" count="8" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
+        <metrics statements="18" coveredstatements="14" conditionals="2" coveredconditionals="1" methods="10" coveredmethods="6"/>
+        <line num="9" count="13" type="stmt"/>
+        <line num="10" count="13" type="stmt"/>
+        <line num="11" count="13" type="stmt"/>
+        <line num="12" count="13" type="stmt"/>
+        <line num="15" count="13" type="stmt"/>
+        <line num="16" count="12" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="24" count="13" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
-        <line num="34" count="8" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
+        <line num="34" count="13" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
         <line num="59" count="0" type="stmt"/>
       </file>
