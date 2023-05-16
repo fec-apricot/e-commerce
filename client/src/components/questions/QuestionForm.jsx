@@ -65,6 +65,7 @@ function QuestionFrom({ setIsOpen }) {
               <button
                 type="button"
                 className="submitBtn"
+                data-testid="submit"
                 onClick={(event) => {
                   submitForm(event);
                   // setIsOpen(false);
@@ -75,6 +76,7 @@ function QuestionFrom({ setIsOpen }) {
               <button
                 type="button"
                 className="cancelBtn"
+                data-testid="cancel"
                 onClick={() => setIsOpen(false)}
               >
                 Cancel

@@ -14,7 +14,7 @@ function AnswerForm({ setOpenForm, question, setAnswers, setBurn, burn }) {
   const [userEmail, setEmail] = useState('');
   const [inputErr, setInputErr] = useState(false);
   // const [images, setImages] = useState([]);
-  console.log('PRODUCT', product)
+  // console.log('PRODUCT', product)
 
   const submitForm = (event) => {
     event.preventDefault();
@@ -71,6 +71,7 @@ function AnswerForm({ setOpenForm, question, setAnswers, setBurn, burn }) {
               <button
                 type="button"
                 className="submitBtn"
+                data-testid="submit"
                 onClick={(event) => {
                   submitForm(event);
                   // setOpenForm(false);
@@ -81,6 +82,7 @@ function AnswerForm({ setOpenForm, question, setAnswers, setBurn, burn }) {
               <button
                 type="button"
                 className="cancelBtn"
+                data-testid="cancel"
                 onClick={() => setOpenForm(false)}
               >
                 Cancel

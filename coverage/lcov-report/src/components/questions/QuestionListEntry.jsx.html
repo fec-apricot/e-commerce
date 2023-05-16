@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">44.44% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>8/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>2/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">44.44% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>8/18</span>
             </div>
         
             
@@ -138,7 +138,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -146,24 +161,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -204,15 +204,15 @@ import AnswerListEntry from './AnswerListEntry.jsx';
 import AnswerForm from './AnswerForm.jsx';
 import './questions.css';
 &nbsp;
-function <span class="fstat-no" title="function not covered" >QuestionListEntry(</span>{ question }) {
-  const [answers, setAnswers] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
-  const [openForm, setOpenForm] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [helpful, setHelpful] = <span class="cstat-no" title="statement not covered" >useState(question.question_helpfulness);</span>
-  const [burn, setBurn] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+function QuestionListEntry({ question }) {
+  const [answers, setAnswers] = useState([]);
+  const [openForm, setOpenForm] = useState(false);
+  const [helpful, setHelpful] = useState(question.question_helpfulness);
+  const [burn, setBurn] = useState(false);
   // console.log('I AM A QUESTION', question)
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    parse.get(`/qa/questions/${question.question_id}/answers`)</span>
+  useEffect(() =&gt; {
+    parse.get(`/qa/questions/${question.question_id}/answers`)
       .then(<span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; <span class="cstat-no" title="statement not covered" >setAnswers(data.results))</span>
       .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >console.log(err))</span>;
   },[question.question_id, burn]);
@@ -220,7 +220,7 @@ function <span class="fstat-no" title="function not covered" >QuestionListEntry(
   // console.log('I AM ANSWERS', answers);
   // console.log('I AM A QUESTION ID', question.question_id)
 &nbsp;
-  const updateHelp = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {</span>
+  const updateHelp = <span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {
 <span class="cstat-no" title="statement not covered" >    event.preventDefault();</span>
 <span class="cstat-no" title="statement not covered" >    setHelpful(helpful + 1);</span>
 <span class="cstat-no" title="statement not covered" >    parse.put(`qa/questions/${question.question_id}/helpful`, {</span>
@@ -230,7 +230,7 @@ function <span class="fstat-no" title="function not covered" >QuestionListEntry(
       .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >console.log('I did not update helpfulnerss', err))</span>;
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div&gt;
       &lt;section&gt;
         &lt;span className="questionList"&gt;
@@ -252,7 +252,7 @@ function <span class="fstat-no" title="function not covered" >QuestionListEntry(
           {helpful}
           &amp;emsp;|&amp;emsp;
           &lt;button type="button" className="Btn" data-testid="addAnswer" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setOpenForm(true)}</span>&gt;Add Answer&lt;/button&gt;
-          {openForm &amp;&amp; &lt;AnswerForm setOpenForm={setOpenForm} question={question} setAnswers={setAnswers} setBurn={setBurn} burn={burn} /&gt;}
+          {openForm &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;AnswerForm setOpenForm={setOpenForm} question={question} setAnswers={setAnswers} setBurn={setBurn} burn={burn} /&gt;}</span>
         &lt;/span&gt;
         &lt;div&gt;
           {answers.slice(0, 2).map(<span class="fstat-no" title="function not covered" >(a</span>nswer, i) =&gt; <span class="cstat-no" title="statement not covered" >&lt;AnswerListEntry key={i} answer={answer} /&gt;)</span>}
@@ -271,7 +271,7 @@ export default QuestionListEntry;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-05-15T23:40:23.792Z
+                at 2023-05-16T05:33:11.822Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

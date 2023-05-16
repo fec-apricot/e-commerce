@@ -100,10 +100,10 @@ describe('Questions Component', () => {
         asker_name: "Jeff",
         question_helpfulness: 0,
         reported: false,
-        answers: {}
+        answers: {},
       },
     ];
-    await (() => {
+    await act(() => {
       render(
         <GlobalContextProvider value={{ productID: mockProductID }}>
           <QuestionList questions={mockQuestions} />
@@ -114,12 +114,12 @@ describe('Questions Component', () => {
   it('should render a helpful button', () => {
     screen.debug();
     screen.logTestingPlaygroundURL();
-    const helpBtn = screen.getByTestId('helpBtn');
-    expect(helpBtn).toBeInTheDocument();
+    const helpBtn = screen.getAllByText(/Yes/i);
+    expect(helpBtn[0]).toBeInTheDocument();
   });
 
   it('should render a Add an Answer button', () => {
-    const addAnswer = screen.getByTestId('addAnswer');
-    expect(addAnswer).toBeInTheDocument();
+    const addAnswer = screen.getAllByText(/Add Answer/i);
+    expect(addAnswer[0]).toBeInTheDocument();
   });
 });
