@@ -154,6 +154,7 @@ describe('Overview component', () => {
     fireEvent.click(screen.getByTestId('qty-dropdown-btn'));
     fireEvent.click(screen.getByTestId('qty-item-3'));
     fireEvent.click(screen.getByTestId('add-to-cart-btn'));
+    screen.debug();
     expect(await screen.findByText('Added to cart!')).toBeInTheDocument();
   });
 });
