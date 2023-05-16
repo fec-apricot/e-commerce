@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useRef,
+} from 'react';
 import { GlobalContext } from '../GlobalContext.jsx';
 import Carousel from './carousel/Carousel.jsx';
 import parse from '../../parse';
@@ -13,10 +18,6 @@ function RelatedProducts() {
 
   const allProducts = useRef({});
 
-  useEffect(() => {
-    console.log('dataStore updated!!!!!!!!!!!!!!!!!@@@@@@@@@@@@@', dataStore);
-  }, [dataStore]);
-
   const addBlanksToOutfit = (list) => {
     while (list.indexOf(10001) !== -1) {
       const index = list.indexOf(10001);
@@ -27,13 +28,13 @@ function RelatedProducts() {
         list.push(10001); // blank product
       }
     }
-    console.log('new list^^^^^^^', list);
+    // console.log('new list^^^^^^^', list);
     return list;
   };
 
   const outfitToggle = () => {
     const oList = [...outfitList];
-    console.log('original outfit', oList);
+    // console.log('original outfit', oList);
     const index = oList.indexOf(productID);
     if (index === -1) {
       setOutfitList(addBlanksToOutfit([productID, ...oList]));
@@ -41,20 +42,20 @@ function RelatedProducts() {
       oList.splice(index, 1);
       setOutfitList(addBlanksToOutfit(oList));
     }
-    console.log('((((((((((((((-------outfitList has been set: ', oList);
+    // console.log('((((((((((((((-------outfitList has been set: ', oList);
     // setBurn(productID + burn);
   };
 
   const searchAllProducts = (id) => {
-    console.log('!!!!checking allProducts for id: ', id, allProducts);
-    // const keys = Object.keys(allProducts);
+    // console.log('-------> STEP 2 check if related id info already stored', id);
+    // console.log('!!!!checking allProducts for id: ', id, allProducts);
     let pass = true;
     if (allProducts.current[id] === undefined) {
-      console.log('not in there', id, allProducts.current);
+      // console.log('not in there', id, allProducts.current);
       pass = false;
       return pass;
     }
-    console.log('id found!', id, allProducts.current);
+    // console.log('id found!', id, allProducts.current);
     return pass;
   };
 
@@ -64,18 +65,18 @@ function RelatedProducts() {
       `/products/${id}/styles`,
       `/reviews/meta?product_id=${id}`,
     ];
-    console.log('request START!!!!!<-------');
+    // console.log('-------> STEP 3 request info for:', id);
     await Promise.all(endpoints.map((endpoint) => parse.get(endpoint)))
       .then((res) => {
-        console.log('this is all the data for a single RP', res);
         allProducts.current[id] = res;
-        console.log('*****----***----setting allProducts:', allProducts.current, ' value with res', res);
+        // console.log('Data received for id; ', id, res, ' has been stored in allProducts', allProducts.current);
         setDataStore(allProducts.current);
+        // console.log('-------> STEP 4 store received info for:', id, allProducts.current);
       })
       .catch((err) => {
         console.log('promise.all err', err);
       });
-    console.log('request END!!!!!<-------');
+    // console.log('request END!!!!!<-------id:', id);
     setBurn(id);
   };
 
@@ -83,7 +84,7 @@ function RelatedProducts() {
     related.forEach((id) => {
       if (id === undefined) { return; }
       if (searchAllProducts(id)) {
-        console.log('req avoided');
+        // console.log('req avoided');
         // setProducts(allProducts.current);
         return;
       }
@@ -95,6 +96,7 @@ function RelatedProducts() {
   }, [related]);
 
   useEffect(() => {
+    // console.log('-------> STEP 1 request ids related to ', productID);
     parse
       .get(`/products/${productID}/related`)
       .then((res) => {
@@ -104,8 +106,8 @@ function RelatedProducts() {
             noDuplicate.push(idNum);
           }
         });
-        console.log('this is the related res: ', res);
-        console.log('no duplicates ++++++++++++++++++', noDuplicate);
+        // console.log('this is the related res: ', res);
+        // console.log('no duplicates ++++++++++++++++++', noDuplicate);
         setRelated(noDuplicate);
       })
       .catch((err) => {
@@ -120,6 +122,8 @@ function RelatedProducts() {
     setOutfitList(oList);
 
     const blankInfo = {
+      name: 'Blank',
+      slogan: 'add products!!!',
       category: 'Category',
       default_price: '$$',
     };
@@ -142,6 +146,7 @@ function RelatedProducts() {
 
     allProducts.current[10001] = [blankInfo, blankStyles, blankRatings];
     setDataStore(allProducts.current);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const yes = true; // Airbnb made me do it

@@ -1,6 +1,9 @@
-import React, { useState, useEffect, useContext, useLayoutEffect, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useContext,
+} from 'react';
 import { GlobalContext } from '../../GlobalContext.jsx';
-// import parse from '../../../parse';
 import Stars from '../stars_module/Stars.jsx';
 import './ProductCard.css';
 
@@ -12,14 +15,11 @@ function ProductCard({
   dataStore,
 }) {
   const { productID } = useContext(GlobalContext);
-  const [productIdNum, setProductIdNum] = useState(0);
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
   const [ratings, setRatings] = useState({});
   const [imageURL, setImageURL] = useState('');
   const [title, setTitle] = useState('');
-  // const [isBtn, setIsBtn] = useState(false);
-  // const [myInfo, setMyInfo] = useState({});
 
   const updateImageURL = () => {
     if (productStyles === undefined) { return; }
@@ -28,7 +28,7 @@ function ProductCard({
       for (let i = 0; i < productStyles.results.length; i += 1) {
         if (productStyles.results[i]['default?'] === true) {
           imgURL = productStyles.results[i].photos[0].thumbnail_url;
-          console.log('imgURL', imgURL);
+          // console.log('imgURL', imgURL);
           break;
         }
       }
@@ -54,35 +54,15 @@ function ProductCard({
   }, [productStyles, productID, burn]);
 
   useEffect(() => {
-    console.log('------+++++++=======******* * * * * * productID changed', productID, relatedID);
-    if (!rpMode) {
-      // setProductIdNum(productID);
-    }
-  }, [productID]);
-
-  useEffect(() => {
-    if (!rpMode) { setProductIdNum(productID); }
-
-    console.log(rpMode ? 'RP' : 'Outfit');
-    console.log('my id: ', relatedID, ' and the dataStore:', dataStore);
+    // console.log((rpMode ? 'My RP id:' : 'My Outfit id:'), relatedID, ' and the dataStore:', dataStore);
     if (dataStore[relatedID] !== undefined && dataStore[relatedID][0] !== undefined) {
-      console.log('Info made it to the card', dataStore[relatedID]);
+      // console.log('Info made it to the card', dataStore[relatedID]);
       setProductInfo(dataStore[relatedID][0]);
       setProductStyles(dataStore[relatedID][1]);
       setRatings(dataStore[relatedID][2].ratings);
       buildTitle(relatedID);
     }
   }, [relatedID, dataStore[relatedID], burn, productID]);
-
-  useEffect(() => {
-    console.log('dataStore on card load', dataStore);
-    if (relatedID === 0) {
-      const value = `${productID}`;
-      setProductIdNum(Number(value));
-    } else {
-      // setProductIdNum(relatedID);
-    }
-  }, []);
 
   return (
     <div
