@@ -72,16 +72,19 @@ function StyleSelector() {
         </SelectedStyle>
       </StyleTitle>
       <StyleList>
-        {styles && styles.map((style) => (
-          <StyleThumbnailContainer key={style.style_id}>
+        {styles && styles.map((style, index) => (
+          <StyleThumbnailContainer
+            key={style.style_id}
+            onClick={() => {
+              setSelectedStyle(style);
+            }}
+            data-testid={`style-${index}`}
+          >
             <StyleThumbnail
               src={style.photos[0].thumbnail_url}
-              onClick={() => {
-                setSelectedStyle(style);
-              }}
             />
             {style.style_id === selectedStyle.style_id && (
-              <Checkmark>✓</Checkmark>
+              <Checkmark data-testid="checkmark">✓</Checkmark>
             )}
           </StyleThumbnailContainer>
         ))}
