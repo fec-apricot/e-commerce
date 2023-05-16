@@ -16,7 +16,7 @@ function Questions() {
     parse.get(`/qa/questions/?product_id=${productID}&page=1&count=100`)
       .then((data) => {
         setAllQuestions(data.results);
-        setQuestions(data.results.slice(0, 4));
+        setQuestions(data.results.slice(0, 2));
       })
       .catch((err) => console.log(err));
   }, [productID]);
@@ -33,9 +33,9 @@ function Questions() {
       <br />
       <QuestionList questions={questions} isOpen={isOpen} setIsOpen={setIsOpen} />
       <div>
-        <button type="button" className="mainBtn" onClick={() => setQuestions(allQuestions.slice(0, questions.length + 2))}>MORE ANSWERED QUESTIONS</button>
+        <button type="button" className="mainBtn" data-testid="moreBtn" onClick={() => setQuestions(allQuestions.slice(0, questions.length + 2))}>MORE ANSWERED QUESTIONS</button>
         &emsp;
-        <button type="button" className="mainBtn" onClick={() => setIsOpen(true)}>
+        <button type="button" className="mainBtn" data-testid="addBtn" onClick={() => setIsOpen(true)}>
           ADD A QUESTION +
         </button>
       </div>

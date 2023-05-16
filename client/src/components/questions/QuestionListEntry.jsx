@@ -8,19 +8,22 @@ import './questions.css';
 function QuestionListEntry({ question }) {
   const [answers, setAnswers] = useState([]);
   const [openForm, setOpenForm] = useState(false);
+  const [helpful, setHelpful] = useState(question.question_helpfulness);
+  const [burn, setBurn] = useState(false);
   // console.log('I AM A QUESTION', question)
 
   useEffect(() => {
     parse.get(`/qa/questions/${question.question_id}/answers`)
       .then((data) => setAnswers(data.results))
       .catch((err) => console.log(err));
-  },[question.question_id]);
+  },[question.question_id, burn]);
 
   // console.log('I AM ANSWERS', answers);
   // console.log('I AM A QUESTION ID', question.question_id)
 
   const updateHelp = (event) => {
     event.preventDefault();
+    setHelpful(helpful + 1);
     parse.put(`qa/questions/${question.question_id}/helpful`, {
       helpfulness: question.question_helpfulness + 1,
     })
@@ -41,15 +44,16 @@ function QuestionListEntry({ question }) {
           <button
             type="button"
             className="Btn"
+            data-testid="helpBtn"
             onClick={(event) => updateHelp(event)}
           >
             Yes
           </button>
           &nbsp;
-          {question.question_helpfulness}
+          {helpful}
           &emsp;|&emsp;
-          <button type="button" className="Btn" onClick={() => setOpenForm(true)}>Add Answer</button>
-          {openForm && <AnswerForm setOpenForm={setOpenForm} question={question} />}
+          <button type="button" className="Btn" data-testid="addAnswer" onClick={() => setOpenForm(true)}>Add Answer</button>
+          {openForm && <AnswerForm setOpenForm={setOpenForm} question={question} setAnswers={setAnswers} setBurn={setBurn} burn={burn} />}
         </span>
         <div>
           {answers.slice(0, 2).map((answer, i) => <AnswerListEntry key={i} answer={answer} />)}
