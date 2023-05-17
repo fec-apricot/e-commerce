@@ -45,7 +45,7 @@ function ExpandedView({ handleHide }) {
           handleHide(false);
         }}
         >
-          <img src={CloseIcon} alt="Close Logo" className="close-icon" />
+          <img src={CloseIcon} alt="Close Logo" className="close-icon" data-testid="expanded-view" />
         </CloseButton>
         <OverviewCarousel {...carouselProps} />
       </Host>

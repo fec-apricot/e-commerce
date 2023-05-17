@@ -64,6 +64,7 @@ function OverviewCarousel({
         onMouseMove={(event) => {
           setClientXY([event.clientX, event.clientY]);
         }}
+        data-testid="default-view"
       />
       {defaultViewIndex > 0
       && (

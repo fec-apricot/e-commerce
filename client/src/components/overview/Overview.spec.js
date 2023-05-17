@@ -58,13 +58,12 @@ describe('Overview component', () => {
   it('should render product general information correctly', () => {
     expect(screen.getByText('Slacks')).toBeInTheDocument();
     expect(screen.getByText('Alivia Slacks')).toBeInTheDocument();
-    expect(screen.getByText('873.00')).toBeInTheDocument();
     expect(screen.getByText('Voluptas maiores et dolores harum.')).toBeInTheDocument();
     expect(screen.getByText('Voluptas nam voluptas non qui. Dolore mollitia qui rerum illo. Tempore sed et assumenda fuga voluptates officiis explicabo inventore. Aut voluptatibus doloribus.')).toBeInTheDocument();
     expect(screen.getByText('Cut: \'Straight\'')).toBeInTheDocument();
   });
 
-  it.only('should render the sales price correclty', async () => {
+  it('should render the sales price correclty', async () => {
     expect(await screen.findByText('668.00')).toHaveStyle('color: red');
     expect(await screen.findByText('873.00')).toHaveStyle('text-decoration: line-through');
   });
@@ -150,6 +149,7 @@ describe('Overview component', () => {
   it('should not be able to add to cart without selected size', () => {
     fireEvent.click(screen.getByTestId('add-to-cart-btn'));
     expect(screen.getByText('Please select size')).toBeInTheDocument();
+    expect(screen.getByTestId('size-dropdown-list')).toBeInTheDocument();
   });
 
   it('should be able to add to cart with selected size', async () => {
@@ -160,5 +160,10 @@ describe('Overview component', () => {
     fireEvent.click(screen.getByTestId('add-to-cart-btn'));
     screen.debug();
     expect(await screen.findByText('Added to cart!')).toBeInTheDocument();
+  });
+
+  it('should be able to enter expanded view by clicking the default view', async () => {
+    fireEvent.click(await screen.findByTestId('default-view'));
+    expect(screen.getByTestId('expanded-view'));
   });
 });
