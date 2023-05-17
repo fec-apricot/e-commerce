@@ -64,6 +64,11 @@ describe('Overview component', () => {
     expect(screen.getByText('Cut: \'Straight\'')).toBeInTheDocument();
   });
 
+  it.only('should render the sales price correclty', async () => {
+    expect(await screen.findByText('668.00')).toHaveStyle('color: red');
+    expect(await screen.findByText('873.00')).toHaveStyle('text-decoration: line-through');
+  });
+
   it('should have one selected style at all times', () => {
     expect(screen.queryByText('SELECTED STYLE')).toBeNull();
   });

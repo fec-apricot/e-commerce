@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { GlobalContext } from '../GlobalContext.jsx';
+import { OverviewContext } from './OverviewContext.jsx';
 import ImageGallery from './image-gallery/ImageGallery.jsx';
 import Description from './Description.jsx';
 import StyleSelector from './StyleSelector.jsx';
@@ -42,6 +43,7 @@ const Price = styled.div`
 
 function Overview() {
   const { product } = useContext(GlobalContext);
+  const { selectedStyle } = useContext(OverviewContext);
 
   return (
     <Host>
@@ -52,7 +54,9 @@ function Overview() {
           <Category>{product?.category}</Category>
           <Name>{product?.name}</Name>
           <Price>
-            {product?.default_price}
+            <span>&#36;</span>
+            <span style={{ color: 'red' }}>{selectedStyle?.sale_price || '' }</span>
+            <span style={{ textDecoration: selectedStyle?.sale_price && 'line-through' }}>{selectedStyle?.original_price}</span>
           </Price>
           <StyleSelector />
           <AddToCart />
