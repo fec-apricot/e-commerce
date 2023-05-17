@@ -6,10 +6,12 @@ import './questions.css';
 
 function QuestionFrom({ setIsOpen }) {
   const { productID } = useContext(GlobalContext);
+  const { product } = useContext(GlobalContext);
   const [questionBody, setQuestionBody] = useState('');
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [inputError, setInputError] = useState(false);
+  console.log('I AM THE PRODUCT', product);
 
   const submitForm = (event) => {
     event.preventDefault();
@@ -36,7 +38,7 @@ function QuestionFrom({ setIsOpen }) {
         <div className="modal">
           <div className="modalHeader">
             <h5 className="heading">Have a Question?</h5>
-            <h6 className="subheading">product name</h6>
+            <h6 className="subheading">{product?.name}</h6>
             {inputError && <p className="invalidInput">You must enter the following:</p>}
           </div>
           <button type="button" className="closeBtn" onClick={() => setIsOpen(false)}>

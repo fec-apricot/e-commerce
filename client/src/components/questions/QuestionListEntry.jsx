@@ -33,14 +33,14 @@ function QuestionListEntry({ question }) {
 
   return (
     <div>
-      <section>
+      <section className="qSection">
         <span className="questionList">
           Q:&ensp;
           <span className="qbody">{question.question_body}</span>
 
         </span>
         <span className="navQ">
-          Helpful?&ensp;
+          Helpful?
           <button
             type="button"
             className="Btn"
@@ -49,8 +49,9 @@ function QuestionListEntry({ question }) {
           >
             Yes
           </button>
-          &nbsp;
+          &#40;
           {helpful}
+          &#41;
           &emsp;|&emsp;
           <button type="button" className="Btn" data-testid="addAnswer" onClick={() => setOpenForm(true)}>Add Answer</button>
           {openForm && <AnswerForm setOpenForm={setOpenForm} question={question} setAnswers={setAnswers} setBurn={setBurn} burn={burn} />}

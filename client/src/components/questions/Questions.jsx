@@ -23,8 +23,8 @@ function Questions() {
 
   return (
     <div className="body">
-      <div className="head" title="My Header" data-testid="title">QUESTIONS & ANSWERS</div>
-      <br />
+      {/* <div className="head" title="My Header" data-testid="title">QUESTIONS & ANSWERS</div> */}
+      {/* <br /> */}
       <Search
         setQuestions={setQuestions}
         allQuestions={allQuestions}
@@ -35,8 +35,9 @@ function Questions() {
       <div>
         <button type="button" className="mainBtn" data-testid="moreBtn" onClick={() => setQuestions(allQuestions.slice(0, questions.length + 2))}>MORE ANSWERED QUESTIONS</button>
         &emsp;
+
         <button type="button" className="mainBtn" data-testid="addBtn" onClick={() => setIsOpen(true)}>
-          ADD A QUESTION +
+          ADD A QUESTION &ensp;+
         </button>
       </div>
       {isOpen && <QuestionForm setIsOpen={setIsOpen} />}
