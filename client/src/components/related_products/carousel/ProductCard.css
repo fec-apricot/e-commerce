@@ -9,6 +9,7 @@
   border-color: rgb(45, 45, 45);
   cursor: pointer;
   z-index: 0;
+  position: relative;
 }
 
 .imgDiv{

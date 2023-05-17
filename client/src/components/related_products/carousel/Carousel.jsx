@@ -21,23 +21,24 @@ function Carousel({
   const [slide2Index, setSlide2Index] = useState(0);
 
   const trackLimit = (rpMode ? 5 : 4);
-  let productSlider = document.querySelector('.productTrack');
+  // let productSlider = document.querySelector('.productTrack');
 
   const changeProduct = (newID) => {
-    productSlider = document.querySelector('.productTrack');
+    const productSlider = document.querySelector('.productTrack');
+    const productSlider2 = document.querySelector('.productTrack2');
     console.log('product changed');
     if (newID === 10001) { return; }
     setProductID(newID);
     productSlider.style.setProperty('--slider-index', 0);
-    productSlider.style.setProperty('--slider2-index', 0);
+    productSlider2.style.setProperty('--slider2-index', 0);
     setSlideIndex(0);
     setSlide2Index(0);
     // setOutfitBtnID(newID);
   };
 
   const slide = (direction) => {
-    productSlider = document.querySelector('.productTrack');
     if (rpMode) {
+      const productSlider = document.querySelector('.productTrack');
       console.log('RP slide');
       const index = Number(productSlider.style.getPropertyValue('--slider-index'));
       if (direction === 'left') {
@@ -47,8 +48,9 @@ function Carousel({
         productSlider.style.setProperty('--slider-index', index + 1);
         setSlideIndex(slideIndex + 1);
       }
-      // console.log('rp slide index:', Number(productSlider.style.getPropertyValue('--slider-index')));
+      console.log('rp slide index:', Number(productSlider.style.getPropertyValue('--slider-index')));
     } else {
+      const productSlider = document.querySelector('.productTrack2');
       console.log('Outfit slide');
       const index = Number(productSlider.style.getPropertyValue('--slider2-index'));
       if (direction === 'left') {
@@ -58,17 +60,13 @@ function Carousel({
         productSlider.style.setProperty('--slider2-index', index + 1);
         setSlide2Index(slide2Index + 1);
       }
-      // console.log('outfit slide index:', Number(productSlider.style.getPropertyValue('--slider2-index')));
+      console.log('outfit slide index:', Number(productSlider.style.getPropertyValue('--slider2-index')));
     }
   };
 
-  useEffect(() => {
-
-  }, []);
-
   return (
     <div className="carousel">
-      <ul className="productTrack">
+      <ul className={rpMode ? 'productTrack' : 'productTrack2'}>
         {(rpMode ? (slideIndex < 1) : (slide2Index < 1)) ? '' : (
           <button
             className="carouselButton productLeft"
@@ -83,7 +81,7 @@ function Carousel({
           </button>
         )}
         {rpMode ? '' : (
-          <li key={productID} className={`AddToOutfitBtn ${productID}`}>
+          <li key={productID} className={`outfitCard-slide AddToOutfitBtn ${productID}`}>
             <ProductCard
               relatedID={productID}
               triggerFunction={outfitToggle}
