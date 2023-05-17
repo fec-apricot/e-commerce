@@ -64,7 +64,7 @@ function OverviewCarousel({
         onMouseMove={(event) => {
           setClientXY([event.clientX, event.clientY]);
         }}
-        data-testid="default-view"
+        data-testid={`default-view-${inExpandedView ? 'expanded' : 'main'}`}
       />
       {defaultViewIndex > 0
       && (
@@ -73,6 +73,7 @@ function OverviewCarousel({
           onClick={() => {
             handleScrollHorizontal(-1);
           }}
+          data-testid="prev-left-btn"
         >
           <img src={ArrowIcon} alt="Scroll Left Logo" className="scroll-left-icon" />
         </CarouselButton>
@@ -85,6 +86,7 @@ function OverviewCarousel({
           onClick={() => {
             handleScrollHorizontal(1);
           }}
+          data-testid="next-right-btn"
         >
           <img src={ArrowIcon} alt="Scroll Right Logo" className="scroll-right-icon" />
         </CarouselButton>
@@ -112,6 +114,7 @@ function OverviewCarousel({
           onClick={() => {
             handleScrollVertical(-1);
           }}
+          data-testid="prev-up-btn"
         >
           <img src={DropdownIcon} alt="Scroll Up Logo" className="scroll-up-icon" />
         </CarouselButton>
@@ -123,6 +126,7 @@ function OverviewCarousel({
           onClick={() => {
             handleScrollVertical(1);
           }}
+          data-testid="next-down-btn"
         >
           <img src={DropdownIcon} alt="Scroll Down Logo" className="scroll-down-icon" />
         </CarouselButton>

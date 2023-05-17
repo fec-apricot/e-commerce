@@ -24,6 +24,7 @@ function ImageMagnifier({
       onLoad={(event) => {
         setImgSize([event.target.naturalWidth, event.target.naturalHeight]);
       }}
+      data-testid="magnifier"
     />
   );
 }

@@ -41,9 +41,11 @@ function ExpandedView({ handleHide }) {
   return (
     <Modal>
       <Host>
-        <CloseButton onClick={() => {
-          handleHide(false);
-        }}
+        <CloseButton
+          onClick={() => {
+            handleHide(false);
+          }}
+          data-testid="close-btn"
         >
           <img src={CloseIcon} alt="Close Logo" className="close-icon" data-testid="expanded-view" />
         </CloseButton>

@@ -15,6 +15,7 @@ import { GlobalContext } from '../GlobalContext.jsx';
 import { mockProduct, mockStyles } from './mockProductData';
 
 jest.mock('axios');
+
 axios.get.mockImplementation((url) => {
   if (url === '/products/40450') {
     return Promise.resolve({
@@ -113,7 +114,6 @@ describe('Overview component', () => {
 
   it('should only be able to click the dropdown button of quantity selector when size is selected', async () => {
     expect(screen.getByTestId('qty-dropdown-btn')).toBeDisabled();
-
     fireEvent.click(await screen.findByTestId('size-dropdown-btn'));
     fireEvent.click(screen.getByTestId('size-item-1397050'));
     expect(screen.getByTestId('qty-dropdown-btn')).not.toBeDisabled();
@@ -121,7 +121,7 @@ describe('Overview component', () => {
 
   it('should render the dropdown list of quantity selector correctly', async () => {
     fireEvent.click(await screen.findByTestId('size-dropdown-btn'));
-    fireEvent.click(screen.getByTestId('size-item-1397049'));
+    fireEvent.click(await screen.findByTestId('size-item-1397049'));
     fireEvent.click(screen.getByTestId('qty-dropdown-btn'));
     expect(screen.getAllByTestId(/qty-item-/i)).toHaveLength(10);
     fireEvent.click(screen.getByTestId('size-dropdown-btn'));
@@ -153,17 +153,38 @@ describe('Overview component', () => {
   });
 
   it('should be able to add to cart with selected size', async () => {
-    fireEvent.click(await screen.findByTestId('size-dropdown-btn'));
+    expect(await screen.findByText('SELECT SIZE')).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId('size-dropdown-btn'));
     fireEvent.click(screen.getByTestId('size-item-1397049'));
     fireEvent.click(screen.getByTestId('qty-dropdown-btn'));
     fireEvent.click(screen.getByTestId('qty-item-3'));
     fireEvent.click(screen.getByTestId('add-to-cart-btn'));
-    screen.debug();
     expect(await screen.findByText('Added to cart!')).toBeInTheDocument();
   });
 
-  it('should be able to enter expanded view by clicking the default view', async () => {
-    fireEvent.click(await screen.findByTestId('default-view'));
+  it('should be able to switch to next or previous image in default view', async () => {
+    expect(await screen.queryByTestId('prev-left-btn')).not.toBeInTheDocument();
+    // fireEvent.click(await screen.findByTestId('next-right-btn'));
+  });
+
+  it('should be able to enter the expanded view by clicking the default view', async () => {
+    fireEvent.click(await screen.findByTestId('default-view-main'));
     expect(screen.getByTestId('expanded-view'));
   });
+
+  it('should be able to close the expanded view by clicking the close button', async () => {
+    fireEvent.click(await screen.findByTestId('default-view-main'));
+    fireEvent.click(await screen.findByTestId('close-btn'));
+    expect(screen.queryByTestId('expanded-view')).not.toBeInTheDocument();
+  });
+
+  it('should be able to toggle the magnifier by clicking the image in the expanded view', async () => {
+    fireEvent.click(await screen.findByTestId('default-view-main'));
+    fireEvent.click(screen.getByTestId('default-view-expanded'));
+    expect(screen.getByTestId('magnifier')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByTestId('default-view-expanded'));
+    expect(screen.queryByTestId('magnifier')).not.toBeInTheDocument();
+  });
+
 });
