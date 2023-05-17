@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import parse from '../../parse';
 import ReviewTile from './ReviewTile.jsx';
 
-function ReviewList({ productID, sortParam, setSortParam, reviewList, setReviewList }) {
+function ReviewList({ productID, sortParam, setSortParam, reviewList, setReviewList, reviewModal, setReviewModal }) {
   // const [countLimit, setCountLimit] = useState(500);
   // const [pageParam, setPageParam] = useState(1);
   const [sliceCount, setSliceCount] = useState(2);
@@ -51,6 +51,9 @@ function ReviewList({ productID, sortParam, setSortParam, reviewList, setReviewL
       </div>
       <button type="submit" onClick={getMoreReviews}>More Reviews</button>
       <button type="submit">Write a review</button>
+      <div className="write-review-btn">
+        <button type="button" onClick={() => { setReviewModal(!reviewModal); }}>ADD REVIEW</button>
+      </div>
     </div>
   );
 }

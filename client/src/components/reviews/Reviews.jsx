@@ -7,7 +7,7 @@ import WriteReview from './WriteReview.jsx';
 import parse from '../../parse';
 
 function Reviews() {
-  const { productID } = useContext(GlobalContext);
+  const { productID, product } = useContext(GlobalContext);
   const [reviewList, setReviewList] = useState([]);
   const [sortParam, setSortParam] = useState('relevant');
   const [metadata, setMetadata] = useState({});
@@ -34,17 +34,18 @@ function Reviews() {
           setSortParam={setSortParam}
           reviewList={reviewList}
           setReviewList={setReviewList}
+          reviewModal={reviewModal}
+          setReviewModal={setReviewModal}
         />
-      </div>
-      <div className="write-review-btn">
-        <button type="button" onClick={() => { setReviewModal(!reviewModal); }}>ADD REVIEW</button>
       </div>
       <div>
         {reviewModal && (
           <WriteReview
             productID={productID}
+            product={product}
             reviewModal={reviewModal}
             setReviewModal={setReviewModal}
+            characteristics={metadata.characteristics}
           />
         )}
       </div>
