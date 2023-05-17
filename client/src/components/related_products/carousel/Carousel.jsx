@@ -19,6 +19,7 @@ function Carousel({
   const { productID, setProductID } = useContext(GlobalContext);
   const [slideIndex, setSlideIndex] = useState(0);
   const [slide2Index, setSlide2Index] = useState(0);
+  const outfitButton = true;
 
   const trackLimit = (rpMode ? 5 : 4);
   // let productSlider = document.querySelector('.productTrack');
@@ -89,6 +90,7 @@ function Carousel({
               burn={burn}
               rpMode={rpMode}
               dataStore={dataStore}
+              outfitButton={outfitButton}
             />
           </li>
         )}

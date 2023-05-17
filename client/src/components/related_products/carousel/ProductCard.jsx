@@ -14,6 +14,7 @@ function ProductCard({
   rpMode,
   dataStore,
   outfitToggle,
+  outfitButton
 }) {
   const { productID } = useContext(GlobalContext);
   const [productInfo, setProductInfo] = useState({});
@@ -72,32 +73,35 @@ function ProductCard({
       onKeyDown={() => {}}
       onClick={(e) => {
         e.preventDefault();
-        if (rpMode) {
-          triggerFunction(relatedID);
-        } else {
+
+        if (outfitButton) {
           outfitToggle();
+        } else {
+          triggerFunction(relatedID);
         }
       }}
     >
       <div className="imgDiv">
         <img className="relatedIMG" src={imageURL} alt="Coming soon!" />
 
-        <button
-          className="compareButton"
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            if (rpMode) {
-              console.log('compare modal');
-            } else {
-              outfitToggle(relatedID);
-            }
-            console.log('compare button pressed');
-          }}
-        >
-          {rpMode ? '★' : 'x'}
-        </button>
+        {outfitButton ? '' : (
+          <button
+            className="compareButton"
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              if (rpMode) {
+                console.log('compare modal');
+              } else {
+                outfitToggle(relatedID);
+              }
+              console.log('compare button pressed');
+            }}
+          >
+            {rpMode ? '★' : 'x'}
+          </button>
+        )}
 
       </div>
       <div className="category">{productInfo ? productInfo.category : ''}</div>
