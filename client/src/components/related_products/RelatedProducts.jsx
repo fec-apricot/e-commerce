@@ -32,7 +32,6 @@ function RelatedProducts() {
   };
 
   const outfitToggle = (idNum) => {
-    console.log('outfitToggle triggered');
     let id = 0;
     if (!idNum) {
       id = productID;
@@ -41,7 +40,6 @@ function RelatedProducts() {
     }
     const oldList = [...outfitList];
     const index = oldList.indexOf(id);
-    console.log('original outfit', oldList, index);
     let newList = [];
     if (index === -1) {
       newList = [id, ...oldList];
@@ -50,7 +48,6 @@ function RelatedProducts() {
       newList = oldList;
     }
     newList = addBlanksToOutfit(newList);
-    console.log('newlist', newList);
     setOutfitList(newList);
     localStorage.setItem('outfit', JSON.stringify(newList));
     // setBurn(productID + burn);

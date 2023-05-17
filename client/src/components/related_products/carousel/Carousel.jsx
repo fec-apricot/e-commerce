@@ -84,7 +84,7 @@ function Carousel({
           <li key={productID} className={`outfitCard-slide AddToOutfitBtn ${productID}`}>
             <ProductCard
               relatedID={productID}
-              triggerFunction={outfitToggle}
+              outfitToggle={outfitToggle}
               // products={products}
               burn={burn}
               rpMode={rpMode}
@@ -100,6 +100,7 @@ function Carousel({
                 <ProductCard
                   relatedID={id}
                   triggerFunction={changeProduct}
+                  outfitToggle={outfitToggle}
                   // products={products}
                   burn={burn}
                   rpMode={rpMode}

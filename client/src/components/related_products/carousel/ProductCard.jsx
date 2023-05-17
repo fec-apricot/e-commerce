@@ -13,6 +13,7 @@ function ProductCard({
   burn,
   rpMode,
   dataStore,
+  outfitToggle,
 }) {
   const { productID } = useContext(GlobalContext);
   const [productInfo, setProductInfo] = useState({});
@@ -71,7 +72,11 @@ function ProductCard({
       onKeyDown={() => {}}
       onClick={(e) => {
         e.preventDefault();
-        triggerFunction(relatedID);
+        if (rpMode) {
+          triggerFunction(relatedID);
+        } else {
+          outfitToggle();
+        }
       }}
     >
       <div className="imgDiv">
@@ -83,6 +88,11 @@ function ProductCard({
           onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
+            if (rpMode) {
+              console.log('compare modal');
+            } else {
+              outfitToggle(relatedID);
+            }
             console.log('compare button pressed');
           }}
         >
