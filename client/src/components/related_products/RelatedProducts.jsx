@@ -28,21 +28,31 @@ function RelatedProducts() {
         list.push(10001); // blank product
       }
     }
-    // console.log('new list^^^^^^^', list);
     return list;
   };
 
-  const outfitToggle = () => {
-    const oList = [...outfitList];
-    // console.log('original outfit', oList);
-    const index = oList.indexOf(productID);
-    if (index === -1) {
-      setOutfitList(addBlanksToOutfit([productID, ...oList]));
+  const outfitToggle = (idNum) => {
+    console.log('outfitToggle triggered');
+    let id = 0;
+    if (!idNum) {
+      id = productID;
     } else {
-      oList.splice(index, 1);
-      setOutfitList(addBlanksToOutfit(oList));
+      id = idNum;
     }
-    // console.log('((((((((((((((-------outfitList has been set: ', oList);
+    const oldList = [...outfitList];
+    const index = oldList.indexOf(id);
+    console.log('original outfit', oldList, index);
+    let newList = [];
+    if (index === -1) {
+      newList = [id, ...oldList];
+    } else {
+      oldList.splice(index, 1);
+      newList = oldList;
+    }
+    newList = addBlanksToOutfit(newList);
+    console.log('newlist', newList);
+    setOutfitList(newList);
+    localStorage.setItem('outfit', JSON.stringify(newList));
     // setBurn(productID + burn);
   };
 
@@ -69,9 +79,9 @@ function RelatedProducts() {
     await Promise.all(endpoints.map((endpoint) => parse.get(endpoint)))
       .then((res) => {
         allProducts.current[id] = res;
-        // console.log('Data received for id; ', id, res, ' has been stored in allProducts', allProducts.current);
         setDataStore(allProducts.current);
         // console.log('-------> STEP 4 store received info for:', id, allProducts.current);
+        localStorage.setItem('data', JSON.stringify(allProducts.current));
       })
       .catch((err) => {
         console.log('promise.all err', err);
@@ -116,37 +126,51 @@ function RelatedProducts() {
   }, [productID]);
 
   useEffect(() => {
-    setRelated([productID]);
-    let oList = [...outfitList];
-    oList = addBlanksToOutfit(oList);
-    setOutfitList(oList);
-
-    const blankInfo = {
-      name: 'Blank',
-      slogan: 'add products!!!',
-      category: 'Category',
-      default_price: '$$',
-    };
-    const blankStyles = {
-      results: [{
-        photos: [{
-          thumbnail_url: '',
+    if (!allProducts.current || !allProducts.current[10001]) {
+      allProducts.current = JSON.parse(localStorage.getItem('data'));
+    }
+    if (!allProducts.current || !allProducts.current[10001]) {
+      const blankInfo = {
+        name: 'Blank',
+        slogan: 'add products!!!',
+        category: 'Category',
+        default_price: '$$',
+      };
+      const blankStyles = {
+        results: [{
+          photos: [{
+            thumbnail_url: '',
+          }],
         }],
-      }],
-    };
-    const blankRatings = {
-      ratings: {
-        1: '0',
-        2: '0',
-        3: '0',
-        4: '0',
-        5: '1',
-      },
-    };
-
-    allProducts.current[10001] = [blankInfo, blankStyles, blankRatings];
+      };
+      const blankRatings = {
+        ratings: {
+          1: '0',
+          2: '0',
+          3: '0',
+          4: '0',
+          5: '1',
+        },
+      };
+      allProducts.current = {};
+      allProducts.current[10001] = [blankInfo, blankStyles, blankRatings];
+    }
     setDataStore(allProducts.current);
   // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allProducts]);
+
+  useEffect(() => {
+    console.log('-----', allProducts);
+    setRelated([productID]);
+    // console.log('outfit in store', [localStorage.getItem('outfit')]);
+    let storedOutfit = JSON.parse(localStorage.getItem('outfit'));
+    if (storedOutfit[0] === null) {
+      localStorage.setItem('outfit', JSON.stringify([]));
+      storedOutfit = [];
+    }
+    console.log('stored outfit', storedOutfit);
+    storedOutfit = addBlanksToOutfit(storedOutfit);
+    setOutfitList(storedOutfit);
   }, []);
 
   const yes = true; // Airbnb made me do it

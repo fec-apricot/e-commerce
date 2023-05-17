@@ -41,8 +41,8 @@ function ProductCard({
 
   const buildTitle = (id) => {
     let expandedTitle = `${dataStore[id][0].name} - ${dataStore[id][0].slogan ? dataStore[id][0].slogan : ''}`;
-    if (expandedTitle.length > 45) {
-      expandedTitle = expandedTitle.slice(0, 45);
+    if (expandedTitle.length > 40) {
+      expandedTitle = expandedTitle.slice(0, 40);
       expandedTitle += '...';
     }
     setTitle(expandedTitle);
@@ -54,9 +54,8 @@ function ProductCard({
   }, [productStyles, productID, burn]);
 
   useEffect(() => {
-    // console.log((rpMode ? 'My RP id:' : 'My Outfit id:'), relatedID, ' and the dataStore:', dataStore);
     if (dataStore[relatedID] !== undefined && dataStore[relatedID][0] !== undefined) {
-      // console.log('Info made it to the card', dataStore[relatedID]);
+      // console.log('Info made it to the card', relatedID, dataStore[relatedID]);
       setProductInfo(dataStore[relatedID][0]);
       setProductStyles(dataStore[relatedID][1]);
       setRatings(dataStore[relatedID][2].ratings);
@@ -72,7 +71,6 @@ function ProductCard({
       onKeyDown={() => {}}
       onClick={(e) => {
         e.preventDefault();
-        // triggerFunction(isBtn ? productIdNum : relatedID); // was relatedID
         triggerFunction(relatedID);
       }}
     >
