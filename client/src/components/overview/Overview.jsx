@@ -40,6 +40,11 @@ const Name = styled.div`
 const Price = styled.div`
   font-size: 20px;
 `;
+const ShareContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+`;
 
 function Overview() {
   const { product } = useContext(GlobalContext);
@@ -60,6 +65,35 @@ function Overview() {
           </Price>
           <StyleSelector />
           <AddToCart />
+          <ShareContainer>
+            <div
+              className="fb-share-button"
+              data-href="https://developers.facebook.com/docs/plugins/"
+              data-layout=""
+              data-size=""
+            >
+              <a
+                target="_blank"
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                className="fb-xfbml-parse-ignore"
+                rel="noreferrer"
+              >
+                Share
+              </a>
+            </div>
+            <a
+              href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+              className="twitter-share-button"
+              data-show-count="false"
+            >
+              Tweet
+            </a>
+            <a
+              data-pin-do="buttonBookmark"
+              href="https://www.pinterest.com/pin/create/button/"
+            >
+            </a>
+          </ShareContainer>
         </WidgetPanel>
       </TopContainer>
       <Description />
