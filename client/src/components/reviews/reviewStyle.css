@@ -186,6 +186,43 @@
 .review-form-details {
   margin-top: 1em;
 }
-.detail-buttons {
+.detail-container-modal {
   margin-top: 5px;
+  display: flex;
+  margin-bottom: 5px;
+  /* flex-direction: column; */
 }
+.detail-name-modal {
+  min-width: 70px;
+  /* position: absolute; */
+  /* display: inline-block; */
+}
+.detail-buttons-modal > * {
+  margin-left: 60px;
+}
+.detail-scale-modal {
+  min-height: 10px
+}
+.detail-one-modal {
+  left: 126px;
+  min-width: 50px;
+  position: absolute;
+  font-size: x-small;
+  text-align: center;
+}
+.detail-three-modal {
+  left: 278px;
+  min-width: 50px;
+  position: absolute;
+  font-size: x-small;
+  text-align: center;
+}
+.detail-five-modal {
+  /* transform: translate(400px, 0); */
+  left: 431px;
+  min-width: 50px;
+  position: absolute;
+  font-size: x-small;
+  text-align: center;
+}
+

@@ -35,7 +35,7 @@ function ReviewTile({ review }) {
       <div className="review-body" data-testid="review-body">{review.body}</div>
       <div>{review.recommend && <div>I recommend this product</div>}</div>
       <div>{review.response && <div>{`Reponse: ${review.response}`}</div>}</div>
-      <div>{}</div>
+      <div>{review.photos && (review.photos.map((photo) => (<img alt="" height="150" src={photo.url} key={photo.url} />)))}</div>
       <div>Was this Review Helpful?</div>
       <div
         onClick={() => {
