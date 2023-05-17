@@ -7,7 +7,7 @@ import './questions.css';
 
 function AnswerForm({ setOpenForm, question, setAnswers, setBurn, burn }) {
   // const { productID } = useContext(GlobalContext);
-  const { product, setProduct } = useContext(GlobalContext);
+  const { product } = useContext(GlobalContext);
   // const { product } = useContext(OverviewContext);
   const [answerBody, setAnswerBody] = useState('');
   const [userName, setName] = useState('');
@@ -42,7 +42,7 @@ function AnswerForm({ setOpenForm, question, setAnswers, setBurn, burn }) {
         <div className="modal">
           <div className="modalHeader">
             <h5 className="heading">Submit your Answer</h5>
-            <h6 className="subheading">product name: {question.question_body}</h6>
+            <h6 className="subheading">{product?.name}: {question.question_body}</h6>
           {inputErr && <p className="invalidInput">You must enter the following:</p>}
           </div>
           <button type="button" className="closeBtn" onClick={() => setOpenForm(false)}>

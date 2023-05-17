@@ -7,34 +7,39 @@
 
 }
 
-.head {
+/* .head {
   font-size: 11pt;
-  color: rgb(67, 67, 72)
-}
+  color: rgb(114, 114, 116);
+  font-weight: 300;
+} */
 
 .navQ {
+ color: rgb(114, 114, 116);
  float: right;
- font-size: 8pt;
+ font-size: 9pt;
+ font-weight: 300;
 }
 
 .navA {
-  font-size: 8pt;
+  color: rgb(114, 114, 116);
+  font-size: 9pt;
   padding-left: 26px;
   padding-top: 10px;
+  font-weight: 300;
 }
 
 .search {
-  width: 833px;
+  width: 844px;
   height: 58px;
   border: none;
-  padding-left: 12px;
-  background-color: rgb(246, 247, 251);
-  /* background-color: white; */
+  padding-left: 14px;
+  /* background-color: rgb(246, 247, 251); */
+  background-color: white;
 }
 
 .form {
-  background-color: rgb(246, 247, 251);
-  /* background-color: white; */
+  /* background-color: rgb(246, 247, 251); */
+  background-color: white;
   height: 60px;
   border: 1px solid black;
 
@@ -52,12 +57,14 @@
 } */
 .searchBttn {
   border: none;
-  background-color: rgb(246, 247, 251);
-  height: 50px;
-  width: 50px;
-  /* background-color: white; */
+  /* background-color: rgb(246, 247, 251); */
+  background-color: white;
+  /* height: 50px;
+  width: 50px; */
   color: rgb(84, 84, 84);
-  background-image: url(https://www.pngarea.com/pngm/109/1164446_searchicon-png-search-icon-png-download.png);
+  /* background-image: url(https://www.pngarea.com/pngm/109/1164446_searchicon-png-search-icon-png-download.png); */
+  /* background-image: url(https://icons8.com/icon/59878/search); */
+  /* background-image: url(https://icons8.com/icon/132/search); */
   /* background-repeat: no-repeat;
   background-size: 20px;
   width: 20px;
@@ -65,8 +72,9 @@
   cursor: pointer; */
 }
 
+
 .questionList {
-  font-weight: bold;
+  font-weight: 600;
   /* height: 40px;
   display: inline-block;
   font-weight: bold;
@@ -79,27 +87,40 @@
   max-width: 650px;
 } */
 
+.qSection {
+  padding-top: 5px;
+  padding-bottom: 15px;
+}
+
 .answerList {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .answerText {
   font-size: 10pt;
+  font-weight: 300;
 }
 
 .Btn {
-  font-size: 8pt;
+  font-family: 'Inter', sans-serif;
+  color: rgb(114, 114, 116);
+  font-weight: 300;
+  font-size: 9pt;
   text-decoration: underline;
   border: none;
   background-color: transparent;
 }
 
 .mainBtn {
+  font-family: 'Inter', sans-serif;
   height: 60px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 17px;
+  padding-right: 17px;
   background-color: white;
   border: 1px solid black;
+  color: rgb(81, 82, 83);
+  font-weight: 600;
+  font-size: 11pt;
 }
 
 .mainBtn:hover {
@@ -107,7 +128,7 @@
 }
 
 .Btn:hover {
-  color:rgb(108, 109, 110)
+  color: black
 }
 
 .formBar {
@@ -242,7 +263,7 @@
 }
 
 .submitBtn:hover {
-  background-color: #f9616d;
+  background-color: #f76d78;
 }
 
 .deleteBtn:hover {
@@ -268,4 +289,11 @@
   box-shadow: none;
   transform: none;
   background: rgb(230, 228, 228);
+}
+
+::placeholder {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11pt;
+  color: rgb(81, 82, 83)
 }

@@ -7,7 +7,7 @@ import '@testing-library/jest-dom';
 import RelatedProducts from '../RelatedProducts.jsx';
 import { GlobalContext } from '../../GlobalContext.jsx';
 
-// jest.mock('axios');
+jest.mock('axios');
 
 describe('RelatedProducts component', () => {
   beforeEach(() => {

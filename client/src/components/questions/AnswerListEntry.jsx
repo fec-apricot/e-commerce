@@ -33,14 +33,14 @@ function AnswerListEntry({ answer }) {
         {answer.answerer_name}
         ,&nbsp;
         {new Date(answer.date).toString().slice(4, 15)}
-        &emsp;|&emsp; Helpful?&ensp;
+        &emsp;|&emsp; Helpful?
         <button type="button" className="Btn" data-testid="help" onClick={(event) => updateHelpful(event)}>Yes</button>
-        &nbsp;
+        &#40;
         {helpfulness}
+        &#41;
         &emsp;|&emsp;
         <button onClick={() => changeText()} type="button" className="Btn" data-testid="report">{text}</button>
       </div>
-      <br />
     </div>
   );
 }
