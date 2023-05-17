@@ -15,6 +15,7 @@ function Carousel({
   burn,
   outfitToggle,
   outfitList,
+  openModal,
 }) {
   const { productID, setProductID } = useContext(GlobalContext);
   const [slideIndex, setSlideIndex] = useState(0);
@@ -107,6 +108,7 @@ function Carousel({
                   burn={burn}
                   rpMode={rpMode}
                   dataStore={dataStore}
+                  openModal={openModal}
                 />
               </li>
             ))

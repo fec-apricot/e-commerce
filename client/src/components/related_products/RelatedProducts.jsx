@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 import { GlobalContext } from '../GlobalContext.jsx';
 import Carousel from './carousel/Carousel.jsx';
+import Modal from './Modal.jsx';
 import parse from '../../parse';
 import './Related.css';
 
@@ -14,6 +15,11 @@ function RelatedProducts() {
   const [dataStore, setDataStore] = useState({});
   const [related, setRelated] = useState([]);
   const [outfitList, setOutfitList] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [compareID, setCompareID] = useState(0);
+  const [productFeatures, setProductFeatures] = useState({});
+  const [compareFeatures, setCompareFeatures] = useState({});
+  const [allFeatures, setAllFeatures] = useState([]);
   const [burn, setBurn] = useState(0);
 
   const allProducts = useRef({});
@@ -50,12 +56,10 @@ function RelatedProducts() {
     newList = addBlanksToOutfit(newList);
     setOutfitList(newList);
     localStorage.setItem('outfit', JSON.stringify(newList));
-    // setBurn(productID + burn);
   };
 
   const searchAllProducts = (id) => {
     // console.log('-------> STEP 2 check if related id info already stored', id);
-    // console.log('!!!!checking allProducts for id: ', id, allProducts);
     let pass = true;
     if (allProducts.current[id] === undefined) {
       // console.log('not in there', id, allProducts.current);
@@ -85,6 +89,33 @@ function RelatedProducts() {
       });
     // console.log('request END!!!!!<-------id:', id);
     setBurn(id);
+  };
+
+  const openModal = (id) => {
+    const currentF = {};
+    const compareF = {};
+    const features = [];
+    if (allProducts.current[productID]) {
+      allProducts.current[productID][0].features.forEach((f) => {
+        currentF[f.feature] = f.value;
+        if (features.indexOf(f.feature) === -1) {
+          features.push(f.feature);
+        }
+      });
+    }
+    if (allProducts.current[id]) {
+      allProducts.current[id][0].features.forEach((f) => {
+        compareF[f.feature] = f.value;
+        if (features.indexOf(f.feature) === -1) {
+          features.push(f.feature);
+        }
+      });
+    }
+    setCompareID(id);
+    setAllFeatures(features);
+    setProductFeatures(currentF);
+    setCompareFeatures(compareF);
+    setModalOpen(true);
   };
 
   useEffect(() => {
@@ -153,6 +184,7 @@ function RelatedProducts() {
       allProducts.current[10001] = [blankInfo, blankStyles, blankRatings];
     }
     setDataStore(allProducts.current);
+    console.log('dataStore', allProducts.current);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allProducts]);
 
@@ -174,6 +206,27 @@ function RelatedProducts() {
   const no = false;
   return (
     <div className="widgetContainer">
+      <Modal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+      >
+        <table>
+          <tbody>
+            <tr>
+              <th className="currentP">{allProducts.current[productID] ? allProducts.current[productID][0].name : ''}</th>
+              <th className="feature">Feature</th>
+              <th className="compareP">{allProducts.current[compareID] ? allProducts.current[compareID][0].name : ''}</th>
+            </tr>
+            {allFeatures.map((f, i) => (
+              <tr key={`${productID * i}`}>
+                <td>{productFeatures[f] ? productFeatures[f] : ''}</td>
+                <td>{f}</td>
+                <td>{compareFeatures[f] ? compareFeatures[f] : ''}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Modal>
       <Carousel
         rpMode={yes}
         dataStore={dataStore}
@@ -181,6 +234,7 @@ function RelatedProducts() {
         burn={burn}
         outfitList={outfitList}
         outfitToggle={outfitToggle}
+        openModal={openModal}
       />
       <Carousel
         rpMode={no}

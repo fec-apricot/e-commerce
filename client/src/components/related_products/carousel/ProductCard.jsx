@@ -14,7 +14,8 @@ function ProductCard({
   rpMode,
   dataStore,
   outfitToggle,
-  outfitButton
+  outfitButton,
+  openModal,
 }) {
   const { productID } = useContext(GlobalContext);
   const [productInfo, setProductInfo] = useState({});
@@ -92,6 +93,7 @@ function ProductCard({
               e.stopPropagation();
               e.preventDefault();
               if (rpMode) {
+                openModal(relatedID);
                 console.log('compare modal');
               } else {
                 outfitToggle(relatedID);
