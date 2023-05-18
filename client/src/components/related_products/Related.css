@@ -11,17 +11,22 @@ body {
   height: 800px;
 }
 
-
+.closeModalBtn {
+  background-color: rgba(0, 0, 0, .4);
+  border: none;
+  border-radius: 5px;
+  width: 30%;
+  margin: 10px;
+}
 
 .modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
-  color: black;
-  padding: 50px;
-  z-index: 10;
+  padding: 40px;
+  border-radius: 10px;
+  height: fit-content;
 }
 
 .overlay {
@@ -42,43 +47,44 @@ body {
 }
 
 .modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: black;
 }
 
 table {
-  display: flex;
-  justify-content: space-evenly;
   width: 100%;
-  border-collapse: collapse;
   border: 1px solid black;
+  table-layout: fixed;
+  margin-top: 20px;
 }
 
 table td {
   border: 1px solid black;
+  text-align: center;
 }
 
 tbody {
-  width: 100%;
   vertical-align: baseline;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+
 }
 
 tr {
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+
 }
 
 th.currentP {
-  width: 35%;
+
 }
 
 th.feature {
-  width: 35%;
+
 }
 
 th.compareP {
-  width: 35%;
+
 }

@@ -211,6 +211,10 @@ function RelatedProducts() {
         onClose={() => setModalOpen(false)}
       >
         <table>
+          <colgroup>
+            <col width="33%" />
+          </colgroup>
+
           <tbody>
             <tr>
               <th className="currentP">{allProducts.current[productID] ? allProducts.current[productID][0].name : ''}</th>
