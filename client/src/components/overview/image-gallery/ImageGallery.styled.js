@@ -40,35 +40,27 @@ export const CarouselButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
-  &:hover {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
-  }
   &.prev-left {
     top: 50%;
-    left: 120px;
-    width: 30px;
-    height: 30px;
+    left: 100px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 15px;
     height: 80px;
     width: 30px;
     & .scroll-left-icon {
       opacity: 0.8;
-      rotate: 225deg;
     }
   }
   &.next-right {
     top: 50%;
     right: 30px;
-    width: 30px;
-    height: 30px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 15px;
     height: 80px;
     width: 30px;
     & .scroll-right-icon {
       opacity: 0.8;
-      rotate: 45deg;
+      rotate: 180deg;
     }
   }
   &.prev-up {

@@ -5,7 +5,7 @@ import { GlobalContext } from '../GlobalContext.jsx';
 const Host = styled.div`
   width: 76%;
   display: flex;
-  margin: 20px 100px;
+  margin: 50px 100px;
 `;
 
 const SloganAndDescriptionContainer = styled.div`

@@ -51,7 +51,7 @@ const DropdownBtn = styled.button`
   box-shadow: 0 1px 4px 0 #ccc;
   transition: 0.3s ease;
   &:hover {
-    background-color: #eee;
+    background-color: rgb(243, 239, 243);
   }
   & .dropdown-icon {
     height: 20px;
@@ -89,9 +89,14 @@ const Button = styled.button`
   height: 60px;
   background-color: white;
   border: 1px solid slategrey;
+  color: rgb(81, 82, 83);
   border-radius: 3px;
+  font-family: 'Inter', sans-serif;
   font-size: 16px;
   cursor: pointer;
+  &:hover {
+    background-color: rgb(243, 239, 243);
+  }
   &.add-btn {
     width: 280px;
     padding: 0 15px;

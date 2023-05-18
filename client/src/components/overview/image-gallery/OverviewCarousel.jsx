@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import DropdownIcon from '../../../assets/dropdown-icon.svg';
-import ArrowIcon from '../../../assets/arrow-icon.svg';
+import ArrowIcon from '../../../assets/arrow-icon.png';
 import {
   DefaultView, CarouselButton, ThumbnailViewContainer, ThumbnailView,
 } from './ImageGallery.styled';
@@ -75,7 +75,7 @@ function OverviewCarousel({
           }}
           data-testid="prev-left-btn"
         >
-          <img src={ArrowIcon} alt="Scroll Left Logo" className="scroll-left-icon" />
+          <img src={ArrowIcon} alt="Scroll Left Logo" className="scroll-left-icon" style={{ width: '30px', height: '30px' }} />
         </CarouselButton>
       )}
       {/* eslint-disable-next-line no-unsafe-optional-chaining */}
@@ -88,7 +88,7 @@ function OverviewCarousel({
           }}
           data-testid="next-right-btn"
         >
-          <img src={ArrowIcon} alt="Scroll Right Logo" className="scroll-right-icon" />
+          <img src={ArrowIcon} alt="Scroll Right Logo" className="scroll-right-icon" style={{ width: '30px', height: '30px' }} />
         </CarouselButton>
       )}
       <ThumbnailViewContainer>
