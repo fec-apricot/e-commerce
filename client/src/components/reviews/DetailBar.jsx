@@ -4,10 +4,11 @@ function DetailBar({ detail }) {
   const [value, setValue] = useState(0);
   useEffect(() => {
     setValue(Math.floor((detail[1].value / 5) * 100));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const perfectDetails = ['Size', 'Width', 'Length', 'Fit']
+  const perfectDetails = ['Size', 'Width', 'Length', 'Fit'];
   return (
-    <div className="detail-breakdown" onClick={()=>{detail[1].value}}>
+    <div className="detail-breakdown">
       <div>{detail[0]}</div>
       <span className="detail-bar">
         <span className="poor">{(detail[0] === 'Fit' && 'Runs tight') || (detail[0] === 'Length' && 'Runs Short') || (detail[0] === 'Width' && 'Too narrow') || (detail[0] === 'Comfort' && 'Uncomfortable') || (detail[0] === 'Quality' && 'Poor') || (detail[0] === 'Size' && 'A size too small')}</span>

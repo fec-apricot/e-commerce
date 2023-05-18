@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 function WriteButtons({ detail, detailObj, setDetailObj }) {
   const editRating = (rating) => {
@@ -10,7 +10,7 @@ function WriteButtons({ detail, detailObj, setDetailObj }) {
       <div className="detail-container-modal">
         <span className="detail-name-modal">{`${detail[0]}: `}</span>
         <span className="detail-buttons-modal">
-          <input type="radio" name={detail[0]} onClick={() => { editRating(1); }} />
+          <input type="radio" data-testid="detail-score-1" name={detail[0]} onClick={() => { editRating(1); }} />
           <input type="radio" name={detail[0]} onClick={() => { editRating(2); }} />
           <input type="radio" name={detail[0]} onClick={() => { editRating(3); }} />
           <input type="radio" name={detail[0]} onClick={() => { editRating(4); }} />

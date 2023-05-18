@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import parse from '../../parse';
 import ReviewTile from './ReviewTile.jsx';
 
-function ReviewList({ productID, sortParam, setSortParam, reviewList, setReviewList, reviewModal, setReviewModal }) {
+function ReviewList({
+  productID, sortParam, setSortParam, reviewList, setReviewList, reviewModal, setReviewModal,
+}) {
   const [sliceCount, setSliceCount] = useState(2);
   const [totalReviews, setTotalReviews] = useState([]);
   const getReviews = () => (
@@ -21,7 +23,9 @@ function ReviewList({ productID, sortParam, setSortParam, reviewList, setReviewL
   const getMoreReviews = () => {
     setSliceCount(sliceCount + 2);
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { getReviews(); }, [productID]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { sortReviews(); }, [sortParam, productID]);
   // sliceCount,
   return (
@@ -44,14 +48,14 @@ function ReviewList({ productID, sortParam, setSortParam, reviewList, setReviewL
           </label>
         </form>
         <div className="tile-list" data-testid="tile-list">
-          {totalReviews.slice(0, sliceCount)
+          {reviewList.slice(0, sliceCount)
             .map((review) => (
               <ReviewTile review={review} key={review.review_id} />
             ))}
         </div>
       </div>
       <div className="review-list-buttons">
-        {((sliceCount !== totalReviews.length || sliceCount < totalReviews.length) && <button className="more-reviews" type="button" onClick={getMoreReviews}>MORE REVIEWS</button>)}
+        {((sliceCount !== reviewList.length || sliceCount < reviewList.length) && <button className="more-reviews" type="button" onClick={getMoreReviews}>MORE REVIEWS</button>)}
         <div>
           <button className="write-review-button" type="button" onClick={() => { setReviewModal(!reviewModal); }}>ADD A REVIEW +</button>
         </div>

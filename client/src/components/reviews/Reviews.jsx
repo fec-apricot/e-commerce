@@ -19,6 +19,7 @@ function Reviews() {
       setMetadata(data);
     })
     .catch((err) => { console.log('Client get review metadata error :', err); });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { reviewMeta(); }, [productID]);
 
   return (

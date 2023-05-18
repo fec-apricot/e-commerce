@@ -54,6 +54,6 @@ describe('Review and Ratings', () => {
     expect(screen.getByTestId('reviewcomponent')).toHaveClass('reviews');
   });
   it('Should render the add reviews button', () => {
-    expect(screen.getByText(/add review/i)).toBeInTheDocument();
+    expect(screen.getByText(/add a review/i)).toBeInTheDocument();
   });
 });

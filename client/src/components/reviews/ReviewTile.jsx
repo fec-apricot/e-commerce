@@ -27,6 +27,7 @@ function ReviewTile({ review }) {
       ...currentReviewStars,
       [review.rating]: 1,
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -48,7 +49,7 @@ function ReviewTile({ review }) {
         ))}
       </div>
       <div className="review-recommendation">{review.recommend && <div>{`${'\u2714'} I recommend this product`}</div>}</div>
-      <div>{review.response && <div>{`Reponse: ${review.response}`}</div>}</div>
+      <div>{review.response && <div style={{ backgroundColor: 'gray' }}>{`Reponse by Seller: ${review.response}`}</div>}</div>
       <div>{review.photos && (review.photos.map((photo) => (<img className="review-image" alt="" src={photo.url} key={photo.url} />)))}</div>
       <div className="review-tile-footer">
         <span>Was this Review Helpful? </span>

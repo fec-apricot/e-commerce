@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Stars from '../related_products/stars_module/Stars.jsx';
 import WriteButtons from './WriteButtons.jsx';
 import parse from '../../parse';
-const axios = require('axios');
 
-function WriteReview({ productID, product, setReviewModal, reviewModal, characteristics}) {
+function WriteReview({
+  productID, product, setReviewModal, reviewModal, characteristics,
+}) {
   const ratingScale = {
     1: 0,
     2: 0,
@@ -44,6 +45,7 @@ function WriteReview({ productID, product, setReviewModal, reviewModal, characte
         })
         .catch((err) => console.log('Cloudinary Error:', err));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image]);
 
   const submitReview = () => parse.post('/reviews', {
@@ -83,7 +85,8 @@ function WriteReview({ productID, product, setReviewModal, reviewModal, characte
       && userBody.length > 50 && username && userEmail) {
       setEnabled(true);
     }
-  }, [userRating, userRecommend, detailObj, userBody, username, userEmail])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userRating, userRecommend, detailObj, userBody, username, userEmail]);
   return (
     <div className="review-modal">
       <div role="presentation" className="modal-overlay">
@@ -99,7 +102,7 @@ function WriteReview({ productID, product, setReviewModal, reviewModal, characte
           </div>
           <div>
             Do you recommend this product? *
-            <input type="radio" name="recommend" onClick={() => { setRecommend(true); }} />
+            <input type="radio" name="recommend" data-testid="review-form-recommend" onClick={() => { setRecommend(true); }} />
             Yes
             <input type="radio" name="recommend" onClick={() => { setRecommend(false); }} />
             No
@@ -130,6 +133,7 @@ function WriteReview({ productID, product, setReviewModal, reviewModal, characte
                   placeholder="Why did you like the product or not?"
                   className="review-form-body"
                   maxLength="1000"
+                  data-testid="review-form-body"
                   onChange={(e) => {
                     setBody(e.target.value);
                   }}

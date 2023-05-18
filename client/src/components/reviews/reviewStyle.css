@@ -114,6 +114,7 @@
   flex-direction: row;
   font-size: small;
   text-align: center;
+  transition: all 0.25s ease;
 }
 .rating-breakdown:hover {
   background: wheat;
