@@ -1,4 +1,5 @@
 import React from 'react';
+import './header.css';
 
 function Header() {
   return (
@@ -7,10 +8,10 @@ function Header() {
         <br />
         <span className="logo">apricot</span>
         <span>
-        <form className="mainForm">
-          <input className="mainSearch" placeholder="_______________"></input>
-          <button className="mainSearchBtn"><i className="fa fa-search fa-xl"/></button>
-        </form>
+          <form className="mainForm">
+            <input className="mainSearch" placeholder="_______________"></input>
+            <button className="mainSearchBtn"><i className="fa fa-search fa-xl"/></button>
+          </form>
         </span>
 
       </section>

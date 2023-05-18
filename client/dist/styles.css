@@ -27,65 +27,8 @@ body {
   margin: auto;
 }
 
-.headContainer {
-  background-color: rgb(58, 58, 59);
-  width: 1200px;
-  height: 80px;
-}
-
-.container1 {
-  margin: auto;
-  font-size: 11pt;
-  font-weight: 300;
-}
-
 .widgetTitle {
   font-size: 12pt;
   font-weight: 300;
-}
-
-.newsHeader {
-  margin-left: 250px;
-  font-size: 10pt;
-}
-
-.mainForm {
-  display: flex;
-  display: inline-block;
-  background-color: rgb(58, 58, 59);
-  border: none;
-  justify-content: flex-end;
-  /* padding-top: 20px; */
-  /* padding-right: 50px; */
-  padding-left: 865px;
-}
-
-.mainSearch {
-  background-color: rgb(58, 58, 59);
-  border: none;
-}
-
-::placeholder {
-  font-size: 22pt;
-  font-weight: 300;
-  color: white;
-}
-
-.mainSearchBtn {
-  background-color: rgb(58, 58, 59);
-  color: white;
-    height: 20px;
-    width: 30px;
-    border: none;
-}
-
-.logo {
-  display: inline-block;
-  padding-left: 30px;
-  padding-top: 7px;
-  color: white;
-  font-size: 22pt;
-  font-weight: 700;
-  text-decoration: underline;
 }
 

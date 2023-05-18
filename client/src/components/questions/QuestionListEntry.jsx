@@ -59,6 +59,7 @@ function QuestionListEntry({ question }) {
         <div>
           {answers.slice(0, 2).map((answer, i) => <AnswerListEntry key={i} answer={answer} />)}
         </div>
+        <button type="button" className="moreAnswersBtn">LOAD MORE ANSWERS</button>
         <br />
       </section>
     </div>
