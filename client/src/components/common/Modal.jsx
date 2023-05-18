@@ -1,9 +1,12 @@
 import ReactDOM from 'react-dom';
 
 function Modal({ children }) {
-  const modalContainer = document.createElement('div');
-  modalContainer.setAttribute('id', 'modal-container');
-  document.body.appendChild(modalContainer);
+  let modalContainer = document.getElementById('modal-container');
+  if (modalContainer === null) {
+    modalContainer = document.createElement('div');
+    modalContainer.setAttribute('id', 'modal-container');
+    document.body.append(modalContainer);
+  }
 
   return ReactDOM.createPortal(children, modalContainer);
 }

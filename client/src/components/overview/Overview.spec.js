@@ -186,5 +186,4 @@ describe('Overview component', () => {
     fireEvent.click(screen.getByTestId('default-view-expanded'));
     expect(screen.queryByTestId('magnifier')).not.toBeInTheDocument();
   });
-
 });

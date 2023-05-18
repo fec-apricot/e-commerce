@@ -5,6 +5,9 @@ import Modal from '../../common/Modal.jsx';
 import CloseIcon from '../../../assets/close-icon.png';
 
 const Host = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,0.6);

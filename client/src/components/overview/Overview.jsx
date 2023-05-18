@@ -8,9 +8,9 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
 const Host = styled.div`
-  width: 125%;
+  width: 1200px;
+  margin-left: -140px;
   height: fit-content;
-  margin-left: -100px;
   display: flex;
   flex-direction: column;
 `;
