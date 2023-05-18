@@ -3,8 +3,8 @@ import React, {
   useEffect,
   useContext,
 } from 'react';
-import { GlobalContext } from '../../GlobalContext.jsx';
-import Stars from '../stars_module/Stars.jsx';
+import { GlobalContext } from '../GlobalContext.jsx';
+import Stars from './stars_module/Stars.jsx';
 import './ProductCard.css';
 
 function ProductCard({
@@ -58,12 +58,12 @@ function ProductCard({
 
   useEffect(() => {
     if (dataStore[relatedID] !== undefined && dataStore[relatedID][0] !== undefined) {
-      // console.log('Info made it to the card', relatedID, dataStore[relatedID]);
       setProductInfo(dataStore[relatedID][0]);
       setProductStyles(dataStore[relatedID][1]);
       setRatings(dataStore[relatedID][2].ratings);
       buildTitle(relatedID);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [relatedID, dataStore[relatedID], burn, productID]);
 
   return (
@@ -94,11 +94,9 @@ function ProductCard({
               e.preventDefault();
               if (rpMode) {
                 openModal(relatedID);
-                console.log('compare modal');
               } else {
                 outfitToggle(relatedID);
               }
-              console.log('compare button pressed');
             }}
           >
             {rpMode ? '★' : 'x'}

@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   position: relative;
-  width: 100%
+  width: 100%;
+  margin-bottom: 25px;
 }
 
 .productTrack {
@@ -11,14 +12,12 @@
   justify-content: left;
   height: 400px;
   width: 100%;
-  background-color: grey;
   margin: 0;
   padding: 0;
   list-style: none;
   overflow: hidden;
   position: relative;
   --slider-index: 0;
-
 }
 
 .productTrack2 {
@@ -27,20 +26,17 @@
   justify-content: left;
   height: 400px;
   width: 100%;
-  background-color: grey;
   margin: 0;
   padding: 0;
   list-style: none;
   overflow: hidden;
   position: relative;
-
   --slider2-index: 0;
 }
 
 .productCard-slide {
-  margin: 0, 4px, 0, 4px;
-  width: 220px;
-
+  padding-right: 25px;
+  width: 224px;
   display: flex;
   justify-content: center;
   transform: translateX(calc(var(--slider-index) * -100%));
@@ -48,20 +44,17 @@
 }
 
 .outfitCard-slide {
-  margin: 0, 4px, 0, 4px;
-  width: 220px;
-
+  padding-right: 25px;
+  width: 224px;
   display: flex;
   justify-content: center;
   transform: translateX(calc(var(--slider2-index) * -100%));
   transition: transform .5s;
-
 }
 
 .addToOutfitBtn {
   margin: 0, 4px, 0, 4px;
   width: 220px;
-
   display: flex;
   position: absolute;
   z-index: 6;
@@ -73,13 +66,18 @@
   transform: translateY(-50%);
   background: rgba(0,0,0,.4);
   cursor: pointer;
-  z-index: 5;
+  z-index: 10;
   height: 50%;
-  width: 1.5rem;
+  width: 30px;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 25px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px;
+}
+
+.carouselButton:hover {
+  background: rgba(0,0,0,.6);
 }
 
 .productLeft {

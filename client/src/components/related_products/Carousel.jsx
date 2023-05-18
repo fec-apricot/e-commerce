@@ -1,10 +1,5 @@
-import React, {
-  useState,
-  useContext,
-  useEffect,
-} from 'react';
-import { GlobalContext } from '../../GlobalContext.jsx';
-// import parse from '../../../parse';
+import React, { useState, useContext } from 'react';
+import { GlobalContext } from '../GlobalContext.jsx';
 import ProductCard from './ProductCard.jsx';
 import './Carousel.css';
 
@@ -22,12 +17,11 @@ function Carousel({
   const [slide2Index, setSlide2Index] = useState(0);
   const outfitButton = true;
 
-  const trackLimit = (rpMode ? 5 : 4);
-  // let productSlider = document.querySelector('.productTrack');
+  const trackLimit = (rpMode ? 4 : 3);
+  const productSlider = document.querySelector('.productTrack');
+  const productSlider2 = document.querySelector('.productTrack2');
 
   const changeProduct = (newID) => {
-    const productSlider = document.querySelector('.productTrack');
-    const productSlider2 = document.querySelector('.productTrack2');
     console.log('product changed');
     if (newID === 10001) { return; }
     setProductID(newID);
@@ -40,8 +34,8 @@ function Carousel({
 
   const slide = (direction) => {
     if (rpMode) {
-      const productSlider = document.querySelector('.productTrack');
       console.log('RP slide');
+      // const productSlider = document.querySelector('.productTrack');
       const index = Number(productSlider.style.getPropertyValue('--slider-index'));
       if (direction === 'left') {
         productSlider.style.setProperty('--slider-index', index - 1);
@@ -52,17 +46,17 @@ function Carousel({
       }
       console.log('rp slide index:', Number(productSlider.style.getPropertyValue('--slider-index')));
     } else {
-      const productSlider = document.querySelector('.productTrack2');
+      // const productSlider2 = document.querySelector('.productTrack2');
       console.log('Outfit slide');
-      const index = Number(productSlider.style.getPropertyValue('--slider2-index'));
+      const index = Number(productSlider2.style.getPropertyValue('--slider2-index'));
       if (direction === 'left') {
-        productSlider.style.setProperty('--slider2-index', index - 1);
+        productSlider2.style.setProperty('--slider2-index', index - 1);
         setSlide2Index(slide2Index - 1);
       } else {
-        productSlider.style.setProperty('--slider2-index', index + 1);
+        productSlider2.style.setProperty('--slider2-index', index + 1);
         setSlide2Index(slide2Index + 1);
       }
-      console.log('outfit slide index:', Number(productSlider.style.getPropertyValue('--slider2-index')));
+      console.log('outfit slide index:', Number(productSlider2.style.getPropertyValue('--slider2-index')));
     }
   };
 

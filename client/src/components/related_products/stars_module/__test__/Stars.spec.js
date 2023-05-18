@@ -84,7 +84,6 @@ describe('Stars module (Interactive)', () => {
 
   it('Should keep classNames when clicked', async () => {
     const fourthStar = screen.getByTestId(/star4/i);
-    // const secondStar = screen.getByTestId(/star2/i);
     fireEvent.mouseOver(fourthStar);
     fireEvent.click(fourthStar);
     fireEvent.mouseLeave(fourthStar);
@@ -94,9 +93,7 @@ describe('Stars module (Interactive)', () => {
   it('Should update update selection when new star is clicked', async () => {
     const fourthStar = screen.getByTestId(/star4/i);
     const secondStar = screen.getByTestId(/star2/i);
-    // fireEvent.mouseOver(fourthStar);
     fireEvent.click(fourthStar);
-    // fireEvent.mouseLeave(fourthStar);
     expect(fourthStar.classList.contains('gold')).toBe(true);
     fireEvent.click(secondStar);
     expect(fourthStar.classList.contains('gold')).toBe(false);

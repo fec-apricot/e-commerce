@@ -5,7 +5,7 @@ import React, {
   useRef,
 } from 'react';
 import { GlobalContext } from '../GlobalContext.jsx';
-import Carousel from './carousel/Carousel.jsx';
+import Carousel from './Carousel.jsx';
 import Modal from './Modal.jsx';
 import parse from '../../parse';
 import './Related.css';
@@ -59,14 +59,11 @@ function RelatedProducts() {
   };
 
   const searchAllProducts = (id) => {
-    // console.log('-------> STEP 2 check if related id info already stored', id);
     let pass = true;
     if (allProducts.current[id] === undefined) {
-      // console.log('not in there', id, allProducts.current);
       pass = false;
       return pass;
     }
-    // console.log('id found!', id, allProducts.current);
     return pass;
   };
 
@@ -76,18 +73,15 @@ function RelatedProducts() {
       `/products/${id}/styles`,
       `/reviews/meta?product_id=${id}`,
     ];
-    // console.log('-------> STEP 3 request info for:', id);
     await Promise.all(endpoints.map((endpoint) => parse.get(endpoint)))
       .then((res) => {
         allProducts.current[id] = res;
         setDataStore(allProducts.current);
-        // console.log('-------> STEP 4 store received info for:', id, allProducts.current);
         localStorage.setItem('data', JSON.stringify(allProducts.current));
       })
       .catch((err) => {
         console.log('promise.all err', err);
       });
-    // console.log('request END!!!!!<-------id:', id);
     setBurn(id);
   };
 
@@ -122,8 +116,6 @@ function RelatedProducts() {
     related.forEach((id) => {
       if (id === undefined) { return; }
       if (searchAllProducts(id)) {
-        // console.log('req avoided');
-        // setProducts(allProducts.current);
         return;
       }
       if (id !== 10001) {
@@ -134,7 +126,6 @@ function RelatedProducts() {
   }, [related]);
 
   useEffect(() => {
-    // console.log('-------> STEP 1 request ids related to ', productID);
     parse
       .get(`/products/${productID}/related`)
       .then((res) => {
@@ -144,8 +135,6 @@ function RelatedProducts() {
             noDuplicate.push(idNum);
           }
         });
-        // console.log('this is the related res: ', res);
-        // console.log('no duplicates ++++++++++++++++++', noDuplicate);
         setRelated(noDuplicate);
       })
       .catch((err) => {
@@ -189,9 +178,8 @@ function RelatedProducts() {
   }, [allProducts]);
 
   useEffect(() => {
-    console.log('-----', allProducts);
+    console.log('on load -----', allProducts.current);
     setRelated([productID]);
-    // console.log('outfit in store', [localStorage.getItem('outfit')]);
     let storedOutfit = JSON.parse(localStorage.getItem('outfit'));
     if (storedOutfit[0] === null) {
       localStorage.setItem('outfit', JSON.stringify([]));
@@ -200,6 +188,7 @@ function RelatedProducts() {
     console.log('stored outfit', storedOutfit);
     storedOutfit = addBlanksToOutfit(storedOutfit);
     setOutfitList(storedOutfit);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const yes = true; // Airbnb made me do it
