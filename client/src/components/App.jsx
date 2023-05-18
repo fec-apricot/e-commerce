@@ -2,7 +2,7 @@ import React from 'react';
 import { GlobalContextProvider } from './GlobalContext.jsx';
 import { OverviewContextProvider } from './overview/OverviewContext.jsx';
 import Overview from './overview/Overview.jsx';
-import Header from './Header.jsx';
+import Header from './header/Header.jsx';
 import RelatedProducts from './related_products/RelatedProducts.jsx';
 import Questions from './questions/Questions.jsx';
 import Reviews from './reviews/Reviews.jsx';

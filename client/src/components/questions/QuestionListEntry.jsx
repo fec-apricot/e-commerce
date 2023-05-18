@@ -7,16 +7,21 @@ import './questions.css';
 
 function QuestionListEntry({ question }) {
   const [answers, setAnswers] = useState([]);
+  const [allAnswers, setAllAnswers] = useState([]);
   const [openForm, setOpenForm] = useState(false);
   const [helpful, setHelpful] = useState(question.question_helpfulness);
   const [burn, setBurn] = useState(false);
+  // const [toggle, setToggle] = useState(false);
   // console.log('I AM A QUESTION', question)
 
   useEffect(() => {
     parse.get(`/qa/questions/${question.question_id}/answers`)
-      .then((data) => setAnswers(data.results))
+      .then((data) => {
+        setAllAnswers(data.results);
+        setAnswers(data.results.slice(0, 2));
+      })
       .catch((err) => console.log(err));
-  },[question.question_id, burn]);
+  }, [question.question_id, burn]);
 
   // console.log('I AM ANSWERS', answers);
   // console.log('I AM A QUESTION ID', question.question_id)
@@ -54,11 +59,13 @@ function QuestionListEntry({ question }) {
           &#41;
           &emsp;|&emsp;
           <button type="button" className="Btn" data-testid="addAnswer" onClick={() => setOpenForm(true)}>Add Answer</button>
-          {openForm && <AnswerForm setOpenForm={setOpenForm} question={question} setAnswers={setAnswers} setBurn={setBurn} burn={burn} />}
+          {openForm && <AnswerForm setOpenForm={setOpenForm} question={question} setBurn={setBurn} burn={burn} />}
         </span>
         <div>
-          {answers.slice(0, 2).map((answer, i) => <AnswerListEntry key={i} answer={answer} />)}
+          {answers.map((answer, i) => <AnswerListEntry key={i} answer={answer} />) }
         </div>
+        {allAnswers.length > answers.length ? (
+          <button type="button" className="moreAnswersBtn" onClick={() => setAnswers(allAnswers.slice(0, answers.length + 2)) && setBurn(!burn)}>LOAD MORE ANSWERS</button>) : ''}
         <br />
       </section>
     </div>
