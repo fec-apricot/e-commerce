@@ -28,15 +28,17 @@ function Reviews() {
           <ReviewBreakdown className="review-breakdown" productID={productID} reviewList={reviewList} setReviewList={setReviewList} sortParam={sortParam} />
           <ProductBreakdown productID={productID} characteristics={metadata.characteristics} />
         </div>
-        <ReviewList
-          productID={productID}
-          sortParam={sortParam}
-          setSortParam={setSortParam}
-          reviewList={reviewList}
-          setReviewList={setReviewList}
-          reviewModal={reviewModal}
-          setReviewModal={setReviewModal}
-        />
+        <div className="review-list-container">
+          <ReviewList
+            productID={productID}
+            sortParam={sortParam}
+            setSortParam={setSortParam}
+            reviewList={reviewList}
+            setReviewList={setReviewList}
+            reviewModal={reviewModal}
+            setReviewModal={setReviewModal}
+          />
+        </div>
       </div>
       <div>
         {reviewModal && (

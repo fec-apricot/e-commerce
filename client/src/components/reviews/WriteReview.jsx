@@ -91,7 +91,7 @@ function WriteReview({ productID, product, setReviewModal, reviewModal, characte
           role="presentation"
           className="review-form"
         >
-          <h2 onClick={()=>{console.log('parseobj :', parseObj); console.log('chara :', characteristics)}} style={{textAlign: 'center'}}>{`Write Your Review For ${product.name}`}</h2>
+          <h2 style={{ textAlign: 'center' }}>{`Write Your Review For ${product.name}`}</h2>
           <div style={{ fontSize: 'small' }}>* indicates a required field</div>
           <div>
             Overall Rating *
@@ -137,7 +137,7 @@ function WriteReview({ productID, product, setReviewModal, reviewModal, characte
               </div>
               <div className="review-body-warning">
                 {(userBody.length < 50)
-                && <div>Review Body Should Be At Least 50 characters long</div>}
+                && <div style={{ fontSize: 'small' }}>Review Body Should Be At Least 50 characters long</div>}
               </div>
             </div>
             <div>
@@ -172,7 +172,9 @@ function WriteReview({ productID, product, setReviewModal, reviewModal, characte
                 <input type="text" style={{ width: '60%' }} placeholder="Example: jackson11!@email.com" onChange={(e) => { setEmail(e.target.value); }} />
               </div>
             </div>
-            <button type="button" disabled={!enabled} onClick={() => { submitReview(); }}>Submit Review</button>
+            <div style={{ fontSize: 'small', color: 'red' }}>{enabled === false && 'Please Fill Out All Required Fields'}</div>
+            <button type="button" className="review-form-accept" disabled={!enabled} onClick={() => { submitReview(); }}>Submit Review</button>
+            <button type="button" className="review-form-cancel" onClick={() => { setReviewModal(!reviewModal); }}>Cancel</button>
           </div>
         </div>
       </div>
