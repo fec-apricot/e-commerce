@@ -181,7 +181,7 @@ function RelatedProducts() {
     console.log('on load -----', allProducts.current);
     setRelated([productID]);
     let storedOutfit = JSON.parse(localStorage.getItem('outfit'));
-    if (storedOutfit[0] === null) {
+    if (storedOutfit === null) {
       localStorage.setItem('outfit', JSON.stringify([]));
       storedOutfit = [];
     }

@@ -81,7 +81,7 @@ function Carousel({
               dataStore={dataStore}
               outfitButton={outfitButton}
             />
-            <div className="btnOverlay">hello</div>
+            <div className="btnOverlay"></div>
           </li>
         )}
         {
