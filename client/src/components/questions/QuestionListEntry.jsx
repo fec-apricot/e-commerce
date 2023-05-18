@@ -36,12 +36,6 @@ function QuestionListEntry({ question }) {
       .catch((err) => console.log('I did not update helpfulnerss', err));
   };
 
-  // const moreAnswers = () => {
-  //   if (answers.length > 1) {
-  //     setToggle(true);
-  //   }
-  // };
-
   return (
     <div>
       <section className="qSection">
