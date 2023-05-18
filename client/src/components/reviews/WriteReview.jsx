@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Stars from '../related_products/stars_module/Stars.jsx';
+import Stars from '../stars_module/Stars.jsx';
 import WriteButtons from './WriteButtons.jsx';
 import parse from '../../parse';
 
