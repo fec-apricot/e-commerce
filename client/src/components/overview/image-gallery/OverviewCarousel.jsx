@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import DropdownIcon from '../../../assets/dropdown-icon.svg';
 import ArrowIcon from '../../../assets/arrow-icon.png';
 import {
@@ -46,6 +46,10 @@ function OverviewCarousel({
     clientY,
     zoomLevel: 2.5,
   };
+
+  useEffect(() => {
+    setDefaultViewIndex(0);
+  }, [selectedStyle, setDefaultViewIndex]);
 
   return (
     <>

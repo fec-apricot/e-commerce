@@ -43,10 +43,6 @@ export const CarouselButton = styled.button`
   &.prev-left {
     top: 50%;
     left: 100px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 15px;
-    height: 80px;
-    width: 30px;
     & .scroll-left-icon {
       opacity: 0.8;
     }
@@ -54,10 +50,6 @@ export const CarouselButton = styled.button`
   &.next-right {
     top: 50%;
     right: 30px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 15px;
-    height: 80px;
-    width: 30px;
     & .scroll-right-icon {
       opacity: 0.8;
       rotate: 180deg;
