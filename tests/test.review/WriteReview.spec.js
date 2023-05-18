@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { render, screen, cleanup, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/';
 import React from 'react';
 import axios from 'axios';
@@ -27,23 +27,25 @@ beforeEach(() => {
 });
 beforeEach(async () => {
   const mockProductID = 40344;
-
+  const mockProduct = { name: 'Camo Onesie' };
+  let mockModal = true;
+  const setMockModal = () => { mockModal = false; };
   await act(() => {
     render(
-      <WriteReview productID={mockProductID} />,
+      <WriteReview productID={mockProductID} product={mockProduct} reviewModal={mockModal} setReviewModal={()=>{setMockModal()}} />,
     );
   });
 });
 describe('Write Review', () => {
   it('Should render all the forms in the modal', () => {
-    const overallRating = screen.queryByText('Overall Rating (mandatory)');
+    const overallRating = screen.queryByText('Overall Rating *');
     const recommendation = screen.queryByText(/Do you recommend this product?/i);
-    const characteristics = screen.queryByText('Characteristics (mandatory)');
+    const characteristics = screen.queryByText('Characteristics *');
     const summary = screen.queryByText('Review Summary');
-    const body = screen.queryByText('Review Body (mandatory)');
+    const body = screen.queryByText('Review Body *');
     const uploadPhotos = screen.queryByText('Upload your photos');
-    const nickname = screen.queryByText('What is your nickname (mandatory)');
-    const email = screen.queryByText('Your email (mandatory)');
+    const nickname = screen.queryByText('What is your nickname *');
+    const email = screen.queryByText('Your email *');
     expect(overallRating).toBeInTheDocument();
     expect(recommendation).toBeInTheDocument();
     expect(characteristics).toBeInTheDocument();
@@ -52,5 +54,22 @@ describe('Write Review', () => {
     expect(uploadPhotos).toBeInTheDocument();
     expect(nickname).toBeInTheDocument();
     expect(email).toBeInTheDocument();
-  })
+  });
+
+  it('Should not be able to be submitted until all forms are clicked', () => {
+    const submit = screen.getByText(/Submit Review/i);
+    // expect(screen.getByText(/Write Your Review For Camo Onesie/i)).not.toBeInTheDocument();
+    expect(submit).toBeDisabled();
+    const body = screen.getByTestId('review-form-body');
+    const bodyWarning = screen.getByText(/Review Body Should Be At Least 50 characters long/i);
+    expect(bodyWarning).toBeInTheDocument();
+    fireEvent.change(body, { target: { value: 'this is 50 characters yea this is 50 characters yea' } });
+    expect(bodyWarning).not.toBeInTheDocument();
+
+    const recommend = screen.getByTestId('review-form-recommend');
+    const detailclick = screen.getByTestId('detail-score-1');
+    fireEvent.click(recommend);
+    // need to pass in mock detail
+    fireEvent.click(detailclick);
+  });
 });

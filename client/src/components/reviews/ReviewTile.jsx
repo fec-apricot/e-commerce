@@ -7,6 +7,9 @@ function ReviewTile({ review }) {
   // console.log('Review Tile: ', review);
   const reviewDate = new Date(review.date);
   const [helpCount, setHelpCount] = React.useState(review.helpfulness);
+  const fullBody = review.body;
+  const [longBody, setLongBody] = React.useState(fullBody.slice(0, 250));
+  const [showButton, setShowButton] = React.useState(true);
   const upvote = () => {
     parse.put(`reviews/${review.review_id}/helpful`)
       .then(() => { console.log('Client marked review as helpful'); })
@@ -24,123 +27,47 @@ function ReviewTile({ review }) {
       ...currentReviewStars,
       [review.rating]: 1,
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="review-tile" data-testid="review-tile">
-      <h3 data-testid="review-summary">{review.summary}</h3>
-      <h4>{`Rating ${review.rating} stars`}</h4>
-      <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} cb={() => {}} />
-      <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
-      <div className="review-body" data-testid="review-body">{review.body}</div>
-      <div>{review.recommend && <div>I recommend this product</div>}</div>
-      <div>{review.response && <div>{`Reponse: ${review.response}`}</div>}</div>
-      <div>{}</div>
-      <div>Was this Review Helpful?</div>
-      <div
-        onClick={() => {
-          upvote();
-          setHelpCount(helpCount + 1);
-        }}
-        style={{ cursor: 'pointer' }}
-        role="presentation"
-        data-testid="helpful-link"
-      >
-        {`Yes (${helpCount})`}
+      <div>
+        <span className="review-tile-stars">
+          <Stars ratings={currentReviewStars} size={20} interactive={false} cb={() => {}} />
+        </span>
+        <span className="review-tile-date">{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</span>
+      </div>
+      <div data-testid="review-summary" className="review-summary">{review.summary}</div>
+      <div>
+        {(fullBody.length < 250 && <div className="review-body" data-testid="review-body">{fullBody}</div>) || (fullBody.length > 250
+        && (
+        <>
+          <div className="review-body" data-testid="review-body">{longBody}</div>
+          {showButton && <button type="button" onClick={() => { setLongBody(fullBody); setShowButton(false); }}>More</button>}
+        </>
+        ))}
+      </div>
+      <div className="review-recommendation">{review.recommend && <div>{`${'\u2714'} I recommend this product`}</div>}</div>
+      <div>{review.response && <div style={{ backgroundColor: 'gray' }}>{`Reponse by Seller: ${review.response}`}</div>}</div>
+      <div>{review.photos && (review.photos.map((photo) => (<img className="review-image" alt="" src={photo.url} key={photo.url} />)))}</div>
+      <div className="review-tile-footer">
+        <span>Was this Review Helpful? </span>
+        <span
+          onClick={() => {
+            upvote();
+            setHelpCount(helpCount + 1);
+          }}
+          style={{ cursor: 'pointer', textDecorationLine: 'underline' }}
+          role="presentation"
+          data-testid="helpful-link"
+        >
+          Yes
+        </span>
+        <span>{` (${helpCount})`}</span>
       </div>
     </div>
   );
-
-  // if (review.response && review.recommend) {
-  //   return (
-  //     <>
-  //       <h3>{review.summary}</h3>
-  //       <h4>{`Rating ${review.rating} stars`}</h4>
-  //       <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} cb={() => {}} />
-  //       <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
-  //       <div className="review-body">{review.body}</div>
-  //       <div>I recommend this product</div>
-  //       <div>{`Reponse: ${review.response}`}</div>
-  //       <div>Was this Review Helpful?</div>
-  //       <div
-  //         onClick={() => {
-  //           upvote();
-  //           setHelpCount(helpCount + 1);
-  //         }}
-  //         style={{ cursor: 'pointer' }}
-  //         role="presentation"
-  //       >
-  //         {`Yes (${helpCount})`}
-  //       </div>
-  //     </>
-  //   );
-  // }
-  // if (review.reponse) {
-  //   return (
-  //     <>
-  //       <h3>{review.summary}</h3>
-  //       <h4>{`Rating ${review.rating} stars`}</h4>
-  //       <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} cb={() => {}} />
-  //       <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
-  //       <div className="review-body">{review.body}</div>
-  //       <div>{`Reponse: ${review.response}`}</div>
-  //       <div>Was this Review Helpful?</div>
-  //       <div
-  //         onClick={() => {
-  //           upvote();
-  //           setHelpCount(helpCount + 1);
-  //         }}
-  //         style={{ cursor: 'pointer' }}
-  //         role="presentation"
-  //       >
-  //         {`Yes (${helpCount})`}
-  //       </div>
-  //     </>
-  //   );
-  // }
-  // if (review.recommend) {
-  //   return (
-  //     <>
-  //       <h3>{review.summary}</h3>
-  //       <h4>{`Rating ${review.rating} stars`}</h4>
-  //       <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} cb={() => {}} />
-  //       <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
-  //       <div className="review-body">{review.body}</div>
-  //       <div>I recommend this product</div>
-  //       <div>Was this Review Helpful?</div>
-  //       <div
-  //         onClick={() => {
-  //           upvote();
-  //           setHelpCount(helpCount + 1);
-  //         }}
-  //         style={{ cursor: 'pointer' }}
-  //         role="presentation"
-  //       >
-  //         {`Yes (${helpCount})`}
-  //       </div>
-  //     </>
-  //   );
-  // }
-  // return (
-  //   <>
-  //     <h3>{review.summary}</h3>
-  //     <h4>{`Rating ${review.rating} stars`}</h4>
-  //     <Stars className="review-tile-stars" ratings={currentReviewStars} size={20} interactive={false} cb={() => {}} />
-  //     <div>{`By: ${review.reviewer_name} Date: ${reviewDate.toDateString()}`}</div>
-  //     <div className="review-body">{review.body}</div>
-  //     <div>Was this Review Helpful?</div>
-  //     <div
-  //       onClick={() => {
-  //         upvote();
-  //         setHelpCount(helpCount + 1);
-  //       }}
-  //       style={{ cursor: 'pointer' }}
-  //       role="presentation"
-  //     >
-  //       {`Yes (${helpCount})`}
-  //     </div>
-  //   </>
-  // );
 }
 
 export default ReviewTile;

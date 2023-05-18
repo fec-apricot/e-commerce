@@ -3,7 +3,9 @@ import parse from '../../parse';
 import './reviewStyle.css';
 import Stars from '../stars_module/Stars.jsx';
 
-function ReviewBreakdown({ productID, reviewList, setReviewList, sortParam }) {
+function ReviewBreakdown({
+  productID, setReviewList, sortParam,
+}) {
   const [allRatings, setAllRatings] = useState({});
   const [reviewScore1, setReviewScore1] = useState(0);
   const [reviewScore2, setReviewScore2] = useState(0);
@@ -33,6 +35,7 @@ function ReviewBreakdown({ productID, reviewList, setReviewList, sortParam }) {
         setAllReviews(data.results);
       })
       .catch((err) => { console.log('CLIENT GET REVIEW ERROR: ', err); }));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { getAllReviews(); }, [productID, sortParam]);
 
   const reviewMeta = () => parse.get(`reviews/meta/?product_id=${productID}`)
@@ -58,7 +61,7 @@ function ReviewBreakdown({ productID, reviewList, setReviewList, sortParam }) {
       setBar5(Math.floor(((Number(data.ratings['5'])) / totalReviewArray.reduce((acc, rating) => acc + Number(rating), 0)) * 100));
     })
     .catch((err) => { console.log('Client get review metadata error :', err); });
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { reviewMeta(); }, [productID]);
 
   const editFilterObj = (starRating) => {
@@ -86,7 +89,8 @@ function ReviewBreakdown({ productID, reviewList, setReviewList, sortParam }) {
     const filteredList = allReviews.filter((review) => filterObj[review.rating]);
     return setReviewList(filteredList);
   };
-  useEffect(() => { filterByRating(); }, [filterObj])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { filterByRating(); }, [filterObj]);
 
   const resetFilter = () => {
     setFilterObj({
@@ -122,8 +126,8 @@ function ReviewBreakdown({ productID, reviewList, setReviewList, sortParam }) {
         Rating Breakdown
       </h3>
       <div>
-        {!(Object.values(filterObj).every((filterBool) => filterBool === false)) &&
-        (
+        {!(Object.values(filterObj).every((filterBool) => filterBool === false))
+        && (
         <>
           <div>{`Filtered reviews by star ratings (${filterKeys.filter((key) => filterObj[key]).slice(0, filterKeys.length - 1).join(', ')})`}</div>
           <div

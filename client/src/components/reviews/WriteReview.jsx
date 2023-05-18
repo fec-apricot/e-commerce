@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Stars from '../stars_module/Stars.jsx';
+import WriteButtons from './WriteButtons.jsx';
+import parse from '../../parse';
 
-function WriteReview({ productID, setReviewModal, reviewModal }) {
+function WriteReview({
+  productID, product, setReviewModal, reviewModal, characteristics,
+}) {
   const ratingScale = {
     1: 0,
     2: 0,
@@ -10,19 +14,79 @@ function WriteReview({ productID, setReviewModal, reviewModal }) {
     5: 0,
   };
 
-  const [rating, setRating] = useState(0);
-  const [summary, setSummary] = useState('');
-  const [body, setBody] = useState('');
-  const [recommend, setRecommend] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [photos, setPhotos] = useState([]);
-  const [details, setDetails] = useState({});
+  const [userRating, setRating] = useState(0);
+  const [userSummary, setSummary] = useState('');
+  const [userBody, setBody] = useState('');
+  const [userRecommend, setRecommend] = useState('');
+  const [username, setName] = useState('');
+  const [userEmail, setEmail] = useState('');
+  const [image, setImage] = useState('');
+  const [url, setUrl] = useState([]);
+  const [thumbnails, setThumbnails] = useState([]);
+  const [details, setDetails] = useState([]);
+  const [detailObj, setDetailObj] = useState({});
+  const [enabled, setEnabled] = useState(false);
+  useEffect(() => {
+    if (image !== '') {
+      console.log('EFFECT');
+
+      const cloudData = new FormData();
+      cloudData.append('file', image);
+      cloudData.append('upload_preset', 'fec-apricot');
+      cloudData.append('cloud_name', 'dodjbyydc');
+      fetch('https://api.cloudinary.com/v1_1/dodjbyydc/image/upload', {
+        method: 'post',
+        body: cloudData,
+      })
+        .then((resp) => resp.json())
+        .then((result) => {
+          console.log(result);
+          setUrl([...url, result.url]);
+        })
+        .catch((err) => console.log('Cloudinary Error:', err));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [image]);
+
+  const submitReview = () => parse.post('/reviews', {
+    product_id: productID,
+    rating: userRating,
+    summary: userSummary,
+    body: userBody,
+    recommend: userRecommend,
+    name: username,
+    email: userEmail,
+    photos: url,
+    characteristics: detailObj,
+  }).then(() => { setReviewModal(!reviewModal); }).catch((err) => { console.log('Review Submission Error: ', err); });
+  const yes = true;
+
+  // const parseObj = {
+  //   product_id: productID,
+  //   rating: userRating,
+  //   summary: userSummary,
+  //   body: userBody,
+  //   recommend: userRecommend,
+  //   name: username,
+  //   email: userEmail,
+  //   photos: url,
+  //   characteristics: detailObj,
+  // };
 
   useEffect(() => {
-    console.log('rating: ', rating); console.log('productID: ', productID); console.log('summary :', summary); console.log('Body :', body); console.log('recommend :', recommend); console.log('name :', name); console.log('email', email); console.log('photos :', photos); console.log('characteristics :', details);
-  }, [rating, body, recommend, name, email, photos, details])
+    if (characteristics) {
+      setDetails(Object.keys(characteristics).map((key) => [key, characteristics[key]]));
+    }
+  }, [productID, characteristics]);
 
+  useEffect(() => {
+    if (userRating && userRecommend
+      && Object.keys(detailObj).length === Object.keys(characteristics).length
+      && userBody.length > 50 && username && userEmail) {
+      setEnabled(true);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userRating, userRecommend, detailObj, userBody, username, userEmail]);
   return (
     <div className="review-modal">
       <div role="presentation" className="modal-overlay">
@@ -30,20 +94,23 @@ function WriteReview({ productID, setReviewModal, reviewModal }) {
           role="presentation"
           className="review-form"
         >
-          FORM HERE
-          <h1>Write Your Review</h1>
+          <h2 style={{ textAlign: 'center' }}>{`Write Your Review For ${product.name}`}</h2>
+          <div style={{ fontSize: 'small' }}>* indicates a required field</div>
           <div>
-            Overall Rating (mandatory)
-            <Stars className="review-tile-stars" ratings={ratingScale} size={20} interactive={true} cb={(starRating) => { setRating(starRating); }} />
+            Overall Rating *
+            <Stars className="review-tile-stars" ratings={ratingScale} size={20} interactive={yes} cb={(starRating) => { setRating(starRating); }} />
           </div>
           <div>
-            Do you recommend this product? (mandatory)
-            <input type="radio" name="recommend" onClick={()=>{setRecommend(true)}}/>
+            Do you recommend this product? *
+            <input type="radio" name="recommend" data-testid="review-form-recommend" onClick={() => { setRecommend(true); }} />
             Yes
-            <input type="radio" name="recommend" onClick={()=>{setRecommend(false)}}/>
+            <input type="radio" name="recommend" onClick={() => { setRecommend(false); }} />
             No
           </div>
-          <div>Characteristics (mandatory)</div>
+          <div>
+            Characteristics *
+            <div className="review-form-details">{details.map((detail) => (<WriteButtons detail={detail} key={detail[0]} detailObj={detailObj} setDetailObj={setDetailObj} />))}</div>
+          </div>
           <div className="review-text-block">
             <div>
               Review Summary
@@ -60,54 +127,58 @@ function WriteReview({ productID, setReviewModal, reviewModal }) {
               </div>
             </div>
             <div>
-              Review Body (mandatory)
+              Review Body *
               <div>
                 <textarea
                   placeholder="Why did you like the product or not?"
                   className="review-form-body"
                   maxLength="1000"
+                  data-testid="review-form-body"
                   onChange={(e) => {
                     setBody(e.target.value);
                   }}
                 />
               </div>
               <div className="review-body-warning">
-                {(body.length < 50)
-                && <div>Review Body Should Be At Least 50 characters long</div>}
+                {(userBody.length < 50)
+                && <div style={{ fontSize: 'small' }}>Review Body Should Be At Least 50 characters long</div>}
               </div>
             </div>
             <div>
               Upload your photos
               <div>
                 <div>
-                  {(photos.length < 5)
+                  {(thumbnails.length < 5)
                   && (
                     <input
                       type="file"
                       multiple
+                      accept="image/*"
                       onChange={(e) => {
-                        setPhotos(photos.concat(URL.createObjectURL(e.target.files[0])));
+                        setImage(e.target.files[0]);
+                        setThumbnails(thumbnails.concat(URL.createObjectURL(e.target.files[0])));
                       }}
                     />
                   )}
                 </div>
               </div>
             </div>
-            <div>{`Photolist: ${photos}`}</div>
-            <div>{(photos.length > 0) && (photos.map((photo) => <img alt="" height="100" src={photo} />))}</div>
+            <div>{(thumbnails.length > 0) && (thumbnails.map((photo) => <img alt="" height="100" src={photo} key={photo} />))}</div>
             <div>
-              What is your nickname (mandatory)
+              What is your nickname *
               <div>
                 <input type="text" style={{ width: '60%' }} placeholder="Example: jackson11!" onChange={(e) => { setName(e.target.value); }} />
               </div>
             </div>
             <div>
-              Your email (mandatory)
+              Your email *
               <div>
                 <input type="text" style={{ width: '60%' }} placeholder="Example: jackson11!@email.com" onChange={(e) => { setEmail(e.target.value); }} />
               </div>
             </div>
-            <button type="button">Submit Review</button>
+            <div style={{ fontSize: 'small', color: 'red' }}>{enabled === false && 'Please Fill Out All Required Fields'}</div>
+            <button type="button" className="review-form-accept" disabled={!enabled} onClick={() => { submitReview(); }}>Submit Review</button>
+            <button type="button" className="review-form-cancel" onClick={() => { setReviewModal(!reviewModal); }}>Cancel</button>
           </div>
         </div>
       </div>

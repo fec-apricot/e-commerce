@@ -19,6 +19,5 @@ function ProductBreakdown({ productID, characteristics }) {
     </>
   );
 }
-{/* <h3 onClick={ ()=> {console.log(details); console.log('characteristics :', characteristics)}}>Product Breakdown</h3> */}
 
 export default ProductBreakdown;
