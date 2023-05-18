@@ -3,7 +3,7 @@ import React, {
   useEffect,
   useContext,
 } from 'react';
-import { GlobalContext } from '../../GlobalContext.jsx';
+import { GlobalContext } from '../GlobalContext.jsx';
 import Stars from '../stars_module/Stars.jsx';
 import './ProductCard.css';
 
@@ -13,6 +13,9 @@ function ProductCard({
   burn,
   rpMode,
   dataStore,
+  outfitToggle,
+  outfitButton,
+  openModal,
 }) {
   const { productID } = useContext(GlobalContext);
   const [productInfo, setProductInfo] = useState({});
@@ -41,8 +44,8 @@ function ProductCard({
 
   const buildTitle = (id) => {
     let expandedTitle = `${dataStore[id][0].name} - ${dataStore[id][0].slogan ? dataStore[id][0].slogan : ''}`;
-    if (expandedTitle.length > 45) {
-      expandedTitle = expandedTitle.slice(0, 45);
+    if (expandedTitle.length > 40) {
+      expandedTitle = expandedTitle.slice(0, 40);
       expandedTitle += '...';
     }
     setTitle(expandedTitle);
@@ -54,14 +57,13 @@ function ProductCard({
   }, [productStyles, productID, burn]);
 
   useEffect(() => {
-    // console.log((rpMode ? 'My RP id:' : 'My Outfit id:'), relatedID, ' and the dataStore:', dataStore);
     if (dataStore[relatedID] !== undefined && dataStore[relatedID][0] !== undefined) {
-      // console.log('Info made it to the card', dataStore[relatedID]);
       setProductInfo(dataStore[relatedID][0]);
       setProductStyles(dataStore[relatedID][1]);
       setRatings(dataStore[relatedID][2].ratings);
       buildTitle(relatedID);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [relatedID, dataStore[relatedID], burn, productID]);
 
   return (
@@ -72,24 +74,34 @@ function ProductCard({
       onKeyDown={() => {}}
       onClick={(e) => {
         e.preventDefault();
-        // triggerFunction(isBtn ? productIdNum : relatedID); // was relatedID
-        triggerFunction(relatedID);
+
+        if (outfitButton) {
+          outfitToggle();
+        } else {
+          triggerFunction(relatedID);
+        }
       }}
     >
       <div className="imgDiv">
         <img className="relatedIMG" src={imageURL} alt="Coming soon!" />
 
-        <button
-          className="compareButton"
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            console.log('compare button pressed');
-          }}
-        >
-          {rpMode ? '★' : 'x'}
-        </button>
+        {outfitButton ? '' : (
+          <button
+            className="compareButton"
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              if (rpMode) {
+                openModal(relatedID);
+              } else {
+                outfitToggle(relatedID);
+              }
+            }}
+          >
+            {rpMode ? '★' : 'x'}
+          </button>
+        )}
 
       </div>
       <div className="category">{productInfo ? productInfo.category : ''}</div>

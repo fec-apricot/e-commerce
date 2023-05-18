@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import parse from '../../parse';
 import './reviewStyle.css';
-import Stars from '../related_products/stars_module/Stars.jsx';
+import Stars from '../stars_module/Stars.jsx';
 
 function ReviewBreakdown({ productID, reviewList, setReviewList, sortParam }) {
   const [allRatings, setAllRatings] = useState({});

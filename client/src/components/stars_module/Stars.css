@@ -8,14 +8,11 @@
 .spanStar {
   display: inline-block;
   height: fit-content;
-
 }
 
 .starsDiv {
-
   width: fit-content;
   margin: 0;
-
   height: fit-content;
   background: linear-gradient(90deg, var(--star-color) var(--ratings), var(--star-background) var(--ratings));
   background-clip: text;
@@ -25,7 +22,6 @@
 
 .star {
   fill: var(--star-background);
-
 }
 
 .gold {

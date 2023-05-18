@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import DetailBar from './DetailBar.jsx'
+import DetailBar from './DetailBar.jsx';
+
 function ProductBreakdown({ productID, characteristics }) {
   const [details, setDetails] = useState([]);
 
