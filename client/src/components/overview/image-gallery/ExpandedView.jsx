@@ -17,10 +17,10 @@ const CloseButton = styled.div`
   position: absolute;
   top: 0;
   right: 20px;
-  border-radius: 2px;
+  border-radius: 3px;
   background-color: rgba(255,255,255,0.5);
   &:hover {
-    box-shadow: 0 4px 8px 0 rgba(255,255,255,0.5);
+    box-shadow: -2px 4px 8px 0 rgba(255,255,255,0.5);
   }
 `;
 

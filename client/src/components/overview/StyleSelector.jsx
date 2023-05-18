@@ -37,9 +37,12 @@ const StyleThumbnail = styled.img`
   height: 80px;
   width: 80px;
   border-radius: 50%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   cursor: pointer;
+  &:hover {
+    box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.5);
+  }
 `;
 
 const Checkmark = styled.span`

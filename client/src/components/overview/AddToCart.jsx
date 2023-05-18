@@ -48,7 +48,9 @@ const DropdownBtn = styled.button`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  box-shadow: 0 1px 4px 0 #ccc;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: rgb(81, 82, 83);
   transition: 0.3s ease;
   &:hover {
     background-color: rgb(243, 239, 243);
@@ -78,9 +80,10 @@ const DropdownItem = styled.a`
   color: #333;
   border-radius: 0.3rem;
   cursor: pointer;
+  transition: 0.1s ease;
   &:hover, :focus, :focus:hover {
-    background-color: #166edc;
-    color: #fafafa;
+    background-color: rgba(255,62,78,0.9);
+    color: white;
     outline: none;
   }
 `;
@@ -90,6 +93,7 @@ const Button = styled.button`
   background-color: white;
   border: 1px solid slategrey;
   color: rgb(81, 82, 83);
+  font-weight: 600;
   border-radius: 3px;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
@@ -262,9 +266,13 @@ function AddToCart() {
         </SelectContainer>
         <Button className="add-btn" onClick={handleSubmit} data-testid="add-to-cart-btn">
           <span>ADD TO BAG</span>
-          <span className="add-icon">&#43;</span>
+          <span className="add-icon" style={{ fontWeight: '400' }}>&#43;</span>
         </Button>
-        <Button className="collect-btn">&#9734;</Button>
+        <Button className="collect-btn">
+          <span style={{ fontWeight: '400' }}>
+            &#9734;
+          </span>
+        </Button>
       </MainContainer>
       <Notification>{addToCartMsgVisible && <div>Added to cart!</div>}</Notification>
     </Host>

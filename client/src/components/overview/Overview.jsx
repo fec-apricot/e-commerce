@@ -81,13 +81,7 @@ function Overview() {
                 Share
               </a>
             </div>
-            <a
-              href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-              className="twitter-share-button"
-              data-show-count="false"
-            >
-              Tweet
-            </a>
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-show-count="false">Tweet</a>
             <a
               data-pin-do="buttonBookmark"
               href="https://www.pinterest.com/pin/create/button/"
