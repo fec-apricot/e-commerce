@@ -8,7 +8,7 @@ const parse = {
     return axios
       .get(url)
       .then((res) => {
-        // console.log('axios get response, res.data: ', res.data);
+        console.log('axios get response, res.data: ', res.data);
         return res.data;
       })
       .catch((err) => {
@@ -21,7 +21,7 @@ const parse = {
     return axios
       .post(url, data)
       .then((res) => {
-        // console.log('axios post res', res);
+        console.log('axios post res', res);
         return res;
       })
       .then((err) => {
@@ -34,7 +34,7 @@ const parse = {
     return axios
       .put(url, data)
       .then((res) => {
-        // console.log('axios put res', res);
+        console.log('axios put res', res);
         return res;
       })
       .catch((err) => {
