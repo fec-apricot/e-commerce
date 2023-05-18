@@ -14,9 +14,9 @@ function App() {
     <GlobalContextProvider>
       <Header />
       <div className="featureContainer">
-      <OverviewContextProvider>
-        <Overview />
-      </OverviewContextProvider>
+        <OverviewContextProvider>
+          <Overview />
+        </OverviewContextProvider>
         <div className="widgetTitle">RELATED PRODUCTS</div>
         <br />
         <RelatedProducts />

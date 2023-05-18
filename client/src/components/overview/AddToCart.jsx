@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import _ from 'underscore';
 import parse from '../../parse';
 import { OverviewContext } from './OverviewContext.jsx';
-import DropdownLogo from '../../assets/dropdown-icon.svg';
+import DropdownIcon from '../../assets/dropdown-icon.svg';
 
 const Host = styled.div`
   height: 30%;
@@ -51,7 +51,7 @@ const DropdownBtn = styled.button`
   box-shadow: 0 1px 4px 0 #ccc;
   transition: 0.3s ease;
   &:hover {
-    background-color: #eee;
+    background-color: rgb(243, 239, 243);
   }
   & .dropdown-icon {
     height: 20px;
@@ -89,9 +89,14 @@ const Button = styled.button`
   height: 60px;
   background-color: white;
   border: 1px solid slategrey;
+  color: rgb(81, 82, 83);
   border-radius: 3px;
+  font-family: 'Inter', sans-serif;
   font-size: 16px;
   cursor: pointer;
+  &:hover {
+    background-color: rgb(243, 239, 243);
+  }
   &.add-btn {
     width: 280px;
     padding: 0 15px;
@@ -184,7 +189,7 @@ function AddToCart() {
             data-testid="size-dropdown-btn"
           >
             <span>{getSelectSizeBtnContent()}</span>
-            <span><img src={DropdownLogo} alt="Dropdown Logo" className="dropdown-icon" /></span>
+            <span><img src={DropdownIcon} alt="Dropdown Logo" className="dropdown-icon" /></span>
           </DropdownBtn>
           {sizeDropdownExpanded
           && (
@@ -225,7 +230,7 @@ function AddToCart() {
             data-testid="qty-dropdown-btn"
           >
             <span>{getSelectQtyBtnContent()}</span>
-            <span><img src={DropdownLogo} alt="Dropdown Logo" className="dropdown-icon" /></span>
+            <span><img src={DropdownIcon} alt="Dropdown Logo" className="dropdown-icon" /></span>
           </DropdownBtn>
           {qtyDropdownExpanded
             && (

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { OverviewContext } from './OverviewContext.jsx';
 
 const Host = styled.div`
-  height: 40%;
+  height: 35%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,6 +25,8 @@ const StyleList = styled.div`
   height: 80%;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
+  overflow-y: scroll;
+  scroll-behavior: auto;
 `;
 
 const StyleThumbnailContainer = styled.div`
@@ -37,6 +39,7 @@ const StyleThumbnail = styled.img`
   border-radius: 50%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+  cursor: pointer;
 `;
 
 const Checkmark = styled.span`
