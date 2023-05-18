@@ -4,7 +4,7 @@ import React, {
   useContext,
 } from 'react';
 import { GlobalContext } from '../GlobalContext.jsx';
-import Stars from './stars_module/Stars.jsx';
+import Stars from '../stars_module/Stars.jsx';
 import './ProductCard.css';
 
 function ProductCard({

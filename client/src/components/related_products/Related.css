@@ -4,6 +4,17 @@
   flex-direction: column;
   align-items: center;
   height: 824px;
+  position: relative;
+}
+
+.edgeFade {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 825px;
+  width: 50px;
+  background: linear-gradient(90deg, transparent 0%, rgb(250, 250, 251) 100%);
 }
 
 .closeModalBtn {

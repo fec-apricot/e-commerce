@@ -24,18 +24,16 @@ function Carousel({
   const changeProduct = (newID) => {
     console.log('product changed');
     if (newID === 10001) { return; }
-    setProductID(newID);
     productSlider.style.setProperty('--slider-index', 0);
     productSlider2.style.setProperty('--slider2-index', 0);
-    setSlideIndex(0);
     setSlide2Index(0);
-    // setOutfitBtnID(newID);
+    setSlideIndex(0);
+    setProductID(newID);
   };
 
   const slide = (direction) => {
     if (rpMode) {
       console.log('RP slide');
-      // const productSlider = document.querySelector('.productTrack');
       const index = Number(productSlider.style.getPropertyValue('--slider-index'));
       if (direction === 'left') {
         productSlider.style.setProperty('--slider-index', index - 1);
@@ -44,9 +42,7 @@ function Carousel({
         productSlider.style.setProperty('--slider-index', index + 1);
         setSlideIndex(slideIndex + 1);
       }
-      console.log('rp slide index:', Number(productSlider.style.getPropertyValue('--slider-index')));
     } else {
-      // const productSlider2 = document.querySelector('.productTrack2');
       console.log('Outfit slide');
       const index = Number(productSlider2.style.getPropertyValue('--slider2-index'));
       if (direction === 'left') {
@@ -56,7 +52,6 @@ function Carousel({
         productSlider2.style.setProperty('--slider2-index', index + 1);
         setSlide2Index(slide2Index + 1);
       }
-      console.log('outfit slide index:', Number(productSlider2.style.getPropertyValue('--slider2-index')));
     }
   };
 
@@ -81,12 +76,12 @@ function Carousel({
             <ProductCard
               relatedID={productID}
               outfitToggle={outfitToggle}
-              // products={products}
               burn={burn}
               rpMode={rpMode}
               dataStore={dataStore}
               outfitButton={outfitButton}
             />
+            <div className="btnOverlay">hello</div>
           </li>
         )}
         {
@@ -98,7 +93,6 @@ function Carousel({
                   relatedID={id}
                   triggerFunction={changeProduct}
                   outfitToggle={outfitToggle}
-                  // products={products}
                   burn={burn}
                   rpMode={rpMode}
                   dataStore={dataStore}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Stars from '../related_products/stars_module/Stars.jsx';
+import Stars from '../stars_module/Stars.jsx';
 
 function WriteReview({ productID, setReviewModal, reviewModal }) {
   const ratingScale = {

@@ -237,6 +237,7 @@ function RelatedProducts() {
         outfitList={outfitList}
         outfitToggle={outfitToggle}
       />
+      <div className="edgeFade"></div>
     </div>
   );
 }
