@@ -16,7 +16,7 @@ function Questions() {
     parse.get(`/qa/questions/?product_id=${productID}&page=1&count=100`)
       .then((data) => {
         setAllQuestions(data.results);
-        setQuestions(data.results.slice(0, 2));
+        setQuestions(data.results.slice(0, 4));
       })
       .catch((err) => console.log(err));
   }, [productID]);
