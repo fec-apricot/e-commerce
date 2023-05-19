@@ -40,6 +40,7 @@ const DropdownBtn = styled.button`
   display: flex;
   justify-content: space-around;
   background-color: #fff;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
   border: 1px solid slategrey;
   border-radius: 3px;
   color: #111;
@@ -92,6 +93,7 @@ const Button = styled.button`
   height: 60px;
   background-color: white;
   border: 1px solid slategrey;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
   color: rgb(81, 82, 83);
   font-weight: 600;
   border-radius: 3px;

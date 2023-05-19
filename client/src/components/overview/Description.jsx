@@ -5,26 +5,28 @@ import { GlobalContext } from '../GlobalContext.jsx';
 const Host = styled.div`
   width: 76%;
   display: flex;
-  margin: 50px 100px;
+  margin: 50px 120px;
 `;
 
 const SloganAndDescriptionContainer = styled.div`
-  width: 75%;
+  width: 71%;
   display: flex;
   flex-direction: column;
   margin-right: 20px;
 `;
 
 const Slogan = styled.div`
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 18px;
 `;
 
 const DescriptionContent = styled.div`
   margin-top: 20px;
+  font-size: 14px;
 `;
 
 const VerticalLine = styled.div`
-  border-left: 2px solid grey;
+  border-left: 3px solid grey;
   height: 160px;
 `;
 
@@ -48,7 +50,8 @@ function Description() {
       <FeatureContainer>
         {product?.features
         && product.features.map((feature) => (
-          <div key={feature.feature}>
+          <div key={feature.feature} style={{ height: '30px', fontSize: '15px' }}>
+            &#10003;&nbsp;&nbsp;
             {feature.feature}
             :&nbsp;
             {feature.value}
