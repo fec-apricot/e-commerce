@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react';
-// import styled from 'styled-components';
+import React, { useState } from 'react';
 import parse from '../../parse';
 import './questions.css';
 
 function AnswerListEntry({ answer }) {
   const [text, setText] = useState('Report');
   const [helpfulness, setHelpfulness] = useState(answer.helpfulness);
+  console.log('I AM HELPFUL', answer);
 
-  function changeText() {
+  function changeText(event) {
+    event.preventDefault();
     setText('Reported');
   }
-
 
   const updateHelpful = (event) => {
     event.preventDefault();
     setHelpfulness(helpfulness + 1);
-    parse.put(`qa/answers/${answer.id}/helpful`, {
+    parse.put(`qa/answers/${answer.answer_id}/helpful`, {
       helpfulness: answer.helpfulness + 1,
     })
       .then(() => console.log('I am helpful'))
-      .catch((err) => console.log('I did not update helpfulnerss', err));
+      .catch((err) => console.log('I did not update helpfulness', err));
   };
 
   return (
@@ -39,7 +39,7 @@ function AnswerListEntry({ answer }) {
         {helpfulness}
         &#41;
         &emsp;|&emsp;
-        <button onClick={() => changeText()} type="button" className="Btn" data-testid="report">{text}</button>
+        <button onClick={(event) => changeText(event)} type="button" className="Btn" data-testid="report">{text}</button>
       </div>
     </div>
   );

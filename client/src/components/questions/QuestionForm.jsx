@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import parse from '../../parse';
 import { GlobalContext } from '../GlobalContext.jsx';
 import './questions.css';
@@ -11,11 +11,18 @@ function QuestionFrom({ setIsOpen }) {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [inputError, setInputError] = useState(false);
+  const [emailErr, setEmailErr] = useState(false);
   console.log('I AM THE PRODUCT', product);
 
   const submitForm = (event) => {
     event.preventDefault();
-    if (questionBody.length && userName.length && userEmail.length) {
+    if (!questionBody.length && !userName.length && !userEmail.length) {
+      setInputError(true);
+      return;
+    }
+    if (!userEmail.includes('@') && !userEmail.includes('.com')) {
+      setEmailErr(true);
+    } else {
       setIsOpen(false);
       parse.post('/qa/questions', {
         body: questionBody,
@@ -25,9 +32,6 @@ function QuestionFrom({ setIsOpen }) {
       })
         .then(() => console.log('question form submitted'))
         .catch((err) => console.log('unable to add use questions', err));
-    } else {
-      setInputError(true);
-      console.log('INVLAID');
     }
   };
 
@@ -40,6 +44,7 @@ function QuestionFrom({ setIsOpen }) {
             <h5 className="heading">Have a Question?</h5>
             <h6 className="subheading">{product?.name}</h6>
             {inputError && <p className="invalidInput">You must enter the following:</p>}
+            {emailErr && <p className="invalidInput">Invalid Email</p>}
           </div>
           <button type="button" className="closeBtn" onClick={() => setIsOpen(false)}>
             {/* <RiCloseLine style={{ marginBottom: "-3px" }} /> */}
@@ -54,8 +59,8 @@ function QuestionFrom({ setIsOpen }) {
               <input className="textArea" data-testid="input2" onChange={(event) => setUserName(event.target.value)} className="formBar" maxLength="60" placeholder="Example: jackson11!" type="text" onInvalid="alert('You must fill out the form!');" required />
               <br />
               <br />
-              <label className="textArea" className="label">Your email (mandatory)</label>
-              <input data-testid="input3" onChange={(event) => setUserEmail(event.target.value)} className="formBar" maxLength="60" placeholder="Why did you like the product or not?" type="text" onInvalid="alert('You must fill out the form!');" required />
+              <label className="label">Your email (mandatory)</label>
+              <input className="textArea" data-testid="input3" onChange={(event) => setUserEmail(event.target.value)} className="formBar" maxLength="60" placeholder="Why did you like the product or not?" type="text" onInvalid="alert('You must fill out the form!');" required />
               <p>For authentication reasons, you will not be emailed</p>
             </form>
             <br />

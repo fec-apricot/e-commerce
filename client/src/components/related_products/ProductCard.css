@@ -10,8 +10,6 @@
   cursor: pointer;
   z-index: 0;
   position: relative;
-  border-width: 1px;
-  border-radius: 3px;
 }
 
 .imgDiv{

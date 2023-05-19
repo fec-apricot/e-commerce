@@ -65,7 +65,9 @@ function QuestionListEntry({ question }) {
           {answers.map((answer, i) => <AnswerListEntry key={i} answer={answer} />) }
         </div>
         {allAnswers.length > answers.length ? (
-          <button type="button" className="moreAnswersBtn" onClick={() => setAnswers(allAnswers.slice(0, answers.length + 2)) && setBurn(!burn)}>LOAD MORE ANSWERS</button>) : ''}
+          <button type="button" className="moreAnswersBtn" onClick={() => setAnswers(allAnswers) && setBurn(!burn)}>LOAD MORE ANSWERS</button>) : ''}
+        {answers.length > 2 ? (
+          <button type="button" className="moreAnswersBtn" onClick={() => setAnswers(allAnswers.slice(0, 2)) && setBurn(!burn)}>COLLAPSE ANSWERS</button>) : ''}
         <br />
       </section>
     </div>
