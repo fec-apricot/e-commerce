@@ -51,6 +51,7 @@ function WriteReview({
 
   const submitReview = () => {
     if (enabled === false) {
+      document.getElementsByClassName('review-form-header')[0].scrollIntoView({ behavior: 'smooth' });
       return setWarning(true);
     }
     return parse.post('/reviews', {
@@ -68,17 +69,17 @@ function WriteReview({
   };
   const yes = true;
 
-  const parseObj = {
-    product_id: productID,
-    rating: userRating,
-    summary: userSummary,
-    body: userBody,
-    recommend: userRecommend,
-    name: username,
-    email: userEmail,
-    photos: url,
-    characteristics: detailObj,
-  };
+  // const parseObj = {
+  //   product_id: productID,
+  //   rating: userRating,
+  //   summary: userSummary,
+  //   body: userBody,
+  //   recommend: userRecommend,
+  //   name: username,
+  //   email: userEmail,
+  //   photos: url,
+  //   characteristics: detailObj,
+  // };
 
   useEffect(() => {
     if (characteristics) {
@@ -103,8 +104,11 @@ function WriteReview({
           role="presentation"
           className="review-form"
         >
-          <h2 style={{ textAlign: 'center' }}>{`Write Your Review For ${product.name}`}</h2>
+          <h2 className="review-form-header" style={{ textAlign: 'center' }}>{`Write Your Review For ${product.name}`}</h2>
           <div style={{ fontSize: 'small' }}>* indicates a required field</div>
+          <div style={{ fontSize: 'small', color: 'red' }}>
+            {warning && <div>You must enter the following:</div>}
+          </div>
           <div>
             Overall Rating *
             <Stars className="review-tile-stars" ratings={ratingScale} size={20} interactive={yes} cb={(starRating) => { setRating(starRating); }} />
@@ -185,10 +189,8 @@ function WriteReview({
                 <input type="text" maxLength="60" style={{ width: '60%' }} placeholder="Example: jackson11!@email.com" onChange={(e) => { setEmail(e.target.value); }} />
               </div>
             </div>
-            <div style={{ fontSize: 'small', color: 'red' }}>{enabled === false && 'Please Fill Out All Required Fields'}</div>
-            <div style={{ fontSize: 'small', color: 'red' }}>
-              {warning && <div>Please Enter The Following</div>}
-            </div>
+            {/* <div style={{ fontSize: 'small', color: 'red' }}>
+            {enabled === false && 'Please Fill Out All Required Fields'}</div> */}
             <button type="button" className="review-form-accept" onClick={() => { submitReview(); }}>Submit Review</button>
             <button type="button" className="review-form-cancel" onClick={() => { setReviewModal(!reviewModal); }}>Cancel</button>
           </div>

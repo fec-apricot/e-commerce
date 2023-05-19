@@ -53,7 +53,7 @@ function ReviewTile({ review }) {
         && (
         <>
           <div className="review-body" data-testid="review-body">{longBody}</div>
-          {showButton && <button type="button" className="review-body-button" onClick={() => { setLongBody(fullBody); setShowButton(false); }}>More</button>}
+          {showButton && <button type="button" className="review-body-button" onClick={() => { setLongBody(fullBody); setShowButton(false); }}>MORE</button>}
         </>
         ))}
       </div>

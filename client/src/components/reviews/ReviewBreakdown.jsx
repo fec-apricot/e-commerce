@@ -4,7 +4,7 @@ import './reviewStyle.css';
 import Stars from '../stars_module/Stars.jsx';
 
 function ReviewBreakdown({
-  productID, setReviewList, sortParam,
+  productID, setReviewList, sortParam, reviewList, sortSwitch,
 }) {
   const [allRatings, setAllRatings] = useState({});
   const [reviewScore1, setReviewScore1] = useState(0);
@@ -79,6 +79,7 @@ function ReviewBreakdown({
     return filterObj;
   };
   const filterByRating = () => {
+    console.log('sorting');
     if (Object.values(filterObj).every((filterBool) => filterBool === false)) {
       return parse.get(`reviews/?page=1&count=500&sort=${sortParam}&product_id=${productID}`)
         .then((data) => {
@@ -90,7 +91,7 @@ function ReviewBreakdown({
     return setReviewList(filteredList);
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { filterByRating(); }, [filterObj]);
+  useEffect(() => { filterByRating(); }, [filterObj, sortSwitch]);
 
   const resetFilter = () => {
     setFilterObj({

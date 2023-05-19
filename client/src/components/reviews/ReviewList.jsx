@@ -4,6 +4,7 @@ import ReviewTile from './ReviewTile.jsx';
 
 function ReviewList({
   productID, sortParam, setSortParam, reviewList, setReviewList, reviewModal, setReviewModal,
+  sortSwitch, setSortSwitch
 }) {
   const [sliceCount, setSliceCount] = useState(2);
   const [totalReviews, setTotalReviews] = useState([]);
@@ -18,6 +19,7 @@ function ReviewList({
   const sortReviews = () => (
     parse.get(`reviews/?page=1&count=500&sort=${sortParam}&product_id=${productID}`)
       .then((data) => { setReviewList([...data.results]); setTotalReviews([...data.results]); })
+      .then(() => { setSortSwitch(!sortSwitch); })
       .catch((err) => { console.log('CLIENT GET REVIEW ERROR: ', err); }));
 
   const getMoreReviews = () => {
