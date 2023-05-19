@@ -4,7 +4,7 @@ import './reviewStyle.css';
 import Stars from '../stars_module/Stars.jsx';
 
 function ReviewBreakdown({
-  productID, setReviewList, sortParam, reviewList, sortSwitch,
+  productID, setReviewList, sortParam, sortSwitch,
 }) {
   const [allRatings, setAllRatings] = useState({});
   const [reviewScore1, setReviewScore1] = useState(0);

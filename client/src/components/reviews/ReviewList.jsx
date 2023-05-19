@@ -4,7 +4,7 @@ import ReviewTile from './ReviewTile.jsx';
 
 function ReviewList({
   productID, sortParam, setSortParam, reviewList, setReviewList, reviewModal, setReviewModal,
-  sortSwitch, setSortSwitch
+  sortSwitch, setSortSwitch,
 }) {
   const [sliceCount, setSliceCount] = useState(2);
   const [totalReviews, setTotalReviews] = useState([]);
