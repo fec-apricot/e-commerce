@@ -15,7 +15,7 @@ function OverviewCarousel({
   inExpandedView,
   handleClick,
   showMagnifier,
-  setShowMagnifier,
+  setShowMagnifier = () => {},
   viewportWidth,
   viewportHeight,
 }) {
@@ -48,8 +48,10 @@ function OverviewCarousel({
   };
 
   useEffect(() => {
-    setDefaultViewIndex(0);
-  }, [selectedStyle, setDefaultViewIndex]);
+    if (!inExpandedView) {
+      setDefaultViewIndex(0);
+    }
+  }, [selectedStyle, setDefaultViewIndex, inExpandedView]);
 
   return (
     <>

@@ -40,6 +40,7 @@ const DropdownBtn = styled.button`
   display: flex;
   justify-content: space-around;
   background-color: #fff;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
   border: 1px solid slategrey;
   border-radius: 3px;
   color: #111;
@@ -48,7 +49,9 @@ const DropdownBtn = styled.button`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  box-shadow: 0 1px 4px 0 #ccc;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: rgb(81, 82, 83);
   transition: 0.3s ease;
   &:hover {
     background-color: rgb(243, 239, 243);
@@ -61,9 +64,12 @@ const DropdownBtn = styled.button`
 
 const DropdownList = styled.div`
   width: 100%;
+  max-height: 350px;
+  overflow-y: scroll;
+  scroll-behavior: auto;
   position: absolute;
   background-color: #f1f1f1;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.2);
   z-index: 1;
   border: 1px solid slategrey;
   border-radius: 3px;
@@ -78,9 +84,10 @@ const DropdownItem = styled.a`
   color: #333;
   border-radius: 0.3rem;
   cursor: pointer;
+  transition: 0.1s ease;
   &:hover, :focus, :focus:hover {
-    background-color: #166edc;
-    color: #fafafa;
+    background-color: rgba(255,62,78,0.85);
+    color: white;
     outline: none;
   }
 `;
@@ -89,11 +96,14 @@ const Button = styled.button`
   height: 60px;
   background-color: white;
   border: 1px solid slategrey;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
   color: rgb(81, 82, 83);
+  font-weight: 500;
   border-radius: 3px;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   cursor: pointer;
+  transition: 0.3s;
   &:hover {
     background-color: rgb(243, 239, 243);
   }
@@ -260,11 +270,20 @@ function AddToCart() {
               </DropdownList>
             )}
         </SelectContainer>
-        <Button className="add-btn" onClick={handleSubmit} data-testid="add-to-cart-btn">
+        <Button
+          className="add-btn"
+          onClick={handleSubmit}
+          disabled={!isInStock}
+          data-testid="add-to-cart-btn"
+        >
           <span>ADD TO BAG</span>
-          <span className="add-icon">&#43;</span>
+          <span className="add-icon" style={{ fontWeight: '400' }}>&#43;</span>
         </Button>
-        <Button className="collect-btn">&#9734;</Button>
+        <Button className="collect-btn">
+          <span style={{ fontWeight: '400' }}>
+            &#9734;
+          </span>
+        </Button>
       </MainContainer>
       <Notification>{addToCartMsgVisible && <div>Added to cart!</div>}</Notification>
     </Host>

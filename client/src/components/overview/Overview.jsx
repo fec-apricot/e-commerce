@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { GlobalContext } from '../GlobalContext.jsx';
 import { OverviewContext } from './OverviewContext.jsx';
@@ -6,10 +6,11 @@ import ImageGallery from './image-gallery/ImageGallery.jsx';
 import Description from './Description.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
+import Stars from '../stars_module/Stars.jsx';
 
 const Host = styled.div`
   width: 1200px;
-  margin-left: -140px;
+  margin-left: -120px;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -26,8 +27,22 @@ const WidgetPanel = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 0 25px;
+  justify-content: space-around;
+  padding: 16px 25px;
+`;
+
+const RatingsContainer = styled.div`
+  display: flex;
+`;
+
+const ScrollToReviewBtn = styled.button`
+  border-style: none;
+  background: none;
+  padding: 4px 0 0 10px;
+  cursor: pointer;
+  font-size: 12px;
+  color: rgb(81, 82, 83);
+  text-decoration: underline;
 `;
 
 const Category = styled.div`
@@ -35,33 +50,58 @@ const Category = styled.div`
 `;
 const Name = styled.div`
   font-weight: bold;
-  font-size: 40px;
+  font-size: 36px;
 `;
 const Price = styled.div`
-  font-size: 20px;
+  font-size: 16px;
 `;
 const ShareContainer = styled.div`
+  margin-top: -15px;
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 `;
 
 function Overview() {
-  const { product } = useContext(GlobalContext);
+  const { product, metadata } = useContext(GlobalContext);
   const { selectedStyle } = useContext(OverviewContext);
+  const [totalReviews, setTotalReviews] = useState(0);
+
+  useEffect(() => {
+    if (metadata.recommended) {
+      setTotalReviews(Number(metadata.recommended?.false) + Number(metadata.recommended?.true));
+    }
+  }, [metadata]);
 
   return (
     <Host>
       <TopContainer>
         <ImageGallery />
         <WidgetPanel>
-          {/* <RatingContainer></RatingContainer> */}
+          {totalReviews > 0
+          && (
+            <RatingsContainer>
+              <Stars ratings={metadata?.ratings ? metadata.ratings : {}} cb={() => {}} />
+              <ScrollToReviewBtn
+                onClick={() => {
+                  document.getElementsByClassName('reviews')[0].scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Read all&nbsp;
+                {totalReviews}
+                &nbsp;reviews
+              </ScrollToReviewBtn>
+            </RatingsContainer>
+          )}
           <Category>{product?.category}</Category>
           <Name>{product?.name}</Name>
           <Price>
             <span>&#36;</span>
-            <span style={{ color: 'red' }}>{selectedStyle?.sale_price || '' }</span>
-            <span style={{ textDecoration: selectedStyle?.sale_price && 'line-through' }}>{selectedStyle?.original_price}</span>
+            <span style={{ color: 'red' }}>
+              {selectedStyle?.sale_price || '' }
+              &nbsp;
+            </span>
+            <span style={{ textDecoration: selectedStyle?.sale_price && 'line-through', fontStyle: selectedStyle?.sale_price && 'italic' }}>{selectedStyle?.original_price}</span>
           </Price>
           <StyleSelector />
           <AddToCart />
@@ -81,13 +121,7 @@ function Overview() {
                 Share
               </a>
             </div>
-            <a
-              href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-              className="twitter-share-button"
-              data-show-count="false"
-            >
-              Tweet
-            </a>
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-show-count="false">Tweet</a>
             <a
               data-pin-do="buttonBookmark"
               href="https://www.pinterest.com/pin/create/button/"

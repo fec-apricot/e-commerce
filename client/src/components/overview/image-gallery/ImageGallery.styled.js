@@ -15,8 +15,8 @@ export const ThumbnailViewContainer = styled.div`
   width: 90px;
   height: 500px;
   background-color: rgba(255, 255, 255, 0.5);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: repeat(7, 14.28% [col-start]);
   align-items: center;
   justify-content: space-around;
   padding: 10px 0;
@@ -32,7 +32,11 @@ export const ThumbnailView = styled.img`
   cursor: pointer;
   box-shadow: ${(props) => (props.selected ? '4px 6px 12px 2px rgba(0,0,0,0.5)' : '0 4px 8px 0 rgba(0,0,0,0.2)')};
   border-radius: 2px;
-  border-bottom: ${(props) => (props.selected ? '3px solid black' : 'none')};
+  border-bottom: ${(props) => (props.selected ? '4px solid rgb(81, 82, 83)' : 'none')};
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.5);
+  }
 `;
 
 export const CarouselButton = styled.button`

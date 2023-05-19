@@ -17,15 +17,17 @@ const CloseButton = styled.div`
   position: absolute;
   top: 0;
   right: 20px;
-  border-radius: 2px;
-  background-color: rgba(255,255,255,0.5);
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
   &:hover {
-    box-shadow: 0 4px 8px 0 rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.2);
+    box-shadow: -2px 4px 8px 0 rgba(255,255,255,0.3);
   }
 `;
 
-function ExpandedView({ handleHide }) {
-  const [defaultViewIndex, setDefaultViewIndex] = useState(0);
+function ExpandedView({ handleHide, initialDefaultViewIndex }) {
+  const [defaultViewIndex, setDefaultViewIndex] = useState(initialDefaultViewIndex);
   const [thumbnailViewIndexStart, setThumbnailIndexStart] = useState(0);
   const [showMagnifier, setShowMagnifier] = useState(false);
   const carouselProps = {
