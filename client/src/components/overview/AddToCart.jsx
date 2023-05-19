@@ -40,7 +40,7 @@ const DropdownBtn = styled.button`
   display: flex;
   justify-content: space-around;
   background-color: #fff;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
   border: 1px solid slategrey;
   border-radius: 3px;
   color: #111;
@@ -69,7 +69,7 @@ const DropdownList = styled.div`
   scroll-behavior: auto;
   position: absolute;
   background-color: #f1f1f1;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.2);
   z-index: 1;
   border: 1px solid slategrey;
   border-radius: 3px;
@@ -86,7 +86,7 @@ const DropdownItem = styled.a`
   cursor: pointer;
   transition: 0.1s ease;
   &:hover, :focus, :focus:hover {
-    background-color: rgba(255,62,78,0.9);
+    background-color: rgba(255,62,78,0.85);
     color: white;
     outline: none;
   }
@@ -96,7 +96,7 @@ const Button = styled.button`
   height: 60px;
   background-color: white;
   border: 1px solid slategrey;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2);
   color: rgb(81, 82, 83);
   font-weight: 500;
   border-radius: 3px;
