@@ -147,7 +147,6 @@ function ReviewBreakdown({
           <Stars ratings={allRatings} size={20} interactive={false} cb={() => {}} />
         </div>
       </div>
-      <div className="percent-recommend">{`${Math.floor((recommended / totalReviews) * 100)}% of reviews recommend this product`}</div>
       <div className="review-graph-background">
         <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(5); }}>
           <div className="review-bar-label"> 5 stars </div>
@@ -185,6 +184,7 @@ function ReviewBreakdown({
           <div className="review-total">{`(${reviewScore1})`}</div>
         </div>
       </div>
+      <div className="percent-recommend">{`${Math.floor((recommended / totalReviews) * 100)}% of reviews recommend this product`}</div>
     </>
   );
 }

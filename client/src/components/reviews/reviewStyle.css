@@ -17,7 +17,7 @@
 .review-list {
   margin-left: 2em;
   width: 625px;
-  max-height: 1000px;
+  max-height: 100vh;
   overflow-y: auto;
   overflow-wrap: break-word;
 }
@@ -45,6 +45,19 @@
   font-weight: 300;
   margin-bottom: 1.2em;
 }
+.review-body-button {
+  /* font-family: 'Inter', sans-serif;
+  background-color: white;
+  border: 1px solid black;
+  color: rgb(81, 82, 83);
+  font-weight: 450;
+  font-size: 9pt;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 10px;
+  padding-left: 10px; */
+  margin-bottom: 8px;
+}
 .review-recommendation {
   font-size: 10pt;
   font-weight: 300;
@@ -53,6 +66,25 @@
 .review-image {
   margin-right: 10px;
   max-height: 150px;
+  margin-bottom: 10px;
+}
+.tile-modal-background {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: rgba(49, 49, 49, 0.8);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.tile-modal {
+  max-height: 60%;
+  max-width: 60%;
 }
 .review-tile-footer {
   margin-top: 15px;
@@ -70,6 +102,8 @@
 .review-average {
   float: left;
   display: inline;
+  font-size: 32pt;
+  font-weight: 500;
 }
 .review-star-average {
   float: left;
@@ -77,7 +111,10 @@
   margin-left: 1em;
 }
 .percent-recommend {
-  margin-top: 1em;
+  margin-top: 8px;
+  font-size: 9pt;
+  margin-left: auto;
+  margin-right: auto;
 }
 .review-graph-background {
   background: white;
@@ -229,7 +266,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 640px;
-  height: 500px;
+  height: 600px;
   background: white;
   z-index: 10;
   border: 1px solid black;
