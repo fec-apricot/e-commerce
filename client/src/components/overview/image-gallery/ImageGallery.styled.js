@@ -15,8 +15,8 @@ export const ThumbnailViewContainer = styled.div`
   width: 90px;
   height: 500px;
   background-color: rgba(255, 255, 255, 0.5);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: repeat(7, 14.28% [col-start]);
   align-items: center;
   justify-content: space-around;
   padding: 10px 0;
