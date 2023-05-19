@@ -36,6 +36,7 @@ const StyleThumbnailContainer = styled.div`
 const StyleThumbnail = styled.img`
   height: 80px;
   width: 80px;
+  object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;

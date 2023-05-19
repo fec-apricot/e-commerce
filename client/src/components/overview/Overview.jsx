@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { GlobalContext } from '../GlobalContext.jsx';
 import { OverviewContext } from './OverviewContext.jsx';
@@ -35,6 +35,16 @@ const RatingsContainer = styled.div`
   display: flex;
 `;
 
+const ScrollToReviewBtn = styled.button`
+  border-style: none;
+  background: none;
+  padding: 4px 0 0 10px;
+  cursor: pointer;
+  font-size: 12px;
+  color: rgb(81, 82, 83);
+  text-decoration: underline;
+`;
+
 const Category = styled.div`
   font-size: 20px;
 `;
@@ -55,16 +65,34 @@ const ShareContainer = styled.div`
 function Overview() {
   const { product, metadata } = useContext(GlobalContext);
   const { selectedStyle } = useContext(OverviewContext);
+  const [totalReviews, setTotalReviews] = useState(0);
+
+  useEffect(() => {
+    if (metadata.recommended) {
+      setTotalReviews(Number(metadata.recommended?.false) + Number(metadata.recommended?.true));
+    }
+  }, [metadata]);
 
   return (
     <Host>
       <TopContainer>
         <ImageGallery />
         <WidgetPanel>
-          <RatingsContainer>
-            <Stars ratings={metadata?.ratings ? metadata.ratings : {}} cb={() => {}} />
-            <span style={{ textDecoration: 'underline', padding: '4px 0 0 10px', fontSize: '12px' }}>Read all reviews</span>
-          </RatingsContainer>
+          {totalReviews > 0
+          && (
+            <RatingsContainer>
+              <Stars ratings={metadata?.ratings ? metadata.ratings : {}} cb={() => {}} />
+              <ScrollToReviewBtn
+                onClick={() => {
+                  document.getElementsByClassName('reviews')[0].scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Read all&nbsp;
+                {totalReviews}
+                &nbsp;reviews
+              </ScrollToReviewBtn>
+            </RatingsContainer>
+          )}
           <Category>{product?.category}</Category>
           <Name>{product?.name}</Name>
           <Price>

@@ -50,7 +50,7 @@ const DropdownBtn = styled.button`
   justify-content: space-between;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   color: rgb(81, 82, 83);
   transition: 0.3s ease;
   &:hover {
@@ -64,6 +64,9 @@ const DropdownBtn = styled.button`
 
 const DropdownList = styled.div`
   width: 100%;
+  max-height: 350px;
+  overflow-y: scroll;
+  scroll-behavior: auto;
   position: absolute;
   background-color: #f1f1f1;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -95,11 +98,12 @@ const Button = styled.button`
   border: 1px solid slategrey;
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
   color: rgb(81, 82, 83);
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 3px;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   cursor: pointer;
+  transition: 0.3s;
   &:hover {
     background-color: rgb(243, 239, 243);
   }
@@ -266,7 +270,12 @@ function AddToCart() {
               </DropdownList>
             )}
         </SelectContainer>
-        <Button className="add-btn" onClick={handleSubmit} data-testid="add-to-cart-btn">
+        <Button
+          className="add-btn"
+          onClick={handleSubmit}
+          disabled={!isInStock}
+          data-testid="add-to-cart-btn"
+        >
           <span>ADD TO BAG</span>
           <span className="add-icon" style={{ fontWeight: '400' }}>&#43;</span>
         </Button>
