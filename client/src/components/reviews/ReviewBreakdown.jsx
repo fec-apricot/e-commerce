@@ -4,7 +4,7 @@ import './reviewStyle.css';
 import Stars from '../stars_module/Stars.jsx';
 
 function ReviewBreakdown({
-  productID, setReviewList, sortParam,
+  productID, setReviewList, sortParam, sortSwitch,
 }) {
   const [allRatings, setAllRatings] = useState({});
   const [reviewScore1, setReviewScore1] = useState(0);
@@ -79,6 +79,7 @@ function ReviewBreakdown({
     return filterObj;
   };
   const filterByRating = () => {
+    console.log('sorting');
     if (Object.values(filterObj).every((filterBool) => filterBool === false)) {
       return parse.get(`reviews/?page=1&count=500&sort=${sortParam}&product_id=${productID}`)
         .then((data) => {
@@ -90,7 +91,7 @@ function ReviewBreakdown({
     return setReviewList(filteredList);
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { filterByRating(); }, [filterObj]);
+  useEffect(() => { filterByRating(); }, [filterObj, sortSwitch]);
 
   const resetFilter = () => {
     setFilterObj({
@@ -147,7 +148,6 @@ function ReviewBreakdown({
           <Stars ratings={allRatings} size={20} interactive={false} cb={() => {}} />
         </div>
       </div>
-      <div className="percent-recommend">{`${Math.floor((recommended / totalReviews) * 100)}% of reviews recommend this product`}</div>
       <div className="review-graph-background">
         <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(5); }}>
           <div className="review-bar-label"> 5 stars </div>
@@ -185,6 +185,7 @@ function ReviewBreakdown({
           <div className="review-total">{`(${reviewScore1})`}</div>
         </div>
       </div>
+      <div className="percent-recommend">{`${Math.floor((recommended / totalReviews) * 100)}% of reviews recommend this product`}</div>
     </>
   );
 }

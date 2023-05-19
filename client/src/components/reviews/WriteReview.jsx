@@ -26,6 +26,7 @@ function WriteReview({
   const [details, setDetails] = useState([]);
   const [detailObj, setDetailObj] = useState({});
   const [enabled, setEnabled] = useState(false);
+  const [warning, setWarning] = useState(false);
   useEffect(() => {
     if (image !== '') {
       console.log('EFFECT');
@@ -48,17 +49,24 @@ function WriteReview({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image]);
 
-  const submitReview = () => parse.post('/reviews', {
-    product_id: productID,
-    rating: userRating,
-    summary: userSummary,
-    body: userBody,
-    recommend: userRecommend,
-    name: username,
-    email: userEmail,
-    photos: url,
-    characteristics: detailObj,
-  }).then(() => { setReviewModal(!reviewModal); }).catch((err) => { console.log('Review Submission Error: ', err); });
+  const submitReview = () => {
+    if (enabled === false) {
+      document.getElementsByClassName('review-form-header')[0].scrollIntoView({ behavior: 'smooth' });
+      return setWarning(true);
+    }
+    return parse.post('/reviews', {
+      product_id: productID,
+      rating: userRating,
+      summary: userSummary,
+      body: userBody,
+      recommend: userRecommend,
+      name: username,
+      email: userEmail,
+      photos: url,
+      characteristics: detailObj,
+    }).then(() => { setReviewModal(!reviewModal); })
+      .catch((err) => { console.log('Review Submission Error: ', err); });
+  };
   const yes = true;
 
   // const parseObj = {
@@ -80,10 +88,12 @@ function WriteReview({
   }, [productID, characteristics]);
 
   useEffect(() => {
-    if (userRating && userRecommend
+    if (userRating && userRecommend !== ''
       && Object.keys(detailObj).length === Object.keys(characteristics).length
-      && userBody.length > 50 && username && userEmail) {
+      && userBody.length > 50 && username && userEmail.indexOf('.com') !== -1) {
       setEnabled(true);
+    } else {
+      setEnabled(false);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userRating, userRecommend, detailObj, userBody, username, userEmail]);
@@ -94,8 +104,11 @@ function WriteReview({
           role="presentation"
           className="review-form"
         >
-          <h2 style={{ textAlign: 'center' }}>{`Write Your Review For ${product.name}`}</h2>
+          <h2 className="review-form-header" style={{ textAlign: 'center' }}>{`Write Your Review For ${product.name}`}</h2>
           <div style={{ fontSize: 'small' }}>* indicates a required field</div>
+          <div style={{ fontSize: 'small', color: 'red' }}>
+            {warning && <div>You must enter the following:</div>}
+          </div>
           <div>
             Overall Rating *
             <Stars className="review-tile-stars" ratings={ratingScale} size={20} interactive={yes} cb={(starRating) => { setRating(starRating); }} />
@@ -167,17 +180,18 @@ function WriteReview({
             <div>
               What is your nickname *
               <div>
-                <input type="text" style={{ width: '60%' }} placeholder="Example: jackson11!" onChange={(e) => { setName(e.target.value); }} />
+                <input type="text" maxLength="60" style={{ width: '60%' }} placeholder="Example: jackson11!" onChange={(e) => { setName(e.target.value); }} />
               </div>
             </div>
             <div>
               Your email *
               <div>
-                <input type="text" style={{ width: '60%' }} placeholder="Example: jackson11!@email.com" onChange={(e) => { setEmail(e.target.value); }} />
+                <input type="text" maxLength="60" style={{ width: '60%' }} placeholder="Example: jackson11!@email.com" onChange={(e) => { setEmail(e.target.value); }} />
               </div>
             </div>
-            <div style={{ fontSize: 'small', color: 'red' }}>{enabled === false && 'Please Fill Out All Required Fields'}</div>
-            <button type="button" className="review-form-accept" disabled={!enabled} onClick={() => { submitReview(); }}>Submit Review</button>
+            {/* <div style={{ fontSize: 'small', color: 'red' }}>
+            {enabled === false && 'Please Fill Out All Required Fields'}</div> */}
+            <button type="button" className="review-form-accept" onClick={() => { submitReview(); }}>Submit Review</button>
             <button type="button" className="review-form-cancel" onClick={() => { setReviewModal(!reviewModal); }}>Cancel</button>
           </div>
         </div>

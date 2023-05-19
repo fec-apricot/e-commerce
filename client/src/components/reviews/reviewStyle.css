@@ -13,11 +13,15 @@
   border-right: none;
   border-bottom-color: black;
   border-bottom-width: 2px;
+  background-color: white
+}
+#sort-list option {
+  background-color: white
 }
 .review-list {
   margin-left: 2em;
   width: 625px;
-  max-height: 1000px;
+  max-height: 100vh;
   overflow-y: auto;
   overflow-wrap: break-word;
 }
@@ -43,7 +47,19 @@
   margin-top: 1.2em;
   font-size: 10pt;
   font-weight: 300;
-  margin-bottom: 1.2em;
+  margin-bottom: 10px;
+}
+.review-body-button {
+  border: none;
+  font-family: 'Inter', sans-serif;
+  background-color: rgb(250, 250, 251);
+  font-weight: 600;
+  font-size: 8pt;
+  color: rgb(81, 82, 83);
+  margin-bottom: 8px;
+}
+.review-body-button:hover {
+  color:rgb(179, 179, 183)
 }
 .review-recommendation {
   font-size: 10pt;
@@ -53,6 +69,25 @@
 .review-image {
   margin-right: 10px;
   max-height: 150px;
+  margin-bottom: 10px;
+}
+.tile-modal-background {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: rgba(49, 49, 49, 0.8);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.tile-modal {
+  max-height: 60%;
+  max-width: 60%;
 }
 .review-tile-footer {
   margin-top: 15px;
@@ -70,6 +105,8 @@
 .review-average {
   float: left;
   display: inline;
+  font-size: 32pt;
+  font-weight: 500;
 }
 .review-star-average {
   float: left;
@@ -77,7 +114,10 @@
   margin-left: 1em;
 }
 .percent-recommend {
-  margin-top: 1em;
+  margin-top: 8px;
+  font-size: 9pt;
+  margin-left: auto;
+  margin-right: auto;
 }
 .review-graph-background {
   background: white;
@@ -198,6 +238,11 @@
   font-weight: 600;
   font-size: 11pt;
   margin-left: 15px;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 4px 0 #ccc;
+}
+.write-review-button:hover {
+  background-color: rgb(243, 239, 243);
 }
 .more-reviews {
   font-family: 'Inter', sans-serif;
@@ -209,6 +254,11 @@
   color: rgb(81, 82, 83);
   font-weight: 600;
   font-size: 11pt;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 4px 0 #ccc;
+}
+.more-reviews:hover {
+  background-color: rgb(243, 239, 243);
 }
 .review-modal, .modal-overlay {
   width: 100vw;
@@ -229,7 +279,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 640px;
-  height: 500px;
+  height: 600px;
   background: white;
   z-index: 10;
   border: 1px solid black;
@@ -307,9 +357,9 @@
   background: #ff3e4e;
   transition: all 0.25s ease;
 }
-/* .review-form-accept:hover {
+.review-form-accept:hover {
   background-color: #f76d78;
-} */
+}
 .review-form-cancel {
   margin-top: 10px;
   margin-left: 15px;

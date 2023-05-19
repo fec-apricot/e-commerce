@@ -12,6 +12,7 @@ function Reviews() {
   const [sortParam, setSortParam] = useState('relevant');
   const [metadata, setMetadata] = useState({});
   const [reviewModal, setReviewModal] = useState(false);
+  const [sortSwitch, setSortSwitch] = useState(true);
 
   const reviewMeta = () => parse.get(`reviews/meta/?product_id=${productID}`)
     .then((data) => {
@@ -26,7 +27,7 @@ function Reviews() {
     <>
       <div data-testid="reviewcomponent" className="reviews">
         <div className="breakdown">
-          <ReviewBreakdown className="review-breakdown" productID={productID} reviewList={reviewList} setReviewList={setReviewList} sortParam={sortParam} />
+          <ReviewBreakdown className="review-breakdown" productID={productID} reviewList={reviewList} setReviewList={setReviewList} sortParam={sortParam} sortSwitch={sortSwitch} />
           <ProductBreakdown productID={productID} characteristics={metadata.characteristics} />
         </div>
         <div className="review-list-container">
@@ -38,6 +39,8 @@ function Reviews() {
             setReviewList={setReviewList}
             reviewModal={reviewModal}
             setReviewModal={setReviewModal}
+            sortSwitch={sortSwitch}
+            setSortSwitch={setSortSwitch}
           />
         </div>
       </div>
