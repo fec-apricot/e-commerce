@@ -1,24 +1,27 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import parse from '../../parse';
 import { GlobalContext } from '../GlobalContext.jsx';
-// import { OverviewContext } from '../overview/OverviewContext.jsx';
 import './questions.css';
-// import { RiCloseLine } from "react-icons/ri";
 
-function AnswerForm({ setOpenForm, question, setAnswers, setBurn, burn }) {
-  // const { productID } = useContext(GlobalContext);
+function AnswerForm({
+  setOpenForm, question, setBurn, burn,
+}) {
   const { product } = useContext(GlobalContext);
-  // const { product } = useContext(OverviewContext);
   const [answerBody, setAnswerBody] = useState('');
   const [userName, setName] = useState('');
   const [userEmail, setEmail] = useState('');
   const [inputErr, setInputErr] = useState(false);
-  // const [images, setImages] = useState([]);
-  // console.log('PRODUCT', product)
+  const [emailErr, setEmailErr] = useState(false);
 
   const submitForm = (event) => {
     event.preventDefault();
-    if (answerBody.length && userName.length && userEmail.length) {
+    if (!answerBody.length && !userName.length && !userEmail.length) {
+      setInputErr(true);
+      return;
+    }
+    if (!userEmail.includes('@') && !userEmail.includes('.com')) {
+      setEmailErr(true);
+    } else {
       setOpenForm(false);
       parse.post(`/qa/questions/${question.question_id}/answers`, {
         body: answerBody,
@@ -26,24 +29,24 @@ function AnswerForm({ setOpenForm, question, setAnswers, setBurn, burn }) {
         email: userEmail,
       })
         .then(() => setBurn(!burn))
-        // parse.get(`/qa/questions/${question.question_id}/answers`)
-        //   .then((data) => setAnswers(data.results)))
         .catch((err) => console.log('unable to add use questions', err));
-    } else {
-      setInputErr(true);
-      console.log('INVLAID');
     }
   };
 
   return (
     <>
-     <div className="darkBG" onClick={() => setOpenForm(false)} />
+      <div className="darkBG" onClick={() => setOpenForm(false)} />
       <div className="centered">
         <div className="modal">
           <div className="modalHeader">
             <h5 className="heading">Submit your Answer</h5>
-            <h6 className="subheading">{product?.name}: {question.question_body}</h6>
-          {inputErr && <p className="invalidInput">You must enter the following:</p>}
+            <h6 className="subheading">
+              {product?.name}
+              :
+              {question.question_body}
+            </h6>
+            {inputErr && <p className="invalidInput">You must enter the following:</p>}
+            {emailErr && <p className="invalidInput">Invalid Email</p>}
           </div>
           <button type="button" className="closeBtn" onClick={() => setOpenForm(false)}>
             {/* <RiCloseLine style={{ marginBottom: "-3px" }} /> */}
@@ -61,7 +64,6 @@ function AnswerForm({ setOpenForm, question, setAnswers, setBurn, burn }) {
               <label className="label">Your email (mandatory)</label>
               <input data-testid="input3" onChange={(event) => setEmail(event.target.value)} className="formBar" maxLength="60" placeholder="Example: jack@email.com" type="text" onInvalid="alert('You must fill out the form!');" required />
               <p>For authentication reasons, you will not be emailed</p>
-              {/* <input onChange={(event) => setImages(event.target.value)} className="formBar" placeholder="YOUR IMAGES..." /> */}
             </form>
             <br />
 

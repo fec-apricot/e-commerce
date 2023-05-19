@@ -14,14 +14,14 @@
 } */
 
 .navQ {
- color: rgb(114, 114, 116);
+ /* color: rgb(114, 114, 116); */
  float: right;
  font-size: 9pt;
  font-weight: 300;
 }
 
 .navA {
-  color: rgb(114, 114, 116);
+  /* color: rgb(114, 114, 116); */
   font-size: 9pt;
   padding-left: 26px;
   padding-top: 10px;
@@ -29,12 +29,13 @@
 }
 
 .search {
-  width: 844px;
+  width: 896px;
   height: 58px;
   border: none;
   padding-left: 14px;
   /* background-color: rgb(246, 247, 251); */
   background-color: white;
+  border-radius:3px;
 }
 
 .form {
@@ -42,6 +43,9 @@
   background-color: white;
   height: 60px;
   border: 1px solid black;
+  box-shadow: 0 1px 4px 0 #ccc;
+  border-radius:3px;
+
 
 }
 
@@ -121,6 +125,11 @@
   color: rgb(81, 82, 83);
   font-weight: 600;
   font-size: 11pt;
+  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+  box-shadow: 0 1px 4px 0 #ccc;
+  border-radius: 3px;
+  /* border: 2px, solid; */
+  /* border-color: rgb(155, 155, 155) */
 }
 
 .mainBtn:hover {
@@ -149,7 +158,7 @@
 
 .formBar {
   width: 400px;
-  height: 30px
+  height: 30px;
 }
 
 .qformBar {
@@ -307,9 +316,27 @@
   background: rgb(230, 228, 228);
 }
 
-::placeholder {
+.search::placeholder {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 11pt;
   color: rgb(81, 82, 83)
 }
+
+.question-list-section {
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-wrap: break-word;
+}
+
+.answer-list-section {
+  max-height: 250px;
+  width: 600px;
+  overflow-y: auto;
+  overflow-wrap: break-word;
+  /* border: 1px solid; */
+}
+
+/* .textArea {
+  font-family: 'Inter', sans-serif;
+} */

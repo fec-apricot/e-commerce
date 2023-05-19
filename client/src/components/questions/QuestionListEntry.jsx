@@ -61,11 +61,13 @@ function QuestionListEntry({ question }) {
           <button type="button" className="Btn" data-testid="addAnswer" onClick={() => setOpenForm(true)}>Add Answer</button>
           {openForm && <AnswerForm setOpenForm={setOpenForm} question={question} setBurn={setBurn} burn={burn} />}
         </span>
-        <div>
+        <div className="answer-list-section">
           {answers.map((answer, i) => <AnswerListEntry key={i} answer={answer} />) }
         </div>
         {allAnswers.length > answers.length ? (
-          <button type="button" className="moreAnswersBtn" onClick={() => setAnswers(allAnswers.slice(0, answers.length + 2)) && setBurn(!burn)}>LOAD MORE ANSWERS</button>) : ''}
+          <button type="button" className="moreAnswersBtn" onClick={() => setAnswers(allAnswers) && setBurn(!burn)}>LOAD MORE ANSWERS</button>) : ''}
+        {answers.length > 2 ? (
+          <button type="button" className="moreAnswersBtn" onClick={() => setAnswers(allAnswers.slice(0, 2)) && setBurn(!burn)}>COLLAPSE ANSWERS</button>) : ''}
         <br />
       </section>
     </div>

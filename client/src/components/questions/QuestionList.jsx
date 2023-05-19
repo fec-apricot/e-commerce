@@ -3,7 +3,7 @@ import QuestionListEntry from './QuestionListEntry.jsx';
 
 function QuestionList({ questions }) {
   return (
-    <div>
+    <div className="question-list-section">
       {questions.map((question, i) => <QuestionListEntry key={i} question={question} />)}
     </div>
   );
