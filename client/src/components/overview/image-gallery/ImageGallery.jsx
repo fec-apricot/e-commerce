@@ -33,7 +33,7 @@ function ImageGallery() {
     <Host>
       {showExpandedView
       && (
-        <ExpandedView handleHide={setShowExpandedView} />
+        <ExpandedView handleHide={setShowExpandedView} initialDefaultViewIndex={defaultViewIndex} />
       )}
       <OverviewCarousel {...carouselProps} />
     </Host>

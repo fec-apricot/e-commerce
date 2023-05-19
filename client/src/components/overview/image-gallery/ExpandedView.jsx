@@ -26,8 +26,8 @@ const CloseButton = styled.div`
   }
 `;
 
-function ExpandedView({ handleHide }) {
-  const [defaultViewIndex, setDefaultViewIndex] = useState(0);
+function ExpandedView({ handleHide, initialDefaultViewIndex }) {
+  const [defaultViewIndex, setDefaultViewIndex] = useState(initialDefaultViewIndex);
   const [thumbnailViewIndexStart, setThumbnailIndexStart] = useState(0);
   const [showMagnifier, setShowMagnifier] = useState(false);
   const carouselProps = {
