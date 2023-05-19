@@ -10,7 +10,8 @@
   cursor: pointer;
   z-index: 0;
   position: relative;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 8px 0px;
+  border-width: 1px;
+  border-radius: 3px;
 }
 
 .imgDiv{

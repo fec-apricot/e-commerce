@@ -61,7 +61,7 @@ function QuestionListEntry({ question }) {
           <button type="button" className="Btn" data-testid="addAnswer" onClick={() => setOpenForm(true)}>Add Answer</button>
           {openForm && <AnswerForm setOpenForm={setOpenForm} question={question} setBurn={setBurn} burn={burn} />}
         </span>
-        <div>
+        <div className="answer-list-section">
           {answers.map((answer, i) => <AnswerListEntry key={i} answer={answer} />) }
         </div>
         {allAnswers.length > answers.length ? (
