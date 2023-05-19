@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import axios from 'axios';
-import { render, screen, fireEvent, cleanup, debug } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { act } from 'react-test-renderer';
 import '@testing-library/jest-dom';
 import RelatedProducts from '../RelatedProducts.jsx';

@@ -8,13 +8,12 @@
 }
 
 .edgeFade {
-
   position: absolute;
   top: 0;
   right: 0;
   height: 825px;
-  width: 50px;
-  background: linear-gradient(90deg, transparent 0%, rgb(250, 250, 251) 100%);
+  width: 100px;
+  background: linear-gradient(90deg, transparent 0%, rgb(250, 250, 251) 98%, rgb(250, 250, 251) 100%);
 }
 
 .closeModalBtn {
@@ -27,6 +26,12 @@
   font-size: 18px;
   background-color: rgb(220, 220, 220);
   font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px;
+  cursor: pointer;
+  &:hover{
+    background-color: rgb(192, 192, 192);
+  }
 }
 
 .modal1 {
@@ -34,14 +39,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 40px;
-  border-radius: 10px;
+  padding: 22px;
+  border-radius: 4px;
   height: fit-content;
   z-index: 10;
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px;
 }
 
 .overlay {
@@ -58,12 +64,14 @@
   color: black;
   width: fit-content;
   background-color: rgb(220, 220, 220);
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   padding-left: 40px;
   padding-right: 40px;
-  border-radius: 5px;
+  border-radius: 4px;
   font-weight: 700;
+  font-size: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px;
 }
 
 .modal-content {
@@ -75,9 +83,9 @@
 
 table {
   width: 100%;
-  border: 1px solid black;
+  border: none;
   table-layout: fixed;
-  margin-top: 20px;
+  margin-top: 15px;
   border-collapse: collapse;
 }
 
@@ -90,16 +98,18 @@ tbody {
 tr {
   width: 100%;
   height: 40px;
-  text-align: center;
+}
+
+.topTR {
+  border-top: none;
 }
 
 th {
   vertical-align: middle;
-  border: 1px solid black;
 }
 
 td {
-  border: 1px solid black;
+  border: 1px solid dimgrey;
   text-align: center;
   vertical-align: middle;
 }
