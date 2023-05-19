@@ -63,7 +63,17 @@
   text-overflow: ellipsis;
 }
 
-.price {
+.priceContainer {
   margin-top: 4px;
   margin-left: 4px;
+  display: flex;
+  flex-direction: row;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+.sale {
+  color: rgb(203, 0, 0);
 }

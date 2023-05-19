@@ -61,27 +61,13 @@
   z-index: 3;
 }
 
-.outfitBtnOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 400px;
-  width: 224px;
-  background: rgba(0,0,0,.3);
-}
-
-.overlayText {
-  display: flex;
-  justify-content: center;
-}
-
 .carouselButton {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background: rgba(0,0,0,.4);
   cursor: pointer;
-  z-index: 10;
+  z-index: 9;
   height: 50%;
   width: 30px;
   color: white;

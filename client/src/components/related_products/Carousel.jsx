@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../GlobalContext.jsx';
 import ProductCard from './ProductCard.jsx';
 import './Carousel.css';
@@ -26,8 +26,6 @@ function Carousel({
     if (newID === 10001) { return; }
     productSlider.style.setProperty('--slider-index', 0);
     productSlider2.style.setProperty('--slider2-index', 0);
-    setSlide2Index(0);
-    setSlideIndex(0);
     setProductID(newID);
   };
 
@@ -48,12 +46,19 @@ function Carousel({
       if (direction === 'left') {
         productSlider2.style.setProperty('--slider2-index', index - 1);
         setSlide2Index(slide2Index - 1);
-      } else {
+      } else if (direction === 'right') {
         productSlider2.style.setProperty('--slider2-index', index + 1);
         setSlide2Index(slide2Index + 1);
       }
     }
   };
+
+  useEffect(() => {
+    console.log('what is going on!!!?!!!?!?', slide2Index);
+    setSlide2Index(0);
+    setSlideIndex(0);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productID]);
 
   return (
     <div className="carousel">
@@ -81,11 +86,6 @@ function Carousel({
               dataStore={dataStore}
               outfitButton={outfitButton}
             />
-            <div className="outfitBtnOverlay">
-              <div className="overlayText">
-                Add / Remove
-              </div>
-            </div>
           </li>
         )}
         {
