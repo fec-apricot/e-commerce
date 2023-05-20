@@ -4,7 +4,7 @@ import './reviewStyle.css';
 import Stars from '../stars_module/Stars.jsx';
 
 function ReviewBreakdown({
-  productID, setReviewList, sortParam, sortSwitch,
+  productID, setReviewList, sortParam, allReviews, sortSwitch,
 }) {
   const [allRatings, setAllRatings] = useState({});
   const [reviewScore1, setReviewScore1] = useState(0);
@@ -15,7 +15,6 @@ function ReviewBreakdown({
   const [totalReviews, setTotalReviews] = useState(0);
   const [reviewAverage, setReviewAverage] = useState(0);
   const [recommended, setRecommended] = useState(0);
-  const [allReviews, setAllReviews] = useState([]);
   const [bar1, setBar1] = useState(0);
   const [bar2, setBar2] = useState(0);
   const [bar3, setBar3] = useState(0);
@@ -29,14 +28,6 @@ function ReviewBreakdown({
     5: false,
   });
   const [filterKeys] = useState(Object.keys(filterObj));
-  const getAllReviews = () => (
-    parse.get(`reviews/?page=1&count=500&sort=${sortParam}&product_id=${productID}`)
-      .then((data) => {
-        setAllReviews(data.results);
-      })
-      .catch((err) => { console.log('CLIENT GET REVIEW ERROR: ', err); }));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { getAllReviews(); }, [productID, sortParam]);
 
   const reviewMeta = () => parse.get(`reviews/meta/?product_id=${productID}`)
     .then((data) => {
@@ -88,6 +79,7 @@ function ReviewBreakdown({
         .catch((err) => { console.log('CLIENT GET REVIEW ERROR: ', err); });
     }
     const filteredList = allReviews.filter((review) => filterObj[review.rating]);
+    console.log('FILTERED LIST: ', filteredList);
     return setReviewList(filteredList);
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -105,25 +97,7 @@ function ReviewBreakdown({
   useEffect(() => { resetFilter(); }, [productID]);
   return (
     <>
-      <h3
-        role="presentation"
-  //           // console.log('total reviews: ', totalReviews)
-  //           // console.log('1: ', reviewScore1)
-  //           // console.log('2: ', reviewScore2)
-  //           // console.log('3: ', reviewScore3)
-  //           // console.log('4: ', reviewScore4)
-  //           // console.log('5: ', reviewScore5)
-  //           // console.log('average: ', reviewAverage);
-  //           // console.log('recommended ', recommended);
-  //           // console.log('bar 1 percent', bar1)
-  //           // console.log('bar 2 percent', bar2)
-  //           // console.log('bar 3 percent', bar3)
-  //           // console.log('bar 4 percent', bar4)
-  //           // console.log('bar 5 percent', bar5)
-  //           // console.log('filterObj', filterObj);
-  //           // console.log('allreviews ', allReviews);
-  //           // console.log('reviewList ', reviewList);
-      >
+      <h3>
         Rating Breakdown
       </h3>
       <div>
