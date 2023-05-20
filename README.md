@@ -121,7 +121,8 @@ Some improvements that could be made include adding more features such as a paym
   - This file allows for a modal to appear rendering a bigger version of the picture whenever a photo is clicked     on in the ReviewTile.
 
 #### ReviewBreakdown.jsx
-  - This file inherits the props for product ID, review list, total reviews, sort parameters, and sort switch.     - Filtering occurs whenever a breakdown bar is clicked, the sort switch is changed in ReviewList.jsx. 
+  - This file inherits the props for product ID, review list, total reviews, sort parameters, and sort switch.     
+  - Filtering occurs whenever a breakdown bar is clicked, the sort switch is changed in ReviewList.jsx. 
 
 #### ProductBreakdown.ksx
   - This file only requires the props product ID and characteristics of the product from metadata.
