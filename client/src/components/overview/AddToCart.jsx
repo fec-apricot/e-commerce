@@ -65,7 +65,7 @@ const DropdownBtn = styled.button`
 const DropdownList = styled.div`
   width: 100%;
   max-height: 350px;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: auto;
   position: absolute;
   background-color: #f1f1f1;

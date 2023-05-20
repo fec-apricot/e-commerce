@@ -4,6 +4,7 @@ export const DefaultView = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
+  border-radius: 2px;
   cursor: ${(props) => (props.zoomedIn ? 'zoom-out' : 'zoom-in')};
   margin-left: ${(props) => (props.expanded ? '100px' : 0)};
 `;
@@ -30,12 +31,12 @@ export const ThumbnailView = styled.img`
   object-fit: cover;
   padding-bottom: 1px;
   cursor: pointer;
-  box-shadow: ${(props) => (props.selected ? '4px 6px 12px 2px rgba(0,0,0,0.5)' : '0 4px 8px 0 rgba(0,0,0,0.2)')};
+  box-shadow: ${(props) => (props.selected ? '2px 4px 4px 1px rgba(0,0,0,0.5)' : '1px 2px 2px 0 rgba(0,0,0,0.2)')};
   border-radius: 2px;
   border-bottom: ${(props) => (props.selected ? '4px solid rgb(81, 82, 83)' : 'none')};
   transition: 0.3s;
   &:hover {
-    box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.5);
+    box-shadow: 1px 2px 4px 1px rgba(0,0,0,0.5);
   }
 `;
 
