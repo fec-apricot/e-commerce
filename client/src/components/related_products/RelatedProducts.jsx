@@ -173,19 +173,16 @@ function RelatedProducts() {
       allProducts.current[10001] = [blankInfo, blankStyles, blankRatings];
     }
     setDataStore(allProducts.current);
-    console.log('dataStore', allProducts.current);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allProducts]);
 
   useEffect(() => {
-    console.log('on load -----', allProducts.current);
     setRelated([productID]);
     let storedOutfit = JSON.parse(localStorage.getItem('outfit'));
     if (storedOutfit === null) {
       localStorage.setItem('outfit', JSON.stringify([]));
       storedOutfit = [];
     }
-    console.log('stored outfit', storedOutfit);
     storedOutfit = addBlanksToOutfit(storedOutfit);
     setOutfitList(storedOutfit);
   // eslint-disable-next-line react-hooks/exhaustive-deps

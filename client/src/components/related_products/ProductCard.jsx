@@ -33,7 +33,6 @@ function ProductCard({
       for (let i = 0; i < productStyles.results.length; i += 1) {
         if (productStyles.results[i]['default?'] === true) {
           imgURL = productStyles.results[i].photos[0].thumbnail_url;
-          // console.log('imgURL', imgURL);
           setPrice(productStyles.results[i].original_price);
           setSalePrice(productStyles.results[i].sale_price);
           break;
