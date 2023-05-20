@@ -99,9 +99,8 @@ function WriteReview({
   }, [userRating, userRecommend, detailObj, userBody, username, userEmail]);
   return (
     <div className="review-modal">
-      <div role="presentation" className="modal-overlay">
+      <div className="modal-overlay">
         <div
-          role="presentation"
           className="review-form"
         >
           <h2 className="review-form-header" style={{ textAlign: 'center' }}>{`Write Your Review For ${product.name}`}</h2>

@@ -130,9 +130,14 @@ function ReviewBreakdown({
         {!(Object.values(filterObj).every((filterBool) => filterBool === false))
         && (
         <>
-          <div>{`Filtered reviews by star ratings (${filterKeys.filter((key) => filterObj[key]).slice(0, filterKeys.length - 1).join(', ')})`}</div>
+          <div>
+            Filtered reviews by star ratings
+            <div>{filterKeys.filter((key) => filterObj[key]).slice(0, filterKeys.length - 1).join(', ')}</div>
+          </div>
           <div
-            role="presentation"
+            role="button"
+            tabIndex={0}
+            onKeyDown={() => {}}
             onClick={() => { resetFilter(); }}
           >
             <u style={{ cursor: 'pointer' }}>Remove All Filters</u>
@@ -149,28 +154,28 @@ function ReviewBreakdown({
         </div>
       </div>
       <div className="review-graph-background">
-        <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(5); }}>
+        <div className="rating-breakdown" role="button" tabIndex={0} onKeyDown={() => {}} onClick={() => { editFilterObj(5); }}>
           <div className="review-bar-label"> 5 stars </div>
           <div className="outer">
             <div className="inner" data-testid="inner" style={{ width: `${bar5}%` }}></div>
           </div>
           <div className="review-total">{`(${reviewScore5})`}</div>
         </div>
-        <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(4); }}>
+        <div className="rating-breakdown" role="button" tabIndex={0} onKeyDown={() => {}} onClick={() => { editFilterObj(4); }}>
           <div className="review-bar-label"> 4 stars </div>
           <div className="outer">
             <div className="inner" data-testid="inner" style={{ width: `${bar4}%` }}></div>
           </div>
           <div className="review-total">{`(${reviewScore4})`}</div>
         </div>
-        <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(3); }}>
+        <div className="rating-breakdown" role="button" tabIndex={0} onKeyDown={() => {}} onClick={() => { editFilterObj(3); }}>
           <div className="review-bar-label"> 3 stars </div>
           <div className="outer">
             <div className="inner" data-testid="inner" style={{ width: `${bar3}%` }}></div>
           </div>
           <div className="review-total">{`(${reviewScore3})`}</div>
         </div>
-        <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(2); }}>
+        <div className="rating-breakdown" role="button" tabIndex={0} onKeyDown={() => {}} onClick={() => { editFilterObj(2); }}>
           <div className="review-bar-label"> 2 stars </div>
           <div className="outer">
             <div className="inner" data-testid="inner" style={{ width: `${bar2}%` }}></div>
