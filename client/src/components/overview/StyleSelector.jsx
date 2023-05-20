@@ -25,7 +25,7 @@ const StyleList = styled.div`
   height: 80%;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: auto;
 `;
 
