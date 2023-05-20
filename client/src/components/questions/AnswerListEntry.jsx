@@ -30,7 +30,7 @@ function AnswerListEntry({ answer }) {
       <span className="answerText">{answer.body}</span>
       <div className="navA">
         by&nbsp;
-        {answer.answerer_name}
+        {answer.answerer_name.slice(0, 10)}
         ,&nbsp;
         {new Date(answer.date).toString().slice(4, 15)}
         &emsp;|&emsp; Helpful?

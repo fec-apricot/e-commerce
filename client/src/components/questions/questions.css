@@ -85,11 +85,13 @@
   max-width: 650px; */
 }
 
-/* .qbody {
-  display: inline-block;
-  font-weight: bold;
-  max-width: 650px;
-} */
+/* .qbody { */
+  /* display: inline-block;
+  width: 700px; */
+  /* max-height: 19px; */
+  /* overflow-y: auto;
+  overflow-wrap: break-word; */
+/* } */
 
 .qSection {
   padding-top: 5px;
@@ -325,6 +327,7 @@
 
 .question-list-section {
   max-height: 600px;
+  /* width: 800px; */
   overflow-y: auto;
   overflow-wrap: break-word;
 }
@@ -336,6 +339,10 @@
   overflow-wrap: break-word;
   /* border: 1px solid; */
 }
+
+/* .subheading {
+  width: 500px;
+} */
 
 /* .textArea {
   font-family: 'Inter', sans-serif;

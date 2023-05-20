@@ -11,8 +11,6 @@ function QuestionListEntry({ question }) {
   const [openForm, setOpenForm] = useState(false);
   const [helpful, setHelpful] = useState(question.question_helpfulness);
   const [burn, setBurn] = useState(false);
-  // const [toggle, setToggle] = useState(false);
-  // console.log('I AM A QUESTION', question)
 
   useEffect(() => {
     parse.get(`/qa/questions/${question.question_id}/answers`)
@@ -22,9 +20,6 @@ function QuestionListEntry({ question }) {
       })
       .catch((err) => console.log(err));
   }, [question.question_id, burn]);
-
-  // console.log('I AM ANSWERS', answers);
-  // console.log('I AM A QUESTION ID', question.question_id)
 
   const updateHelp = (event) => {
     event.preventDefault();

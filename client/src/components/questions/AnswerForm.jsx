@@ -42,14 +42,13 @@ function AnswerForm({
             <h5 className="heading">Submit your Answer</h5>
             <h6 className="subheading">
               {product?.name}
-              :
-              {question.question_body}
+              :&ensp;
+              {question.question_body.slice(0, 33)}
             </h6>
             {inputErr && <p className="invalidInput">You must enter the following:</p>}
             {emailErr && <p className="invalidInput">Invalid Email</p>}
           </div>
           <button type="button" className="closeBtn" onClick={() => setOpenForm(false)}>
-            {/* <RiCloseLine style={{ marginBottom: "-3px" }} /> */}
           </button>
           <div className="modalContent">
             <form>
