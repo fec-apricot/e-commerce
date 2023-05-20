@@ -128,10 +128,11 @@ Some improvements that could be made include adding more features such as a paym
   - It maps out these characteristics as details for DetailBar.jsx
 
 #### DetailBar.jsx
-  - This file requires a detail prop from a single characteristic of that item and displays it as a dynamic bar     rating in the Product Breakdown.
+  - This file requires a detail prop from a single characteristic of that item and displays it as a dynamic bar rating in the Product Breakdown.
 
 #### WriteReview.jsx
-  - This file represents the review submission modal that appears whenever the “ADD A REVIEW” button is clicked.   - It inherits the props for the product, the review modal switch, and the characteristics from the metadata.
+  - This file represents the review submission modal that appears whenever the “ADD A REVIEW” button is clicked. 
+  - It inherits the props for the product, the review modal switch, and the characteristics from the metadata.
   - It also maps out radio buttons from the characteristic props.
 
 #### WriteButton.jsx
