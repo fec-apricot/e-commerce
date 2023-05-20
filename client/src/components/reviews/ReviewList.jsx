@@ -4,17 +4,9 @@ import ReviewTile from './ReviewTile.jsx';
 
 function ReviewList({
   productID, sortParam, setSortParam, reviewList, setReviewList, reviewModal, setReviewModal,
-  sortSwitch, setSortSwitch,
+  totalReviews, setTotalReviews, sortSwitch, setSortSwitch,
 }) {
   const [sliceCount, setSliceCount] = useState(2);
-  const [totalReviews, setTotalReviews] = useState([]);
-  const getReviews = () => (
-    parse.get(`reviews/?page=1&count=500&sort=${sortParam}&product_id=${productID}`)
-      .then((data) => {
-        setReviewList([...reviewList, ...data.results]);
-        setTotalReviews([...data.results]);
-      })
-      .catch((err) => { console.log('CLIENT GET REVIEW ERROR: ', err); }));
 
   const sortReviews = () => (
     parse.get(`reviews/?page=1&count=500&sort=${sortParam}&product_id=${productID}`)
@@ -25,11 +17,10 @@ function ReviewList({
   const getMoreReviews = () => {
     setSliceCount(sliceCount + 2);
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { getReviews(); }, [productID]);
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { sortReviews(); }, [sortParam, productID]);
-  // sliceCount,
+
   return (
     <>
       <div className="review-list">

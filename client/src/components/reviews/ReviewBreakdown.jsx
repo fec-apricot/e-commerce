@@ -4,7 +4,7 @@ import './reviewStyle.css';
 import Stars from '../stars_module/Stars.jsx';
 
 function ReviewBreakdown({
-  productID, setReviewList, sortParam, sortSwitch,
+  productID, setReviewList, sortParam, allReviews, sortSwitch,
 }) {
   const [allRatings, setAllRatings] = useState({});
   const [reviewScore1, setReviewScore1] = useState(0);
@@ -15,7 +15,6 @@ function ReviewBreakdown({
   const [totalReviews, setTotalReviews] = useState(0);
   const [reviewAverage, setReviewAverage] = useState(0);
   const [recommended, setRecommended] = useState(0);
-  const [allReviews, setAllReviews] = useState([]);
   const [bar1, setBar1] = useState(0);
   const [bar2, setBar2] = useState(0);
   const [bar3, setBar3] = useState(0);
@@ -29,18 +28,9 @@ function ReviewBreakdown({
     5: false,
   });
   const [filterKeys] = useState(Object.keys(filterObj));
-  const getAllReviews = () => (
-    parse.get(`reviews/?page=1&count=500&sort=${sortParam}&product_id=${productID}`)
-      .then((data) => {
-        setAllReviews(data.results);
-      })
-      .catch((err) => { console.log('CLIENT GET REVIEW ERROR: ', err); }));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { getAllReviews(); }, [productID, sortParam]);
 
   const reviewMeta = () => parse.get(`reviews/meta/?product_id=${productID}`)
     .then((data) => {
-      console.log('Metadata :', data);
       const totalReviewArray = Object.values(data.ratings);
       setAllRatings(data.ratings);
       setTotalReviews(totalReviewArray.reduce((acc, rating) => acc + Number(rating), 0));
@@ -79,7 +69,6 @@ function ReviewBreakdown({
     return filterObj;
   };
   const filterByRating = () => {
-    console.log('sorting');
     if (Object.values(filterObj).every((filterBool) => filterBool === false)) {
       return parse.get(`reviews/?page=1&count=500&sort=${sortParam}&product_id=${productID}`)
         .then((data) => {
@@ -105,34 +94,21 @@ function ReviewBreakdown({
   useEffect(() => { resetFilter(); }, [productID]);
   return (
     <>
-      <h3
-        role="presentation"
-  //           // console.log('total reviews: ', totalReviews)
-  //           // console.log('1: ', reviewScore1)
-  //           // console.log('2: ', reviewScore2)
-  //           // console.log('3: ', reviewScore3)
-  //           // console.log('4: ', reviewScore4)
-  //           // console.log('5: ', reviewScore5)
-  //           // console.log('average: ', reviewAverage);
-  //           // console.log('recommended ', recommended);
-  //           // console.log('bar 1 percent', bar1)
-  //           // console.log('bar 2 percent', bar2)
-  //           // console.log('bar 3 percent', bar3)
-  //           // console.log('bar 4 percent', bar4)
-  //           // console.log('bar 5 percent', bar5)
-  //           // console.log('filterObj', filterObj);
-  //           // console.log('allreviews ', allReviews);
-  //           // console.log('reviewList ', reviewList);
-      >
+      <h3>
         Rating Breakdown
       </h3>
       <div>
         {!(Object.values(filterObj).every((filterBool) => filterBool === false))
         && (
         <>
-          <div>{`Filtered reviews by star ratings (${filterKeys.filter((key) => filterObj[key]).slice(0, filterKeys.length - 1).join(', ')})`}</div>
+          <div>
+            Filtered reviews by star ratings
+            <div>{filterKeys.filter((key) => filterObj[key]).slice(0, filterKeys.length - 1).join(', ')}</div>
+          </div>
           <div
-            role="presentation"
+            role="button"
+            tabIndex={0}
+            onKeyDown={() => {}}
             onClick={() => { resetFilter(); }}
           >
             <u style={{ cursor: 'pointer' }}>Remove All Filters</u>
@@ -149,28 +125,28 @@ function ReviewBreakdown({
         </div>
       </div>
       <div className="review-graph-background">
-        <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(5); }}>
+        <div className="rating-breakdown" role="button" tabIndex={0} onKeyDown={() => {}} onClick={() => { editFilterObj(5); }}>
           <div className="review-bar-label"> 5 stars </div>
           <div className="outer">
             <div className="inner" data-testid="inner" style={{ width: `${bar5}%` }}></div>
           </div>
           <div className="review-total">{`(${reviewScore5})`}</div>
         </div>
-        <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(4); }}>
+        <div className="rating-breakdown" role="button" tabIndex={0} onKeyDown={() => {}} onClick={() => { editFilterObj(4); }}>
           <div className="review-bar-label"> 4 stars </div>
           <div className="outer">
             <div className="inner" data-testid="inner" style={{ width: `${bar4}%` }}></div>
           </div>
           <div className="review-total">{`(${reviewScore4})`}</div>
         </div>
-        <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(3); }}>
+        <div className="rating-breakdown" role="button" tabIndex={0} onKeyDown={() => {}} onClick={() => { editFilterObj(3); }}>
           <div className="review-bar-label"> 3 stars </div>
           <div className="outer">
             <div className="inner" data-testid="inner" style={{ width: `${bar3}%` }}></div>
           </div>
           <div className="review-total">{`(${reviewScore3})`}</div>
         </div>
-        <div className="rating-breakdown" role="presentation" onClick={() => { editFilterObj(2); }}>
+        <div className="rating-breakdown" role="button" tabIndex={0} onKeyDown={() => {}} onClick={() => { editFilterObj(2); }}>
           <div className="review-bar-label"> 2 stars </div>
           <div className="outer">
             <div className="inner" data-testid="inner" style={{ width: `${bar2}%` }}></div>
