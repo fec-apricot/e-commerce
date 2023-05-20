@@ -31,7 +31,6 @@ function ReviewBreakdown({
 
   const reviewMeta = () => parse.get(`reviews/meta/?product_id=${productID}`)
     .then((data) => {
-      console.log('Metadata :', data);
       const totalReviewArray = Object.values(data.ratings);
       setAllRatings(data.ratings);
       setTotalReviews(totalReviewArray.reduce((acc, rating) => acc + Number(rating), 0));
@@ -70,7 +69,6 @@ function ReviewBreakdown({
     return filterObj;
   };
   const filterByRating = () => {
-    console.log('sorting');
     if (Object.values(filterObj).every((filterBool) => filterBool === false)) {
       return parse.get(`reviews/?page=1&count=500&sort=${sortParam}&product_id=${productID}`)
         .then((data) => {
@@ -79,7 +77,6 @@ function ReviewBreakdown({
         .catch((err) => { console.log('CLIENT GET REVIEW ERROR: ', err); });
     }
     const filteredList = allReviews.filter((review) => filterObj[review.rating]);
-    console.log('FILTERED LIST: ', filteredList);
     return setReviewList(filteredList);
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
