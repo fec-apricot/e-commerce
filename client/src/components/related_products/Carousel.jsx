@@ -54,7 +54,6 @@ function Carousel({
   };
 
   useEffect(() => {
-    console.log('what is going on!!!?!!!?!?', slide2Index);
     setSlide2Index(0);
     setSlideIndex(0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
