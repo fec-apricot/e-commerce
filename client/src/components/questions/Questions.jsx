@@ -23,8 +23,6 @@ function Questions() {
 
   return (
     <div className="body">
-      {/* <div className="head" title="My Header" data-testid="title">QUESTIONS & ANSWERS</div> */}
-      {/* <br /> */}
       <Search
         setQuestions={setQuestions}
         allQuestions={allQuestions}

@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import parse from '../../parse';
 import { GlobalContext } from '../GlobalContext.jsx';
 import './questions.css';
-// import { RiCloseLine } from "react-icons/ri";
 
 function QuestionFrom({ setIsOpen }) {
   const { productID } = useContext(GlobalContext);
@@ -12,7 +11,6 @@ function QuestionFrom({ setIsOpen }) {
   const [userEmail, setUserEmail] = useState('');
   const [inputError, setInputError] = useState(false);
   const [emailErr, setEmailErr] = useState(false);
-  console.log('I AM THE PRODUCT', product);
 
   const submitForm = (event) => {
     event.preventDefault();
@@ -37,7 +35,7 @@ function QuestionFrom({ setIsOpen }) {
 
   return (
     <>
-      <div className="darkBG" onClick={() => setIsOpen(false)} />
+      <div className="modal-form" type="button" aria-label="Save" role="button" tabIndex={0} onKeyDown={() => {}} onClick={() => setIsOpen(false)} />
       <div className="centered">
         <div className="modal">
           <div className="modalHeader">
@@ -47,20 +45,19 @@ function QuestionFrom({ setIsOpen }) {
             {emailErr && <p className="invalidInput">Invalid Email</p>}
           </div>
           <button type="button" className="closeBtn" onClick={() => setIsOpen(false)}>
-            {/* <RiCloseLine style={{ marginBottom: "-3px" }} /> */}
           </button>
           <div className="modalContent">
             <form data-testid="questionForm">
-              <label className="label">Your Question (mandatory)</label>
-              <textarea className="textArea" data-testid="input1" onChange={(event) => setQuestionBody(event.target.value)} className="qformBar" maxLength="1000" type="text" onInvalid="alert('You must fill out the form!');" required />
+              <text className="label">Your Question (mandatory)</text>
+              <textarea className="qformBar" data-testid="input1" onChange={(event) => setQuestionBody(event.target.value)} maxLength="1000" type="text" onInvalid="alert('You must fill out the form!');" required />
               <br />
               <br />
-              <label className="label">What is your nickname (mandatory)</label>
-              <input className="textArea" data-testid="input2" onChange={(event) => setUserName(event.target.value)} className="formBar" maxLength="60" placeholder="Example: jackson11!" type="text" onInvalid="alert('You must fill out the form!');" required />
+              <text className="label">What is your nickname (mandatory)</text>
+              <input data-testid="input2" onChange={(event) => setUserName(event.target.value)} className="formBar" maxLength="60" placeholder="Example: jackson11!" type="text" onInvalid="alert('You must fill out the form!');" required />
               <br />
               <br />
-              <label className="label">Your email (mandatory)</label>
-              <input className="textArea" data-testid="input3" onChange={(event) => setUserEmail(event.target.value)} className="formBar" maxLength="60" placeholder="Why did you like the product or not?" type="text" onInvalid="alert('You must fill out the form!');" required />
+              <text className="label">Your email (mandatory)</text>
+              <input data-testid="input3" onChange={(event) => setUserEmail(event.target.value)} className="formBar" maxLength="60" placeholder="Why did you like the product or not?" type="text" onInvalid="alert('You must fill out the form!');" required />
               <p>For authentication reasons, you will not be emailed</p>
             </form>
             <br />
@@ -75,7 +72,6 @@ function QuestionFrom({ setIsOpen }) {
                 data-testid="submit"
                 onClick={(event) => {
                   submitForm(event);
-                  // setIsOpen(false);
                 }}
               >
                 Submit

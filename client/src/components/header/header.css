@@ -3,7 +3,7 @@
 
 .mainSearch::placeholder {
   font-size: 18pt;
-  font-weight: 300;
+  font-weight: 700;
   color: white;
 }
 
@@ -32,12 +32,13 @@
   justify-content: flex-end;
   /* padding-top: 20px; */
   /* padding-right: 50px; */
-  padding-left: 865px;
+  padding-left: 850px;
 }
 
 
 .mainSearch {
   background-color: rgb(58, 58, 59);
+  width: 160px;
   border: none;
   color: white
 }

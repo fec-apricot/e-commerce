@@ -9,7 +9,7 @@ function Header() {
         <span className="logo">apricot</span>
         <span>
           <form className="mainForm">
-            <input className="mainSearch" placeholder="_______________"></input>
+            <input className="mainSearch" placeholder="_________________"></input>
             <button className="mainSearchBtn"><i className="fa fa-search fa-xl"/></button>
           </form>
         </span>
