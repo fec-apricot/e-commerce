@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import parse from '../../parse';
-// import { GlobalContext } from '../GlobalContext.jsx';
 import AnswerListEntry from './AnswerListEntry.jsx';
 import AnswerForm from './AnswerForm.jsx';
 import './questions.css';
@@ -37,7 +36,6 @@ function QuestionListEntry({ question }) {
         <span className="questionList">
           Q:&ensp;
           <span className="qbody">{question.question_body}</span>
-
         </span>
         <span className="navQ">
           Helpful?
@@ -54,10 +52,18 @@ function QuestionListEntry({ question }) {
           &#41;
           &emsp;|&emsp;
           <button type="button" className="Btn" data-testid="addAnswer" onClick={() => setOpenForm(true)}>Add Answer</button>
-          {openForm && <AnswerForm setOpenForm={setOpenForm} question={question} setBurn={setBurn} burn={burn} />}
+          {openForm
+           && (
+           <AnswerForm
+             setOpenForm={setOpenForm}
+             question={question}
+             setBurn={setBurn}
+             burn={burn}
+           />
+           )}
         </span>
         <div className="answer-list-section">
-          {answers.map((answer, i) => <AnswerListEntry key={i} answer={answer} />) }
+          {answers.map((answer) => <AnswerListEntry key={answer} answer={answer} />) }
         </div>
         {allAnswers.length > answers.length ? (
           <button type="button" className="moreAnswersBtn" onClick={() => setAnswers(allAnswers) && setBurn(!burn)}>LOAD MORE ANSWERS</button>) : ''}

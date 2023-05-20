@@ -15,6 +15,8 @@
 
 .navQ {
  /* color: rgb(114, 114, 116); */
+ /* display: inline-block;
+ vertical-align: top; */
  float: right;
  font-size: 9pt;
  font-weight: 300;
@@ -85,13 +87,11 @@
   max-width: 650px; */
 }
 
-/* .qbody { */
-  /* display: inline-block;
-  width: 700px; */
-  /* max-height: 19px; */
-  /* overflow-y: auto;
-  overflow-wrap: break-word; */
-/* } */
+.qbody {
+  display: inline-block;
+  vertical-align: top;
+  width: 700px
+}
 
 .qSection {
   padding-top: 5px;
@@ -103,8 +103,12 @@
 }
 
 .answerText {
+  display: inline-block;
+  vertical-align: top;
+  width: 680px;
   font-size: 10pt;
   font-weight: 300;
+  overflow-wrap: break-word;
 }
 
 .Btn {
@@ -175,7 +179,7 @@
   /* margin: auto; */
 }
 
-.darkBG {
+.modal-form {
   background-color: rgba(0, 0, 0, 0.2);
   width: 100vw;
   height: 100vh;
@@ -327,17 +331,14 @@
 
 .question-list-section {
   max-height: 600px;
-  /* width: 800px; */
   overflow-y: auto;
   overflow-wrap: break-word;
 }
 
 .answer-list-section {
   max-height: 250px;
-  width: 600px;
   overflow-y: auto;
   overflow-wrap: break-word;
-  /* border: 1px solid; */
 }
 
 /* .subheading {

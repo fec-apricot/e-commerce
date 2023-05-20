@@ -35,7 +35,7 @@ function AnswerForm({
 
   return (
     <>
-      <div className="darkBG" onClick={() => setOpenForm(false)} />
+      <div type="button" aria-label="Save" role="button" tabIndex={0} onKeyDown={() => {}} className="modal-form" onClick={() => setOpenForm(false)} />
       <div className="centered">
         <div className="modal">
           <div className="modalHeader">
@@ -43,7 +43,7 @@ function AnswerForm({
             <h6 className="subheading">
               {product?.name}
               :&ensp;
-              {question.question_body.slice(0, 33)}
+              {`${question.question_body.slice(0, 30)}...`}
             </h6>
             {inputErr && <p className="invalidInput">You must enter the following:</p>}
             {emailErr && <p className="invalidInput">Invalid Email</p>}
@@ -52,15 +52,15 @@ function AnswerForm({
           </button>
           <div className="modalContent">
             <form>
-              <label className="label">Your Answer (mandatory)</label>
+              <text className="label">Your Answer (mandatory)</text>
               <textarea data-testid="input1" onChange={(event) => setAnswerBody(event.target.value)} className="qformBar" maxLength="1000" type="text" onInvalid="alert('You must fill out the form!');" required />
               <br />
               <br />
-              <label className="label">What is your nickname (mandatory)</label>
+              <text className="label">What is your nickname (mandatory)</text>
               <input data-testid="input2" onChange={(event) => setName(event.target.value)} className="formBar" maxLength="60" placeholder="Example: jack543!" type="text" onInvalid="alert('You must fill out the form!');" required />
               <br />
               <br />
-              <label className="label">Your email (mandatory)</label>
+              <text className="label">Your email (mandatory)</text>
               <input data-testid="input3" onChange={(event) => setEmail(event.target.value)} className="formBar" maxLength="60" placeholder="Example: jack@email.com" type="text" onInvalid="alert('You must fill out the form!');" required />
               <p>For authentication reasons, you will not be emailed</p>
             </form>
@@ -75,7 +75,6 @@ function AnswerForm({
                 data-testid="submit"
                 onClick={(event) => {
                   submitForm(event);
-                  // setOpenForm(false);
                 }}
               >
                 Submit
