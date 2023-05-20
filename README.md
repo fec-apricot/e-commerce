@@ -105,6 +105,38 @@ Some improvements that could be made include adding more features such as a paym
 
 ### -Reviews
 
+#### Reviews.jsx
+  - This file contains all of the children components needed to render the reviews and ratings of a certain         product.
+  - It makes a get request to set an initial review list, to set a total review list to be filtered on, and to       get metadata of a specific product. 
+
+#### ReviewList.jsx
+  - This file inherits the props for the product ID, sort parameter, review list, total review list, review         modal switch, and a sort switch for filtering. 
+  - The review modal prop allows for a review submission modal to be rendered when the “ADD A REVIEW” button is     clicked. The sort switch prop, which invokes the filtering in ReviewBreakdown.jsx, is changed whenever the       sort parameter is changed from the drop down menu.
+
+#### ReviewTile.jsx
+  - This file is mapped out from ReviewList.jsx and requires a single review prop to render out the pertinent   information.
+  - If there are any photos in the review it will also pass the url and photo modal prop to TilePhoto.jsx.
+
+#### TilePhoto.jsx
+  - This file allows for a modal to appear rendering a bigger version of the picture whenever a photo is clicked     on in the ReviewTile.
+
+#### ReviewBreakdown.jsx
+  - This file inherits the props for product ID, review list, total reviews, sort parameters, and sort switch.     - Filtering occurs whenever a breakdown bar is clicked, the sort switch is changed in ReviewList.jsx. 
+
+#### ProductBreakdown.ksx
+  - This file only requires the props product ID and characteristics of the product from metadata.
+  - It maps out these characteristics as details for DetailBar.jsx
+
+#### DetailBar.jsx
+  - This file requires a detail prop from a single characteristic of that item and displays it as a dynamic bar     rating in the Product Breakdown.
+
+#### WriteReview.jsx
+  - This file represents the review submission modal that appears whenever the “ADD A REVIEW” button is clicked.   - It inherits the props for the product, the review modal switch, and the characteristics from the metadata. -   - It also maps out radio buttons from the characteristic props.
+
+#### WriteButton.jsx
+  - This file takes in a single detail and the detail object that is needed to be sent as a GET request in           WriteReview.jsx. 
+  - It renders five buttons for a single detail with a scale being different for a specific detail. 
+
 ### -Stars
 
 #### Stars.jsx
