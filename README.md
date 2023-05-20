@@ -54,6 +54,19 @@ Some improvements that could be made include adding more features such as a paym
 
 ### -Overview
 
+#### OverviewContext.jsx
+- The OverviewContextProvider will take the productID from GlobalContext and provide the children components with selectedStyle, setSelectedStyle and styles, which is an array of all the styles of current product.
+
+#### OverviewCarousel.jsx
+- The OverviewCarousel can be used by both ImageGallery.jsx and ExpandedView.jsx. It will take following props: 
+  - defaultViewIndex is the index of the default view image.
+  - setDefaultViewIndex will set the index of the default view image.
+  - thumbnailViewIndexStart is the index of the first image in the thumbnail view.
+  - setThumbnailIndexStart will set the index of the first image in the thumbnail view.
+  - isExpandedView shows whether current overview carousel is the default view or the expanded view.
+  - handleClick is setShowExpandedView in default view and setShowMagnifier in expanded view.
+
+
 ### -Related Products
 
 #### RelatedProducts.jsx
