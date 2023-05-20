@@ -103,6 +103,37 @@ Some improvements that could be made include adding more features such as a paym
 
 ### -Questions and Answers
 
+#### Questions.jsx
+- The Questions module doesn't require any props
+
+#### QuestionList.jsx
+-The QuestionList module requires the {questions} as a prop 
+-Then it maps over an array of questions.
+
+#### QuestionListEntry.jsx
+-The QuestionListEntry module requires the {answer} as a prop
+-Then it keys into to the answer object
+-It make a get request to the API to get the list of answers
+-It maps answers and passes a answer to the AnswerListEntry module
+
+#### AnswerListEntry.jsx
+-The AnswerListEntry module requires the {question} as a prop
+-Then it keys into to the question obj
+-It make a get request to the API using the answer id to update helpfulness
+
+#### QuestionForm.jsx
+-The QuestionForm module requires the {setIsOpen} as a prop passed from Questions as well as the productId and product passed from the Global Context
+-It sets state for the form submissions and make a post request to update the API
+
+#### AnswerForm.jsx
+-The AnswerForm module requires the {setOpenForm, question, setBurn, burn} as a prop passed from Questions as well as the product passed from the Global Context
+-It sets state for the form submissions and make a post request to update the API
+
+#### Search.jsx
+-The Search module requires the {setQuestions, setAllQuestions} as a prop
+-It sets state and updates the list with the input from the search.
+
+
 ### -Reviews
 
 #### Reviews.jsx
