@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import _ from 'underscore';
@@ -129,11 +129,13 @@ const Notification = styled.div`
 `;
 
 function AddToCart() {
-  const { product, selectedStyleIndex } = useSelector((state) => state.overview);
-  const selectedStyle = useMemo(
-    () => (product.styles ? product.style[selectedStyleIndex] : {}),
-    [product, selectedStyleIndex],
-  );
+  const selectedStyle = useSelector((state) => {
+    const { overview } = state;
+    if (overview.product.styles?.length) {
+      return overview.product.styles[overview.selectedStyleIndex];
+    }
+    return {};
+  });
   const [skus, setSkus] = useState({});
   const [sizeDropdownExpanded, setSizeDropdownExpanded] = useState(false);
   const [qtyDropdownExpanded, setQtyDropdownExpanded] = useState(false);

@@ -1,8 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { GlobalContext } from '../GlobalContext.jsx';
-import { OverviewContext } from './OverviewContext.jsx';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ImageGallery from './image-gallery/ImageGallery.jsx';
 import Description from './Description.jsx';
 import StyleSelector from './StyleSelector.jsx';
@@ -64,11 +62,9 @@ const ShareContainer = styled.div`
 `;
 
 function Overview() {
-  const { metadata } = useContext(GlobalContext);
-  // const { selectedStyle } = useContext(OverviewContext);
-  const product = useSelector((state) => state.overview.product);
-  const selectedStyleIndex = useSelector((state) => state.overview.selectedStyleIndex);
-  const selectedStyle = product.style ? product.styles[selectedStyleIndex] : {};
+  const { product, selectedStyleIndex } = useSelector((state) => state.overview);
+  const selectedStyle = product.styles ? product.styles[selectedStyleIndex] : {};
+  const { metadata } = useSelector((state) => state.review);
   const [totalReviews, setTotalReviews] = useState(0);
 
   useEffect(() => {
