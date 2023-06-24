@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import DropdownIcon from '../../../assets/dropdown-icon.svg';
 import ArrowIcon from '../../../assets/arrow-icon.png';
 import {
   DefaultView, CarouselButton, ThumbnailViewContainer, ThumbnailView,
 } from './ImageGallery.styled';
-import { OverviewContext } from '../OverviewContext.jsx';
 import ImageMagnifier from './ImageMagnifier.jsx';
 
 function OverviewCarousel({
@@ -19,7 +19,13 @@ function OverviewCarousel({
   viewportWidth,
   viewportHeight,
 }) {
-  const { selectedStyle } = useContext(OverviewContext);
+  const selectedStyle = useSelector((state) => {
+    const { overview } = state;
+    if (overview.product.styles?.length) {
+      return overview.product.styles[overview.selectedStyleIndex];
+    }
+    return {};
+  });
   const { photos } = selectedStyle;
   const defaultSrc = photos && photos[defaultViewIndex]?.url;
   const MAXTHUMBNAILVIEWLENGTH = 7;
