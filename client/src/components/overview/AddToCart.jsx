@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 import _ from 'underscore';
 import parse from '../../parse';
-import { OverviewContext } from './OverviewContext.jsx';
 import DropdownIcon from '../../assets/dropdown-icon.svg';
 
 const Host = styled.div`
@@ -129,7 +129,11 @@ const Notification = styled.div`
 `;
 
 function AddToCart() {
-  const { selectedStyle } = useContext(OverviewContext);
+  const { product, selectedStyleIndex } = useSelector((state) => state.overview);
+  const selectedStyle = useMemo(
+    () => (product.styles ? product.style[selectedStyleIndex] : {}),
+    [product, selectedStyleIndex],
+  );
   const [skus, setSkus] = useState({});
   const [sizeDropdownExpanded, setSizeDropdownExpanded] = useState(false);
   const [qtyDropdownExpanded, setQtyDropdownExpanded] = useState(false);
