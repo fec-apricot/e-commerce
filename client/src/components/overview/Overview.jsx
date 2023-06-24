@@ -1,7 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { GlobalContext } from '../GlobalContext.jsx';
-import { OverviewContext } from './OverviewContext.jsx';
+import { useSelector } from 'react-redux';
 import ImageGallery from './image-gallery/ImageGallery.jsx';
 import Description from './Description.jsx';
 import StyleSelector from './StyleSelector.jsx';
@@ -63,8 +62,9 @@ const ShareContainer = styled.div`
 `;
 
 function Overview() {
-  const { product, metadata } = useContext(GlobalContext);
-  const { selectedStyle } = useContext(OverviewContext);
+  const { product, selectedStyleIndex } = useSelector((state) => state.overview);
+  const selectedStyle = product.styles ? product.styles[selectedStyleIndex] : {};
+  const { metadata } = useSelector((state) => state.review);
   const [totalReviews, setTotalReviews] = useState(0);
 
   useEffect(() => {
@@ -98,10 +98,10 @@ function Overview() {
           <Price>
             <span>&#36;</span>
             <span style={{ color: 'red' }}>
-              {selectedStyle?.sale_price || '' }
+              {selectedStyle.sale_price || '' }
               &nbsp;
             </span>
-            <span style={{ textDecoration: selectedStyle?.sale_price && 'line-through', fontStyle: selectedStyle?.sale_price && 'italic' }}>{selectedStyle?.original_price}</span>
+            <span style={{ textDecoration: selectedStyle.sale_price && 'line-through', fontStyle: selectedStyle.sale_price && 'italic' }}>{selectedStyle.original_price}</span>
           </Price>
           <StyleSelector />
           <AddToCart />

@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { OverviewContext } from './OverviewContext.jsx';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateSelectedStyleIndex } from '../../slices/overviewSlice';
 
 const Host = styled.div`
   height: 35%;
@@ -64,7 +65,10 @@ const Checkmark = styled.span`
 `;
 
 function StyleSelector() {
-  const { selectedStyle, setSelectedStyle, styles } = useContext(OverviewContext);
+  const { product, selectedStyleIndex } = useSelector((state) => state.overview);
+  const { styles } = product;
+  const selectedStyle = styles ? styles[selectedStyleIndex] : {};
+  const dispatch = useDispatch();
 
   return (
     <Host data-testid="style-selector">
@@ -83,7 +87,7 @@ function StyleSelector() {
           <StyleThumbnailContainer
             key={style.style_id}
             onClick={() => {
-              setSelectedStyle(style);
+              dispatch(updateSelectedStyleIndex(index));
             }}
             data-testid={`style-item-${index}`}
           >
