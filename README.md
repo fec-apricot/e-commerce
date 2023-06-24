@@ -1,73 +1,72 @@
-# This project was created by Team Apricot.
+## This project was created by Team Apricot.
 
-#### - Overview - Xintong Mi
+|Name  |Component  |Github Handle  |
+|---|---|---|
+|Xintong Mi  |Overview  |[XintongTheCoder](https://github.com/XintongTheCoder) |
+|Tyler O'Neill  |Related Products  |[jtoneill](https://github.com/jtoneill)  |
+|Aliyah Indra  |Questions and Answers  |[aliyahindra](https://github.com/aliyahindra)  |
+|Noriel Flores  |Reviews  |[nflo78](https://github.com/nflo78)  |
 
-#### - Related Products - Tyler O'Neill
+# Description
 
-#### - Questions and Answers - Aliyah Indra
-
-#### - Reviews - Noriel Flores
-
-## - Description
-
-This is an e-commerce project created with React, Node.js, Express.js, Amazon AWS, Jest, Webpack and Babel. It is designed to allow users to purchase items through an online store. The goal was to create an application that is user-friendly and secure.
-
-This project can be used for any type of e-commerce store. It is easy to use and provides a great user experience.
+This is an e-commerce project created with React, Node.js, Express.js, Amazon AWS, Jest, Webpack, and Babel. It is designed to deliver a seamless online shopping experience.
 
 Some of the challenges encountered while building this project include setting up the Amazon AWS infrastructure and ensuring the application is responsive.
 
-## - Technologies Used
+# Technologies Used
 
 This project uses the following technologies:
 
-#### React
-#### Amazon AWS
-#### Express.js
-#### Jest
-#### Node.js
-#### Webpack
-#### Babel
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)](https://jestjs.io/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Amazon AWS](https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/)
 
-## - Installation and Running
+# Installation and Running
 
 To install the project, clone the repository and install the dependencies:
 
-git clone https://github.com/fec-apricot/e-commerce.git
-cd e-commerce
-npm install
+        git clone https://github.com/fec-apricot/e-commerce.git
+        cd e-commerce
+        npm install
+        
 To run the project:
 
-npm start
+        npm start
 
-## - If necessary, create a .env file with the following variables:
+#### If necessary, create a .env file with the following variables:
 
 PORT=3000
 TOKEN='github token'
 
-## - Wins and Improvements
+#### Wins and Improvements
 
-This project was successful in creating a user friendly e-commerce application that is easy to use and provides a great user experience. The Amazon AWS infrastructure was successfully set up and deployed. The application is also responsive.
+This project was successful in creating a user-friendly e-commerce application that is easy to use and provides a great user experience. The Amazon AWS infrastructure was successfully set up and deployed. The application is also responsive.
 
 Some improvements that could be made include adding more features such as a payment gateway, creating more tests, and improving the user experience.
 
-## - Widget Notes
+# Widget Notes
 
-### - Overview
+## Overview
 
-#### OverviewContext.jsx
-- The OverviewContextProvider will take the productID from GlobalContext and provide the children components with selectedStyle, setSelectedStyle and styles, which is an array of all the styles of current product.
+<a href="https://ibb.co/SrmprD8"><img src="https://i.ibb.co/5FjVFXy/fec-overview.gif" alt="fec-overview" border="0"></a>
+#### Features
+
+
 
 #### OverviewCarousel.jsx
-- The OverviewCarousel can be used by both ImageGallery.jsx and ExpandedView.jsx. It will take following props: 
+- The OverviewCarousel can be used by both ImageGallery.jsx and ExpandedView.jsx. It will take the following props: 
   - defaultViewIndex is the index of the default view image.
   - setDefaultViewIndex will set the index of the default view image.
   - thumbnailViewIndexStart is the index of the first image in the thumbnail view.
   - setThumbnailIndexStart will set the index of the first image in the thumbnail view.
-  - isExpandedView shows whether current overview carousel is the default view or the expanded view.
-  - handleClick is setShowExpandedView in default view and setShowMagnifier in expanded view.
+  - isExpandedView shows whether the current overview carousel is the default view or the expanded view.
+  - handleClick is setShowExpandedView in the default view and setShowMagnifier in the expanded view.
 
 
-### - Related Products
+## Related Products
 
 #### RelatedProducts.jsx
 #### The related products module doesn't require any props
@@ -94,7 +93,7 @@ Some improvements that could be made include adding more features such as a paym
 - The outfitToggle, burn, rpMode, and dataStore props are the same as their carousel counterparts (above).
 
 
-### - Questions and Answers
+## Questions and Answers
 
 #### Questions.jsx
 - The Questions module doesn't require any props
@@ -127,7 +126,7 @@ Some improvements that could be made include adding more features such as a paym
 - It sets state and updates the list with the input from the search.
 
 
-### - Reviews
+## Reviews
 
 #### Reviews.jsx
   - This file contains all of the children components needed to render the reviews and ratings of a certain         product.
@@ -164,7 +163,7 @@ Some improvements that could be made include adding more features such as a paym
   - This file takes in a single detail and the detail object that is needed to be sent as a GET request in           WriteReview.jsx. 
   - It renders five buttons for a single detail with a scale being different for a specific detail. 
 
-### - Stars
+### Stars
 
 #### Stars.jsx
 #### The stars module requires four props be passed to it. (ratings, size, interactive, cb)
