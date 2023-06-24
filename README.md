@@ -51,10 +51,15 @@ Some improvements that could be made include adding more features such as a paym
 
 ## Overview
 
-<a href="https://ibb.co/SrmprD8"><img src="https://i.ibb.co/5FjVFXy/fec-overview.gif" alt="fec-overview" border="0"></a>
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/V3qBfvP/fec-overview-optimize.gif" alt="fec-overview-optimize" border="0"></a>
 #### Features
 
-
+- General information about the product, including product rating, name, category, price, slogan, description and features
+- A list of styles. Users can toggle between styles, the selected style will be displayed in the image gallery
+- Size and quantity selector, add to cart button
+- Image gallery with a list of thumbnails
+- Clicking on the main image will open the expanded view of the current image
+- Clicking on the expanded view will toggle zoom in and zoom out of the image
 
 #### OverviewCarousel.jsx
 - The OverviewCarousel can be used by both ImageGallery.jsx and ExpandedView.jsx. It will take the following props: 
