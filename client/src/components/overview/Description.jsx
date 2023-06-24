@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { GlobalContext } from '../GlobalContext.jsx';
+import { useSelector } from 'react-redux';
 
 const Host = styled.div`
   width: 76%;
@@ -38,17 +38,17 @@ const FeatureContainer = styled.div`
 `;
 
 function Description() {
-  const { product } = useContext(GlobalContext);
+  const product = useSelector((state) => state.overview.product);
 
   return (
     <Host>
       <SloganAndDescriptionContainer>
-        <Slogan>{product?.slogan}</Slogan>
-        <DescriptionContent>{product?.description}</DescriptionContent>
+        <Slogan>{product.slogan}</Slogan>
+        <DescriptionContent>{product.description}</DescriptionContent>
       </SloganAndDescriptionContainer>
       <VerticalLine />
       <FeatureContainer>
-        {product?.features
+        {product.features
         && product.features.map((feature) => (
           <div key={feature.feature} style={{ height: '30px', fontSize: '15px' }}>
             &#10003;&nbsp;&nbsp;
