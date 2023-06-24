@@ -14,7 +14,7 @@ export const overviewSlice = createSlice({
     updateSelectedStyleIndex: (state, action) => {
       state.selectedStyleIndex = action.payload;
     },
-    updateLoading: state => {
+    updateLoading: (state) => {
       state.isLoading = !state.isLoading;
     },
   },
